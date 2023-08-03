@@ -1,0 +1,11 @@
+[[social_icons]]
+id = "email"
+url = "mailto:cs.nguyenhuudat@gmail.com"
+title = "Email me"
+icon = "fas fa-envelope"
+
+[[social_icons]]
+id = "linkedin"
+url = "https://www.linkedin.com/in/%C4%91%E1%BA%A1t-nguy%E1%BB%85n-3b472419a/"
+title = "LinkedIn"
+icon = "fab fa-linkedin"
