@@ -29,10 +29,14 @@ Tuy nhiên, sẽ có một số khái niệm khác mà bạn sẽ thấy không 
 
 Loss function đo lường sự sai khác giữa giá trị mà model dự đoán ra với giá trị thực của chúng. Nó sẽ đánh giá hiệu suất của mô hình học máy có tốt hay không trên 1 “ví dụ đào tạo cụ thể” hoặc trên từng “ví dụ đào tạo đơn lẻ”. Sẽ có nhiều cách để định nghĩa 1 loss function, vì điều này còn phụ thuộc vào mục đích của từng bài toán khác nhau. Tuy nhiên, về cơ bản thì nó thường là 1 function định nghĩa trên “điểm dữ liệu”, “kết quả dự đoán của model” và “nhãn (kết quả thực)” và đôi khi sẽ là thêm các hệ số để phạt hoặc chuẩn hoá.
 
-{{< figure link="../../themes/beautifulhugo/static/img/loss/1.jpg" >}}
+<!-- {{< figure link="../../themes/beautifulhugo/static/img/loss/1.jpg" >}} -->
+<img src="themes/beautifulhugo/static/img/loss/1.jpg">
+<img src="/themes/beautifulhugo/static/img/loss/1.jpg">
+<img src="../../themes/beautifulhugo/static/img/loss/1.jpg">
+<img src="/img/loss/1.jpg">
 <p class="textSingleImg"><b>Hinh 1</b></p>
 
-Với Hình 1, ở trên, $x_i$ là một điểm dữ liệu và $y_i$ là nhãn tương ứng, $f(x_i|\theta)$ là đầu ra của mô hình với điểm dữ liệu $x_i$, trong đó theta là tham số của mô hình, sẽ học trong quá trình huấn luyện.
+Với Hình 1, ở trên, \\( x_i \\) là một điểm dữ liệu và \\(y_i\\) là nhãn tương ứng, \\(f(x_i|\theta)\\) là đầu ra của mô hình với điểm dữ liệu \\(x_i\\), trong đó \\(\theta\\) là tham số của mô hình, sẽ học trong quá trình huấn luyện.
 
 Có thể thấy, 2 loss function ở trên đều sẽ tính sự sai khác giữa “kết quả dự đoán của mô hình” và “nhãn của dữ liệu”, tuy nhiên với 2 bài toán khác nhau thì cách định nghĩa hàm loss cũng sẽ khác nhau.
 
