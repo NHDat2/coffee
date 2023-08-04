@@ -34,6 +34,10 @@ Loss function đo lường sự sai khác giữa giá trị mà model dự đoá
 <img src="/themes/beautifulhugo/static/img/loss/1.jpg">
 <img src="../../themes/beautifulhugo/static/img/loss/1.jpg">
 <img src="/img/loss/1.jpg">
+<img src="resources/loss/1.jpg">
+<img src="/resources/loss/1.jpg">
+<img src="/assets/loss/1.jpg">
+<img src="assets/loss/1.jpg">
 <p class="textSingleImg"><b>Hinh 1</b></p>
 
 Với Hình 1, ở trên, \\( x_i \\) là một điểm dữ liệu và \\(y_i\\) là nhãn tương ứng, \\(f(x_i|\theta)\\) là đầu ra của mô hình với điểm dữ liệu \\(x_i\\), trong đó \\(\theta\\) là tham số của mô hình, sẽ học trong quá trình huấn luyện.
