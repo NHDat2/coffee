@@ -11,6 +11,9 @@ pygmentsCodefencesGuessSyntax = true
 #disqusShortname = "XXX"
 #googleAnalytics = "XXX"
 
+[markup.goldmark.renderer]
+  unsafe = true
+
 [Params]
 #  homeTitle = "Beautiful Hugo Theme" # Set a different text for the header on the home page
   # subtitle = "Build a beautiful and simple website in minutes"
@@ -18,7 +21,7 @@ pygmentsCodefencesGuessSyntax = true
   # logo = "img/avatar_blog.png" # Expecting square dimensions
   logo = "img/avatar-icon.png" # Expecting square dimensions
   favicon = "img/favicon.ico"
-  dateFormat = "January 7, 2023"
+  dateFormat = "June 1, 2023"
   commit = false
   rss = true
   comments = true
