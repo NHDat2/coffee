@@ -29,7 +29,7 @@ Tuy nhiên, sẽ có một số khái niệm khác mà bạn sẽ thấy không 
 
 Loss function đo lường sự sai khác giữa giá trị mà model dự đoán ra với giá trị thực của chúng. Nó sẽ đánh giá hiệu suất của mô hình học máy có tốt hay không trên 1 “ví dụ đào tạo cụ thể” hoặc trên từng “ví dụ đào tạo đơn lẻ”. Sẽ có nhiều cách để định nghĩa 1 loss function, vì điều này còn phụ thuộc vào mục đích của từng bài toán khác nhau. Tuy nhiên, về cơ bản thì nó thường là 1 function định nghĩa trên “điểm dữ liệu”, “kết quả dự đoán của model” và “nhãn (kết quả thực)” và đôi khi sẽ là thêm các hệ số để phạt hoặc chuẩn hoá.
 
-{{< figure link="/img/loss/1.jpg" >}}
+{{< figure link="../../themes/beautifulhugo/static/img/loss/1.jpg" >}}
 <p class="textSingleImg"><b>Hinh 1</b></p>
 
 Với Hình 1, ở trên, $x_i$ là một điểm dữ liệu và $y_i$ là nhãn tương ứng, $f(x_i|\theta)$ là đầu ra của mô hình với điểm dữ liệu $x_i$, trong đó theta là tham số của mô hình, sẽ học trong quá trình huấn luyện.
@@ -42,7 +42,7 @@ Với mỗi từng điểm dữ liệu, ta thực hiện tính giá trị của 
 
 Tối thiểu hoá cost function trong quá trình training sẽ giúp tối ưu các tham số của mô hình.
 
-{{< figure link="/img/loss/2.jpg" >}}
+{{< figure link="themes/beautifulhugo/static/img/loss/1.jpg" >}}
 <p class="textSingleImg"><b>Hinh 2</b></p>
 
 Như hình 2, có thể thấy “Mean Squared Error (MSE)” là cost function cho bài toán Linear regression. Nó sẽ là trung bình của các giá trị loss trên “toàn bộ” tập dữ liệu huấn luyện.
