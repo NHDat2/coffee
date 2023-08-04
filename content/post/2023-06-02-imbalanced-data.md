@@ -44,8 +44,8 @@ Thế thì Imbalanced Dataset là gì ?
 
 Có thể hiểu Imbalanced Dataset là sự mất cân bằng dữ liệu, khi mà có một hoặc nhiều nhãn trong bộ dữ liệu có lượng dữ liệu lớn hoặc nhỏ hơn nhiều so với số còn lại thì được gọi là Imbalanced Dataset (hay mất cân bằng dữ liệu).
 
-<img class="twoImg" src="/coffee/img/Imbalanced_dataset/1.png">
-<img class="twoImg" src="/coffee/img/Imbalanced_dataset/2.png"><br/>
+<img class="twoImg" src="/img/Imbalanced_dataset/1.png">
+<img class="twoImg" src="/img/Imbalanced_dataset/2.png"><br/>
 <div class="textTwoImg">
     <p>Hình 1: Imbalanced dataset phân loại 2 lớp</p>
     <p>Hình 2: Imbalanced dataset phân loại nhiều lớp</p>
@@ -112,13 +112,13 @@ Ví dụ, để dễ hiểu, nếu như ta có bài toán phân loại 2 lớp c
 
 Trong thực tế, bài toán Imbalanced Dataset ta có thể gặp ở cả các bài toán phân loại 2 lớp lẫn phân loại nhiều lớp. Trong đó, sẽ có những bài toán phân loại nhiều lớp mà ở đó đột nhiên có một số lớp có lượng dữ liệu trội lên hẳn so với các lớp dữ liệu còn lại.
 
-<img class="singleImg" src="/coffee/img/Imbalanced_dataset/2.png">
+<img class="singleImg" src="/img/Imbalanced_dataset/2.png">
 <p class="textSingleImg">Hình 3: Imbalanced Dataset với multi label</p>
 
 Khi đó, có một cách tiếp cận hiệu quả mà ta có thể xem xét là việc chia nhỏ bài toán ra thành các bài toán con.
 
-<img class="twoImg" src="/coffee/img/Imbalanced_dataset/3.png">
-<img class="twoImg" src="/coffee/img/Imbalanced_dataset/4.png">
+<img class="twoImg" src="/img/Imbalanced_dataset/3.png">
+<img class="twoImg" src="/img/Imbalanced_dataset/4.png">
 <div class="textTwoImg">
 <p>Hình 4: Chia nhỏ bài toán thành bài toán tổng quan phân loại 2 lớp là chó và không phải chó </p>
 <p>Hình 5: Đối với lớp không phải là chó sẽ thực hiện phân loại nhiều nhãn như bình thường</p>
