@@ -35,9 +35,9 @@ canonifyURLs = true
 
 [Author]
   name = "Datnh"
-  website = ""
   email = "cs.nguyenhuudat@gmail.com"
-  github = "NHDat2"
+  github = "https://github.com/NHDat2"
+  linkedin = "https://www.linkedin.com/in/nguyenhuudat/"
 
 [[menu.main]]
     name = "Blog"
