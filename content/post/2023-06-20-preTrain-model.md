@@ -1,32 +1,32 @@
----
-title: Tản Mạn Pre-Trained Models
-date: 2023-06-20
-tags: ["transformer", "pre-trained model"]
----
+<!-- --- -->
+<!-- title: Tản Mạn Pre-Trained Models -->
+<!-- date: 2023-06-20 -->
+<!-- tags: ["transformer", "pre-trained model"] -->
+<!-- --- -->
 
 
-<style>
-.textSingleImg {
-  text-align: center;
-}
-.textTwoImg {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+<!-- <style> -->
+<!-- .textSingleImg { -->
+  <!-- text-align: center; -->
+<!-- } -->
+<!-- .textTwoImg { -->
+    <!-- display: flex; -->
+    <!-- flex-direction: row; -->
+    <!-- justify-content: space-around; -->
 
-}
-.singleImg {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-.twoImg {
-    display: inline;
-    width: 300px;
-    height: 300px;
-    margin-left: 30px;
-}
-</style>
+<!-- } -->
+<!-- .singleImg { -->
+  <!-- display: block; -->
+  <!-- margin-left: auto; -->
+  <!-- margin-right: auto; -->
+<!-- } -->
+<!-- .twoImg { -->
+    <!-- display: inline; -->
+    <!-- width: 300px; -->
+    <!-- height: 300px; -->
+    <!-- margin-left: 30px; -->
+<!-- } -->
+<!-- </style> -->
 
 # Transformer-based Pre-trained Models là gì ?
 
