@@ -97,6 +97,3 @@ Có thể thấy công thức (*) chính là Maximum Likelihood Estimation (MLE)
 Với việc \\( \hat{y_0} \\) được tạo ra từ input **x** (có thể đã được xử lý như encode or tương tự, “cái này tuỳ thuộc vào người thiết kế model”)
 
 Có thể thấy công thức (*) chính là Maximum Likelihood Estimation (MLE)
-
-Trong AutoRegressive model còn có một kỹ thuật khá hay gọi là "teacher forcing". Khi train thay vì nhận giá trị output tại thời điểm "t-1" làm đầu vào thì model sẽ nhận "ground-truth tại thời điểm t-1" làm đầu vào.\
-Điều này sẽ giúp cho model hội tụ nhanh hơn và cải thiện tốc độ khi training rất nhiều.
