@@ -1,5 +1,5 @@
 ---
-title: Deal With Imbalanced Datasets
+title: Dealing With Imbalanced Datasets
 date: 2023-09-15
 tags: ["imbalanced data", "imbalance dataset", "data imbalance"]
 ---
