@@ -1,7 +1,7 @@
 ---
-title: Position Encoding
+title: Positional Encoding
 date: 2023-06-14
-tags: ["Transformer", "Positional Encoding", "PE"]
+tags: ["Transformer", "Positional Encoding", "PE", "RoPE", "Rotary Positional Encoding", "ALiBi", "Attention with Linear Bias"]
 ---
 
 - [Giới Thiệu](#giới-thiệu)
@@ -9,6 +9,10 @@ tags: ["Transformer", "Positional Encoding", "PE"]
   - [Tại Sao Cần Có Positional Encoding ?](#tại-sao-cần-có-positional-encoding-)
   - [Khái niệm](#khái-niệm)
 - [Cơ Chế Hoạt Động Của Positional Encoding](#cơ-chế-hoạt-động-của-positional-encoding)
+- [Các Phương Pháp Khác](#các-phương-pháp-khác)
+  - [Relative Positional Encoding](#relative-positional-encoding)
+    - [Attention with Linear Bias (ALiBi)](#attention-with-linear-bias-alibi)
+  - [Rotary Positional Encoding (RoPE)](#rotary-positional-encoding-rope)
 - [Tài Liệu Tham Khảo](#tài-liệu-tham-khảo)
 
 <style>
