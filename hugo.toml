@@ -1,0 +1,56 @@
+baseurl = "https://nhdat2.github.io/coffee/"
+DefaultContentLanguage = "vi"
+title = "Coffee"
+theme = "beautifulhugo"
+pygmentsStyle = "trac"
+pygmentsUseClasses = true
+pygmentsCodeFences = true
+pygmentsCodefencesGuessSyntax = true
+canonifyURLs = true
+
+#pygmentsUseClassic = true
+#pygmentOptions = "linenos=inline"
+#disqusShortname = "XXX"
+#googleAnalytics = "XXX"
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[Params]
+#  homeTitle = "Beautiful Hugo Theme" # Set a different text for the header on the home page
+  # subtitle = "Build a beautiful and simple website in minutes"
+  mainSections = ["post","posts"]
+  logo = "img/avatar-icon.png" # Expecting square dimensions
+  favicon = "img/favicon.ico"
+  dateFormat = "June 1, 2023"
+  commit = false
+  rss = true
+  comments = true
+  readingTime = true
+  wordCount = true
+  useHLJS = true
+  socialShare = false
+  delayDisqus = true
+  showRelatedPosts = true
+
+[Author]
+  name = "Datnh"
+  email = "cs.nguyenhuudat@gmail.com"
+  github = "https://github.com/NHDat2"
+  linkedin = "https://www.linkedin.com/in/nguyenhuudat/"
+
+[[menu.main]]
+    name = "Blog"
+    url = ""
+    weight = 1
+
+[[menu.main]]
+    name = "About"
+    url = "page/about/"
+    weight = 3
+
+[[menu.main]]
+    name = "Tags"
+    url = "tags"
+    weight = 3
+

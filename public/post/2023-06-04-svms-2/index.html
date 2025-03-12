@@ -1,0 +1,535 @@
+
+
+<!DOCTYPE html>
+<html lang="vi" itemscope itemtype="http://schema.org/WebPage">
+  <head><script src="/coffee/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=coffee/livereload" data-no-instant defer></script>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+ 
+
+
+      <title>SVMs Và Một Số Thứ Liên Quan - </title>
+
+  <meta name="description" content="
+
+
+
+Giới Thiệu
+Bài Toán Tối Ưu Cho SVM
+Tham số trả về từ SVC trong thư viện sklearn
+Tài Liệu Tham Khảo
+
+
+Giới Thiệu
+Đã bao giờ bạn chạy một thuật toán hay một thư viện nào đó và kết quả trả về là một đống thứ mà bạn không hiểu nó là gì chưa, hay khi tìm hiểu thuật toán có những thứ nhỏ trong thuật toán mà ta vô tình bỏ qua dẫn tới không hiểu các thứ đằng sau nó vận hành?"><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Coffee",
+    
+    "url": "http:\/\/localhost:1313\/coffee\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "http:\/\/localhost:1313\/coffee\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "http:\/\/localhost:1313\/coffee\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "http:\/\/localhost:1313\/coffee\/post\/2023-06-04-svms-2\/",
+          "name": "Svms và một số thứ liên quan"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : ""
+  },
+  "headline": "SVMs Và Một Số Thứ Liên Quan",
+  "description" : " Giới Thiệu Bài Toán Tối Ưu Cho SVM Tham số trả về từ SVC trong thư viện sklearn Tài Liệu Tham Khảo Giới Thiệu Đã bao giờ bạn chạy một thuật toán hay một thư viện nào đó và kết quả trả về là một đống thứ mà bạn không hiểu nó là gì chưa, hay khi tìm hiểu thuật toán có những thứ nhỏ trong thuật toán mà ta vô tình bỏ qua dẫn tới không hiểu các thứ đằng sau nó vận hành?\n",
+  "inLanguage" : "vi",
+  "wordCount":  1577 ,
+  "datePublished" : "2023-06-04T00:00:00\u002b00:00",
+  "dateModified" : "2023-06-04T00:00:00\u002b00:00",
+  "image" : "http:\/\/localhost:1313\/coffee\/img\/avatar-icon.png",
+  "keywords" : [ "SVM, SVMs, support vector machines, SVC, SVC sklearn, scikit-learn" ],
+  "mainEntityOfPage" : "http:\/\/localhost:1313\/coffee\/post\/2023-06-04-svms-2\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "http:\/\/localhost:1313\/coffee\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "http:\/\/localhost:1313\/coffee\/img\/avatar-icon.png",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+
+<meta property="og:title" content="SVMs Và Một Số Thứ Liên Quan" />
+<meta property="og:description" content="
+
+
+
+Giới Thiệu
+Bài Toán Tối Ưu Cho SVM
+Tham số trả về từ SVC trong thư viện sklearn
+Tài Liệu Tham Khảo
+
+
+Giới Thiệu
+Đã bao giờ bạn chạy một thuật toán hay một thư viện nào đó và kết quả trả về là một đống thứ mà bạn không hiểu nó là gì chưa, hay khi tìm hiểu thuật toán có những thứ nhỏ trong thuật toán mà ta vô tình bỏ qua dẫn tới không hiểu các thứ đằng sau nó vận hành?">
+<meta property="og:image" content="http://localhost:1313/coffee/img/avatar-icon.png" />
+<meta property="og:url" content="http://localhost:1313/coffee/post/2023-06-04-svms-2/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Coffee" />
+
+  <meta name="twitter:title" content="SVMs Và Một Số Thứ Liên Quan" />
+  <meta name="twitter:description" content="
+
+
+
+Giới Thiệu
+Bài Toán Tối Ưu Cho SVM
+Tham số trả về từ SVC trong thư …&lt;/!--&gt;&lt;/!--&gt;">
+  <meta name="twitter:image" content="http://localhost:1313/coffee/img/avatar-icon.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link href='http://localhost:1313/coffee/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.145.0">
+  <link rel="alternate" href="http://localhost:1313/coffee/index.xml" type="application/rss+xml" title="Coffee"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css" integrity="sha384-3UiQGuEI4TTMaFmGIZumfRPtfKQ3trwQE2JgosJxCnGmQpL/lJdjpcHkaaFwHlcI" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.6.0/css/all.css" integrity="sha384-h/hnnw1Bi4nbpD6kE7nYfCXzovi622sY5WBxww8ARKwpdLj5kUWjRuyiXaD1U2JT" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"><link rel="stylesheet" href="http://localhost:1313/coffee/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="http://localhost:1313/coffee/css/highlight.min.css" /><link rel="stylesheet" href="http://localhost:1313/coffee/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://localhost:1313/coffee/">Coffee</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="http://localhost:1313/coffee/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="http://localhost:1313/coffee/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="http://localhost:1313/coffee/tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="Coffee" href="http://localhost:1313/coffee/">
+            <img class="avatar-img" src="http://localhost:1313/coffee/img/avatar-icon.png" alt="Coffee" />
+           
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              
+                <h1>SVMs Và Một Số Thứ Liên Quan</h1>
+              
+              
+              
+              
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;8&nbsp;
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;1577&nbsp;
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;
+    
+  
+  
+</span>
+
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <style>
+.singleImg {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.textSingleImg {
+    text-align: center;
+}
+</style>
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+<!-- code_chunk_output -->
+<ul>
+<li><a href="#gi%E1%BB%9Bi-thi%E1%BB%87u">Giới Thiệu</a></li>
+<li><a href="#b%C3%A0i-to%C3%A1n-t%E1%BB%91i-%C6%B0u-cho-svm">Bài Toán Tối Ưu Cho SVM</a></li>
+<li><a href="#tham-s%E1%BB%91-tr%E1%BA%A3-v%E1%BB%81-t%E1%BB%AB-svc-trong-th%C6%B0-vi%E1%BB%87n-sklearn">Tham số trả về từ SVC trong thư viện sklearn</a></li>
+<li><a href="#t%C3%A0i-li%E1%BB%87u-tham-kh%E1%BA%A3o">Tài Liệu Tham Khảo</a></li>
+</ul>
+<!-- /code_chunk_output -->
+<h1 id="giới-thiệu">Giới Thiệu</h1>
+<p>Đã bao giờ bạn chạy một thuật toán hay một thư viện nào đó và kết quả trả về là một đống thứ mà bạn không hiểu nó là gì chưa, hay khi tìm hiểu thuật toán có những thứ nhỏ trong thuật toán mà ta vô tình bỏ qua dẫn tới không hiểu các thứ đằng sau nó vận hành?</p>
+<p>Cụ thể hơn, với bản thân mình khi chạy SVC trên thư viện scikit-learn ở cả một quá trình ban đầu, mình cũng hoang mang không biết các kết quả trả về từ thư viện như rho, obj, nSV hay nBSV là gì và mang ý nghĩa gì.</p>
+<p>Thì trong bài viết này chúng ta sẽ đi xâu hơn vào bên trong SVM cũng như cách thức để tối ưu nó. Vậy nên, Lets Go.</p>
+<h1 id="bài-toán-tối-ưu-cho-svm">Bài Toán Tối Ưu Cho SVM</h1>
+<p>Ta quay lại bài toán tối ưu cho SVM, giả sử đây là bài toán phân loại 2 lớp -1 và +1 (có thể phân tách tuyến tính) mà ở đó siêu phẳng H0 thỏa mãn \( Wx + b = 0 \) phân thành 2 không gian, không gian dữ liệu là lớp +1 với \( x_{i} \) thỏa mãn \( Wx_{i} + b &gt;= 1 \) và không gian là lớp -1 với \( x_{j} \) thỏa mãn \( Wx_{j} + b &lt;= -1 \).</p>
+<p>gọi H1, H2 là 2 siêu phẳng biên đi qua các điểm support vector và song song với siêu phẳng H0 (Hình 1)</p>
+<p>Khi đó, ta có:
+\[ WX + b = 1 ~~~~~~~~ X\in H1 \]
+\[ WX + b = -1 ~~~~~ X\in H2 \]</p>
+<img class="singleImg" src="http://localhost:1313/coffee/img/Svm/13.png">
+<p class="textSingleImg">Hình 1: Siêu phẳng phân tách H0 và 2 siêu phẳng biên H1, H2 </p>
+<p>giả sử, xét trong không gian 2 chiều và ta tìm được 3 phương trình đường thẳng tương ứng cho H0, H1, H2 là:</p>
+<p>\[ 6x_{1} + 3x_{2} + 7 = 0 ~~~~~ (x_{1}, x_{2})\in H0 \]
+\[ 6x_{1} + 3x_{2} + 3 = 0 ~~~~~ (x_{1}, x_{2})\in H1 \]
+\[ 6x_{1} + 3x_{2} + 11 = 0 ~~~~ (x_{1}, x_{2})\in H2 \]
+Chia cả 3 phương trình cho 4 ta được:
+\[ \frac{3}{2}x_{1} + \frac{3}{4}x_{2} + \frac{7}{4} = 0 ~~~~~ (x_{1}, x_{2})\in H0 \]
+\[ \frac{3}{2}x_{1} + \frac{3}{4}x_{2} + \frac{7}{4} = 1 ~~~~~(x_{1}, x_{2})\in H1 \]
+\[ \frac{3}{2}x_{1} + \frac{3}{4}x_{2} + \frac{7}{4} = -1 ~~~~~ (x_{1}, x_{2})\in H2   \]
+Do vậy, Đơn giản siêu phẳng H1, H2 được tạo ra bằng cách sử dụng phép dịch siêu phẳng H0.
+\[  W^{T}X + b = 0 ~~~~~ X\in H0 \]
+\[ W^{T}X + b = 1 ~~~~~ X\in H1 \]
+\[ W^{T}X + b = -1 ~~~~ X\in H2 \]</p>
+<p>Gọi \( X_{u} \) là điểm nằm trên H1 và \( X_{k} \) là điểm nằm trên H2.Khi đó, khoảng cách từ các điểm chạm từ các đường biên H1 và H2 tới H0 lần lượt sẽ là \( m_{1} \) và \( m_{2} \) và margin \( M = m_{1} + m_{2} \)</p>
+<img class="singleImg" src="http://localhost:1313/coffee/img/Svm/15.png">
+<p class="textSingleImg">Hình 2: Margin trong SVM</p>
+<p>Vì \( X_{u} \in H1, X_{k} \in H2 \), Do vậy:
+\[  m1=\frac{|W^{T}X_{u}+b|}{||W||}=\frac{1}{||W||} ~~~~~~~~~~~ m2=\frac{|W^{T}X_{k}+b|}{||W||}=\frac{1}{||W||}  \]
+\[ =&gt; M=m_{1} + m_{2}=\frac{2}{||W||} \]</p>
+<p>Do vậy, Mục tiêu của bài toán là đi tìm \( W \) và \( b \) sao cho:</p>
+<p><strong>Cực đại hóa Margin</strong>: <strong>\( M=\frac{2}{||W||} \)</strong></p>
+<p><strong>Tương Đường Cực tiểu hóa</strong>: <strong>\( \frac{1}{2}W^{T}W \)</strong></p>
+<p><strong>Thỏa mãn</strong>:
+\[ W^{T}X_{i} \ge 1 ~~~~~ ,if ~~ y_{i} = +1 \]
+\[ W^{T}X_{i} \le -1 ~~~~ ,if ~~ y_{i} = -1 \]
+\[ =&gt; \begin{array}{cc} y_{i}(W^{T}X_{i} + b) \ge 1 \end{array} \forall i \]</p>
+<p>Thực hiện giải bài toán tối ưu bậc 2 (Quadratic Programming) bằng phương pháp biến đổi Lagrangian.</p>
+<p>Về cơ bản, biến đổi Largrangian là việc nhân biểu thức với một bộ hệ số \( \alpha \) với mỗi hệ số \( \alpha_{i} \) (sẽ do ta chọn) sẽ gắn liền với từng phần tử của mẫu huấn luyện để kết hợp tuyến tính giữa hàm mục tiêu và các rằng buộc của nó.</p>
+<p>Khi đó, hàm mục tiêu có dạng:</p>
+<p>\[  L_{p}(W, b, \alpha_{i}) = \frac{1}{2}W^{T}W - \sum_{i=1}^{n}\alpha_{i}(y_{i}(W^{T}X_{i}+b)-1) ~~~~~ s.t. ~~ \alpha_{i} \ge 0  \]</p>
+<p>Để tìm được giá trị nhỏ nhất của hàm \( L_{p}(W, b, \alpha_{i}) \) theo \( W \) và \( b \). Có thể thực hiện bằng cách giải hệ phương trình đạo hàm riêng theo \(W\) và \(b\):</p>
+<p>ta có,</p>
+<p>\[ \frac{\partial L_{p}}{\partial W} = 0 ~~~~~ =&gt; ~~~~~ W = \sum_{i=1}^{n}\alpha_{i}y_{i}x_{i} \]
+\[ \frac{\partial L_{p}}{\partial b} = 0 ~~ =&gt; ~~~~~ \sum_{i=1}^{n}\alpha_{i}y_{i} = 0  \]</p>
+<p>Thay vào hàm mục tiêu \( L_{p}(W, b, \alpha_{i}) \) ở trên:</p>
+<p>\[ g(\alpha) = \sum_{i=1}^{n}\alpha_{i} - \frac{1}{2}\sum_{i=1}^{n}\sum_{j=1}^{n}\alpha_{i}\alpha_{j}y_{i}y_{j}x_{i}^{T}x_{j} ~~~~~ s.t. ~~ \alpha_{i} \ge 0  \]</p>
+<p>\( g(\alpha) \) là một hàm <strong>concave</strong> do vậy để giải bài toán ta giải bài toán đối ngẫu của nó với các điều kiện rằng buộc của \( \alpha \), ta có hàm mục tiêu:</p>
+<p><strong>Maximize</strong> \( \sum_{i=1}^{n}\alpha_{i} - \frac{1}{2}\sum_{i=1}^{n}\sum_{j=1}^{n}\alpha_{i}\alpha_{j}y_{i}y_{j}x_{i}^{T}x_{j} ~~~~~ s.t. ~~ \alpha_{i} \ge 0 ~~ and ~~ \sum_{i=1}^{n}\alpha_{i}y_{i} = 0 (1) \)</p>
+<p>Theo điều kiện KKT, ta có:</p>
+<p>\[ \alpha_{i}(y_{i}(W^{T}X_{i}+b)-1) = 0 ~~~~~ (2) \]</p>
+<p>Để biểu thức \( (2) \) bằng 0 thì \( (y_{i}(W^{T}X_{i}+b)-1) = 0 \) hoặc \( \alpha_{i} = 0 \), hay nói cách khác nếu trong trường hợp \( \alpha_{i} \neq  0 \) thì các điểm dữ liệu phải là các Support Vector (điểm dữ liệu nằm trên 2 đường biên) nơi mà phương trình đường thẳng có dạng \( W^{T}X_{i} + b = \pm 1 \).</p>
+<p>Khi đó,</p>
+<p>\[ W = \sum_{i=1}^{n}\alpha_{i}y_{i}x_{i} = \sum_{i \in SV}\alpha_{i}y_{i}x_{i} ~~~~~ (3) \]
+\[~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~s.t. ~~ (x_{i}\ is\ support\ vector)  \]
+\[ b = \frac{1}{y_{i}} - W^{T}x_{i} = y_{i} - W^{T}x_{i} ~~~~ (4) \]</p>
+<p>Do vậy, Để giải quyết được bài toán, tìm được bộ tham số \( W\  và\ b  \) ta chỉ cần tìm được Support Vector. Vì hệ số Largrangian \( \alpha_{i}  \) ta có thể tìm được bằng cách tối ưu biểu thức \( (1) \)</p>
+<p>Khi đó, với mỗi một điểm dữ liệu \( x \), việc xác định xem điểm liệu đó thuộc vào class nào, ta cần xác định dấu của biểu thức:</p>
+<p>\[ g(x) = W^{T}X + b = \sum_{i \in SV}\alpha_{i}x_{i}^{T}x + b ~~~~~ (5) \]</p>
+<p>Vậy, làm sao để có thể xác định được các điểm dữ liệu Support Vector \( x_{i} \) ? Thì ở đây ta sẽ dùng một phương pháp thử và sai.</p>
+<p>Có nghĩa là, trong quá trình học với mỗi class ta chọn một điểm \( x_{i}\ và\ x_{j} \) làm Support Vector và thay vào phương trình \( (5) \) để tính \( g(x) \) cho tất cả các điểm dữ liệu thuộc từng class tương ứng.</p>
+<p>Nếu mọi điểm dữ liệu cho ra kết quả \( g(x) \) thuộc đúng class tương ứng của nó thì điểm \( x_{i}\ và\ x_{j} \) đó sẽ được chọn làm Support Vector(Trong bài toán soft-margin ta sẽ chấp nhận một số điểm dữ liệu nhiễu cho ra \( g(x) \) sai với class để thu được siêu phẳng phân tách tốt hơn và dùng hệ số \( C \) để kiểm soát số lượng nhiễu trong mỗi điểm dữ liệu).</p>
+<p>Khi đó, sẽ có nhiều điểm Support Vector thỏa mãn thì ta sẽ thử và chọn nhiều điểm dữ liệu khác nhau làm Support Vector và những điểm dữ liệu nào nằm trên đường thẳng (đều là support vector) mà đạt được \( Margin\  M \) lớn nhất thì đó chính là các điểm support vector cần tìm.</p>
+<h1 id="tham-số-trả-về-từ-svc-trong-thư-viện-sklearn">Tham số trả về từ SVC trong thư viện sklearn</h1>
+<p>Ok, sau khi nói tràn lan đại hải ở trên cũng tới phần nói tới các tham số trả về từ SVC trong sklean. Sklearn, mình nghĩ không lạ gì với các bạn tìm hiểu về machine learning nữa rồi.</p>
+<p>Mặc dù dùng, tuy nhiên với một đứa đần như mình có những hàm của sklearn trả về những tham số mà mình chả hiểu nó là kiểu gì và đôi khi mình kiểu &ldquo;kệ bà nó&rdquo; cứ thế mà dùng thôi =)).</p>
+<p>Rồi sau mình mới có thời gian tìm hiểu lại và đọc lại kỹ hơn để hiểu những thứ đó, trong số đó thì tham số trả về của SVC là một ví dụ điển hình.</p>
+<p>Đôi khi train SVC xong ta sẽ nhận được một đống param trả về như này:</p>
+<p>optimization finished,
+<strong>#iter</strong> = 87<br/>
+<strong>nu</strong> = 0.471645<br/>
+<strong>obj</strong> = -67.299458, rho = 0.203495<br/>
+<strong>nSV</strong> = 88, nBSV = 72<br/>
+<strong>Total nSV</strong> = 88<br/></p>
+<p>Ở đây</p>
+<p><strong>iter</strong>: Thể hiện số lần lặp để thuật toán hội tụ<br/>
+<strong>nu</strong>  : Là một hệ số với chức năng tương tự như C trong soft-margin<br/>
+<strong>obj</strong> : Là giá trị của hàm mục tiêu của bài toán đối ngẫu biểu thức (1) ở trên<br/>
+<strong>rho</strong> : Là hệ số bias (b) trong hàm xác định class của điểm dữ liệu trong biểu thức (5)<br/>
+<strong>nSV</strong> : Là số lượng của Support Vectors<br/>
+<strong>nBSV</strong>: Là số lượng của Bounded Support Vectors (là \( \alpha_{i}=0 \) ở điều kiện KKT (2))<br/></p>
+<h1 id="tài-liệu-tham-khảo">Tài Liệu Tham Khảo</h1>
+<p>[1] Chang and Lin, &ldquo;LIBSVM: A Library for Support Vector Machines&rdquo;, 2001<br/>
+[2] <a href="https://machinelearningcoban.com/2017/04/09/smv/#-gioi-thieu">series support vector machine - machinelearningcoban - Tiệp Vũ</a><br/>
+[3] <a href="scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html">sklearn.svm.SVC</a><br/></p>
+
+
+        
+          <div class="blog-tags">
+            
+              
+              <a href="http://localhost:1313/coffee/tags/svm/">SVM</a>&nbsp;
+            
+              
+              <a href="http://localhost:1313/coffee/tags/svms/">SVMs</a>&nbsp;
+            
+              
+              <a href="http://localhost:1313/coffee/tags/support-vector-machines/">support vector machines</a>&nbsp;
+            
+              
+              <a href="http://localhost:1313/coffee/tags/svc/">SVC</a>&nbsp;
+            
+              
+              <a href="http://localhost:1313/coffee/tags/svc-sklearn/">SVC sklearn</a>&nbsp;
+            
+              
+              <a href="http://localhost:1313/coffee/tags/scikit-learn/">scikit-learn</a>&nbsp;
+            
+          </div>
+        
+
+        
+
+        
+          
+            
+          
+
+          
+                  <h4 class="see-also"></h4>
+                  <ul>
+                
+                
+                    <li><a href="http://localhost:1313/coffee/post/2023-06-03-svms-1/">Support Vector Machine</a></li>
+                
+              </ul>
+
+          
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="http://localhost:1313/coffee/post/2023-06-03-svms-1/" data-toggle="tooltip" data-placement="top" title="Support Vector Machine">&larr; </a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="http://localhost:1313/coffee/post/2023-06-05-entropy_1/" data-toggle="tooltip" data-placement="top" title="Entropy In Machine Learning"> &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+      
+      
+      
+      
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      <footer>
+  <div class="container">
+    
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+          
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2023
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="http://localhost:1313/coffee/">Coffee</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.js" integrity="sha384-G0zcxDFp5LWZtDuRMnBkk3EphCK1lhEf4UEyEM693ka574TZGwo4IWwS6QLzM/2t" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha384-w5y/xIeYixWvfM+A1cEbmHPURnvyqmVg5eVENruEdDjcyRLUSNej7512JQGspFUr" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+<script src="http://localhost:1313/coffee/js/main.js"></script>
+<script src="http://localhost:1313/coffee/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="http://localhost:1313/coffee/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+
+    
+  </body>
+</html>
+

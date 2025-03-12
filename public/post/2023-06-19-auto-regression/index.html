@@ -1,0 +1,446 @@
+
+
+<!DOCTYPE html>
+<html lang="vi" itemscope itemtype="http://schema.org/WebPage">
+  <head><script src="/coffee/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=coffee/livereload" data-no-instant defer></script>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+ 
+
+
+      <title>AutoRegressive Model - </title>
+
+  <meta name="description" content="
+Giới Thiệu
+Auto-regressive model là một loại mô hình khá quan trọng và được sử dụng trong nhiều tác vụ khác nhau.
+Đồng thời nó cũng là nền móng của rất nhiều “mô hình sinh (Generative Model)”, có thể kể đến như “NADE, MADE, PixelRNN, PixelCNN, hay họ GPT, ..v.v.”."><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Coffee",
+    
+    "url": "http:\/\/localhost:1313\/coffee\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "http:\/\/localhost:1313\/coffee\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "http:\/\/localhost:1313\/coffee\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "http:\/\/localhost:1313\/coffee\/post\/2023-06-19-auto-regression\/",
+          "name": "Auto regressive model"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : ""
+  },
+  "headline": "AutoRegressive Model",
+  "description" : " Giới Thiệu Auto-regressive model là một loại mô hình khá quan trọng và được sử dụng trong nhiều tác vụ khác nhau.\nĐồng thời nó cũng là nền móng của rất nhiều “mô hình sinh (Generative Model)”, có thể kể đến như “NADE, MADE, PixelRNN, PixelCNN, hay họ GPT, ..v.v.”.\n",
+  "inLanguage" : "vi",
+  "wordCount":  719 ,
+  "datePublished" : "2023-06-19T00:00:00\u002b00:00",
+  "dateModified" : "2023-06-19T00:00:00\u002b00:00",
+  "image" : "http:\/\/localhost:1313\/coffee\/img\/avatar-icon.png",
+  "keywords" : [ "AR, autoregressive, AR model" ],
+  "mainEntityOfPage" : "http:\/\/localhost:1313\/coffee\/post\/2023-06-19-auto-regression\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "http:\/\/localhost:1313\/coffee\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "http:\/\/localhost:1313\/coffee\/img\/avatar-icon.png",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+
+<meta property="og:title" content="AutoRegressive Model" />
+<meta property="og:description" content="
+Giới Thiệu
+Auto-regressive model là một loại mô hình khá quan trọng và được sử dụng trong nhiều tác vụ khác nhau.
+Đồng thời nó cũng là nền móng của rất nhiều “mô hình sinh (Generative Model)”, có thể kể đến như “NADE, MADE, PixelRNN, PixelCNN, hay họ GPT, ..v.v.”.">
+<meta property="og:image" content="http://localhost:1313/coffee/img/avatar-icon.png" />
+<meta property="og:url" content="http://localhost:1313/coffee/post/2023-06-19-auto-regression/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Coffee" />
+
+  <meta name="twitter:title" content="AutoRegressive Model" />
+  <meta name="twitter:description" content="">
+  <meta name="twitter:image" content="http://localhost:1313/coffee/img/avatar-icon.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link href='http://localhost:1313/coffee/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.145.0">
+  <link rel="alternate" href="http://localhost:1313/coffee/index.xml" type="application/rss+xml" title="Coffee"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css" integrity="sha384-3UiQGuEI4TTMaFmGIZumfRPtfKQ3trwQE2JgosJxCnGmQpL/lJdjpcHkaaFwHlcI" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.6.0/css/all.css" integrity="sha384-h/hnnw1Bi4nbpD6kE7nYfCXzovi622sY5WBxww8ARKwpdLj5kUWjRuyiXaD1U2JT" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"><link rel="stylesheet" href="http://localhost:1313/coffee/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="http://localhost:1313/coffee/css/highlight.min.css" /><link rel="stylesheet" href="http://localhost:1313/coffee/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://localhost:1313/coffee/">Coffee</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="http://localhost:1313/coffee/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="http://localhost:1313/coffee/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="http://localhost:1313/coffee/tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="Coffee" href="http://localhost:1313/coffee/">
+            <img class="avatar-img" src="http://localhost:1313/coffee/img/avatar-icon.png" alt="Coffee" />
+           
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              
+                <h1>AutoRegressive Model</h1>
+              
+              
+              
+              
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;4&nbsp;
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;719&nbsp;
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;
+    
+  
+  
+</span>
+
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <style>
+.textSingleImg {
+  text-align: center;
+}
+.textTwoImg {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+}
+.singleImg {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.twoImg {
+    display: inline;
+    width: 300px;
+    height: 300px;
+    margin-left: 30px;
+}
+</style>
+<h1 id="giới-thiệu">Giới Thiệu</h1>
+<p>Auto-regressive model là một loại mô hình khá quan trọng và được sử dụng trong nhiều tác vụ khác nhau.</p>
+<p>Đồng thời nó cũng là nền móng của rất nhiều “mô hình sinh (Generative Model)”, có thể kể đến như “NADE, MADE, PixelRNN, PixelCNN, hay họ GPT, ..v.v.”.</p>
+<p>Trong bài viết này ta sẽ cùng đi qua về sự cơ bản thế nào là một Auto-regressive model nhé mọi ngừi.</p>
+<h1 id="autoregressive-model">AutoRegressive Model</h1>
+<p>Trước hết, hiểu một cách nôm na thì Autoregressive model là dạng model mà trong đó <strong>giá trị output ở thời điểm hiện tại</strong> sẽ phụ thuộc vào <strong>các giá trị output ở các thời điểm trước đó</strong> (1 hoặc nhiều giá trị trước đó).</p>
+<img src="http://localhost:1313/coffee/img/ar/1.jpg" class="singleImg">
+<p>Ở đây ta có thể thấy, Output tại thời điểm “t” sẽ phụ thuộc vào các output từ thời điểm “1 -&gt; t-1”.</p>
+<p><strong>Note</strong>: \( \hat{y_t} \) là output tại thời điểm “t” của điểm dữ liệu nhé.</p>
+<p>Ví dụ, trong dịch máy “machine translation”.</p>
+<img src="http://localhost:1313/coffee/img/ar/2.jpg" class="singleImg">
+<p>Trong ví dụ “dịch máy” ở trên, \( \hat{y_1}, \hat{y_2}, &hellip; , \hat{y_5} \) là output tại các thời điểm “1, 2, 3, 4, 5”. Và output tại thời điểm “hiện tại” sẽ phụ thuộc vào output tại thời điểm trước đó ( như \( \hat{y_4} \) phụ thuộc vào \( \hat{y_3} \)).</p>
+<p>Và cả câu “<start> I go to school” là <strong>output</strong> của mô hình với <strong>điểm dữ liệu đầu vào</strong> là “tôi đi học <end>”</p>
+<p>Như đã biết, phân phối <strong>Gaussian</strong> với tham số \( (\mu, \sigma) \) có dạng như hình 2, phân phối <strong>Gausian Mixture</strong> với tham số \( (\mu, \sigma) \) có dạng như hình 3, phân phối <strong>Uniform</strong> với tham số \( (a, b) \) có dạng như hình 4.</p>
+<img src="http://localhost:1313/coffee/img/ar/3.jpg" class="singleImg">
+<p class="textSingleImg"><b>Hinh 2, 3, 4: Đồ thị phân phối Gaussian, Gaussian Mixture và Uniform</b></p>
+<p>Phía trên là 1 số ví dụ với các phân phối quen thuộc. Nhưng có vẻ như đồ thị với bất kì hình vẽ dù cho có đơn giản hay nguệch ngoạc đến đâu cũng có <strong>“một phân phối nào đó biểu diễn được nó với bộ tham số nhất định”</strong></p>
+<p>AutoRegressive đưa ra giả thuyết rằng output của model sẽ tuân theo 1 phân phối \( P_{\theta} \) nào đó.</p>
+<p>Ví dụ với Gaussian distribution: Thì với mỗi “điểm dữ liệu x” ta sẽ có output \( \hat{y} \) tương ứng.</p>
+<img src="http://localhost:1313/coffee/img/ar/4.jpg" class="singleImg">
+<p>Thì với giả thuyết mà AutoRegressive đưa ra, thì với mỗi “điểm dữ liệu x” ta cũng sẽ có output \( \hat{y} \) tương ứng</p>
+<img src="http://localhost:1313/coffee/img/ar/5.jpg" class="singleImg">
+<p>Khi đó, Autoregressive model sẽ học bộ tham số \( \theta \) của phân phối \( P_{\theta} \).</p>
+<p>Phân phối \( P_{\theta} \) là phân phối của dữ liệu đầu ra.</p>
+<p>Do vậy, trong các Generative models sử dụng Autoregressive, \( P_{\theta} \) sẽ phản ánh lại phân phối của chính dữ liệu đầu vào vì “output” của Generative model đó sẽ muốn tạo ra được các dữ liệu tựa tựa các dữ liệu đầu vào</p>
+<p>=&gt; Khi đó, nếu học được phân phối của dữ liệu đầu vào thì model có thể dễ dàng tạo ra các dữ liệu tựa dữ liệu ban đầu (vì chúng cùng thuộc 1 phân phối).</p>
+<p>Do tính chất của Autoregressive model, với output tại thời điểm \( \hat{y} \) sẽ phụ thuộc vào các thời điểm trước đó, cùng với việc giả thuyết đưa ra là output của model sẽ thuộc phân phối \( P_{\theta} \).</p>
+<p>Do vậy, với mỗi \( \hat{y} \) được dự đoán, ta cần tối ưu bộ tham số \( \theta \) sao cho xác suất \( P_{\theta} \) tại thời điểm t khi đã biết giá trị của các output tại thời điểm \( 1 \rightarrow t-1 \) là lớn nhất.</p>
+<p>Ta có thể biểu diễn nó như sau:</p>
+<img src="http://localhost:1313/coffee/img/ar/6.jpg" class="singleImg">
+<p>Với việc \( \hat{y_0} \) được tạo ra từ input <strong>x</strong> (có thể đã được xử lý như encode or tương tự, “cái này tuỳ thuộc vào người thiết kế model”)</p>
+<p>Có thể thấy công thức (*) chính là Maximum Likelihood Estimation (MLE)</p>
+<h1 id="thảo-luận">Thảo Luận</h1>
+<p>Với việc \( \hat{y_0} \) được tạo ra từ input <strong>x</strong> (có thể đã được xử lý như encode or tương tự, “cái này tuỳ thuộc vào người thiết kế model”)</p>
+<p>Có thể thấy công thức (*) chính là Maximum Likelihood Estimation (MLE)</p>
+
+
+        
+          <div class="blog-tags">
+            
+              
+              <a href="http://localhost:1313/coffee/tags/ar/">AR</a>&nbsp;
+            
+              
+              <a href="http://localhost:1313/coffee/tags/autoregressive/">autoregressive</a>&nbsp;
+            
+              
+              <a href="http://localhost:1313/coffee/tags/ar-model/">AR model</a>&nbsp;
+            
+          </div>
+        
+
+        
+
+        
+          
+
+          
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="http://localhost:1313/coffee/post/2023-06-18-auto-encoder/" data-toggle="tooltip" data-placement="top" title="AutoEncoder Model">&larr; </a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="http://localhost:1313/coffee/post/2023-06-20-bert/" data-toggle="tooltip" data-placement="top" title="BERT"> &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+      
+      
+      
+      
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      <footer>
+  <div class="container">
+    
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+          
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2023
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="http://localhost:1313/coffee/">Coffee</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.js" integrity="sha384-G0zcxDFp5LWZtDuRMnBkk3EphCK1lhEf4UEyEM693ka574TZGwo4IWwS6QLzM/2t" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha384-w5y/xIeYixWvfM+A1cEbmHPURnvyqmVg5eVENruEdDjcyRLUSNej7512JQGspFUr" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+<script src="http://localhost:1313/coffee/js/main.js"></script>
+<script src="http://localhost:1313/coffee/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="http://localhost:1313/coffee/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+
+    
+  </body>
+</html>
+

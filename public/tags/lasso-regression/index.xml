@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Lasso Regression on Coffee</title>
+    <link>http://localhost:1313/coffee/tags/lasso-regression/</link>
+    <description>Recent content in Lasso Regression on Coffee</description>
+    <generator>Hugo</generator>
+    <language>vi</language>
+    <lastBuildDate>Sat, 10 Jun 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/coffee/tags/lasso-regression/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linear, Ridge and Lasso Regression</title>
+      <link>http://localhost:1313/coffee/post/2023-06-10-linear-regression-1/</link>
+      <pubDate>Sat, 10 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/post/2023-06-10-linear-regression-1/</guid>
+      <description>&lt;style&gt;&#xA;.textSingleImg {&#xA;  text-align: center;&#xA;}&#xA;.textTwoImg {&#xA;    display: flex;&#xA;    margin-left: 10px;&#xA;    flex-direction: row;&#xA;    justify-content: space-around;&#xA;&#xA;}&#xA;.singleImg {&#xA;    display: block;&#xA;    margin-left: auto;&#xA;    margin-right: auto;&#xA;    width: 300px;&#xA;    height: 300px;&#xA;}&#xA;.twoImg {&#xA;    display: inline;&#xA;    width: 300px;&#xA;    height: 300px;&#xA;    margin-left: 30px;&#xA;}&#xA;&lt;/style&gt;&#xA;&lt;p&gt;Như đã biết thì “học máy” (machine learning) là việc kết hợp các giả thuyết về dữ liệu và công cụ toán học để đưa ra thông tin, quy luật của dữ liệu.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

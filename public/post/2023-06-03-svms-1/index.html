@@ -1,0 +1,511 @@
+
+
+<!DOCTYPE html>
+<html lang="vi" itemscope itemtype="http://schema.org/WebPage">
+  <head><script src="/coffee/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=coffee/livereload" data-no-instant defer></script>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+ 
+
+
+      <title>Support Vector Machine - </title>
+
+  <meta name="description" content="
+
+
+Giới thiệu
+SVMs là gì ?
+Ý tưởng chính của SVM
+Soft margin
+Kernel
+Tài Liệu Tham Khảo
+
+
+Giới thiệu
+SVMs (aka support vector machines) là một thuật toán quan trọng thường đường nhắc đến trong machine learning."><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Coffee",
+    
+    "url": "http:\/\/localhost:1313\/coffee\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "http:\/\/localhost:1313\/coffee\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "http:\/\/localhost:1313\/coffee\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "http:\/\/localhost:1313\/coffee\/post\/2023-06-03-svms-1\/",
+          "name": "Support vector machine"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : ""
+  },
+  "headline": "Support Vector Machine",
+  "description" : " Giới thiệu SVMs là gì ? Ý tưởng chính của SVM Soft margin Kernel Tài Liệu Tham Khảo Giới thiệu SVMs (aka support vector machines) là một thuật toán quan trọng thường đường nhắc đến trong machine learning.\n",
+  "inLanguage" : "vi",
+  "wordCount":  1231 ,
+  "datePublished" : "2023-06-03T00:00:00\u002b00:00",
+  "dateModified" : "2023-06-03T00:00:00\u002b00:00",
+  "image" : "http:\/\/localhost:1313\/coffee\/img\/avatar-icon.png",
+  "keywords" : [ "SVM, SVMs, support vector machine" ],
+  "mainEntityOfPage" : "http:\/\/localhost:1313\/coffee\/post\/2023-06-03-svms-1\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "http:\/\/localhost:1313\/coffee\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "http:\/\/localhost:1313\/coffee\/img\/avatar-icon.png",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+
+<meta property="og:title" content="Support Vector Machine" />
+<meta property="og:description" content="
+
+
+Giới thiệu
+SVMs là gì ?
+Ý tưởng chính của SVM
+Soft margin
+Kernel
+Tài Liệu Tham Khảo
+
+
+Giới thiệu
+SVMs (aka support vector machines) là một thuật toán quan trọng thường đường nhắc đến trong machine learning.">
+<meta property="og:image" content="http://localhost:1313/coffee/img/avatar-icon.png" />
+<meta property="og:url" content="http://localhost:1313/coffee/post/2023-06-03-svms-1/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Coffee" />
+
+  <meta name="twitter:title" content="Support Vector Machine" />
+  <meta name="twitter:description" content="">
+  <meta name="twitter:image" content="http://localhost:1313/coffee/img/avatar-icon.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link href='http://localhost:1313/coffee/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.145.0">
+  <link rel="alternate" href="http://localhost:1313/coffee/index.xml" type="application/rss+xml" title="Coffee"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css" integrity="sha384-3UiQGuEI4TTMaFmGIZumfRPtfKQ3trwQE2JgosJxCnGmQpL/lJdjpcHkaaFwHlcI" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.6.0/css/all.css" integrity="sha384-h/hnnw1Bi4nbpD6kE7nYfCXzovi622sY5WBxww8ARKwpdLj5kUWjRuyiXaD1U2JT" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"><link rel="stylesheet" href="http://localhost:1313/coffee/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="http://localhost:1313/coffee/css/highlight.min.css" /><link rel="stylesheet" href="http://localhost:1313/coffee/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://localhost:1313/coffee/">Coffee</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="http://localhost:1313/coffee/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="http://localhost:1313/coffee/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="http://localhost:1313/coffee/tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="Coffee" href="http://localhost:1313/coffee/">
+            <img class="avatar-img" src="http://localhost:1313/coffee/img/avatar-icon.png" alt="Coffee" />
+           
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              
+                <h1>Support Vector Machine</h1>
+              
+              
+              
+              
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;6&nbsp;
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;1231&nbsp;
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;
+    
+  
+  
+</span>
+
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <style>
+    .singleImg {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .textSingleImg {
+        text-align: center;
+    }
+    .twoImgBlock {
+        display: flex;
+        just-content: center;
+    }
+    .twoImg {
+        width: 400px;
+        height: 400px;
+    }
+</style>
+<!-- code_chunk_output -->
+<ul>
+<li><a href="#gi%E1%BB%9Bi-thi%E1%BB%87u">Giới thiệu</a></li>
+<li><a href="#svms-l%C3%A0-g%C3%AC-">SVMs là gì ?</a></li>
+<li><a href="#%C3%BD-t%C6%B0%E1%BB%9Fng-ch%C3%ADnh-c%E1%BB%A7a-svm">Ý tưởng chính của SVM</a></li>
+<li><a href="#soft-margin">Soft margin</a></li>
+<li><a href="#kernel">Kernel</a></li>
+<li><a href="#t%C3%A0i-li%E1%BB%87u-tham-kh%E1%BA%A3o">Tài Liệu Tham Khảo<br/></a></li>
+</ul>
+<!-- /code_chunk_output -->
+<h1 id="giới-thiệu">Giới thiệu</h1>
+<p>SVMs (aka support vector machines) là một thuật toán quan trọng thường đường nhắc đến trong machine learning.</p>
+<p>Nhưng đôi khi ta lại hoang mang khi tìm kiếm tài liệu về SVMs, có khi ta thấy ghi là SVMs có khi lại thấy SVM hay SVC và SVR, chúng là gì và có phải tất cả đều là support vector machine không ?</p>
+<p>Bài viết này chúng ta sẽ đi qua các ý tưởng cũng như lớp lý thuyết tầng cao nhất để hiểu tổng quan về SVMs. Và các lý thuyết sâu hơn mình xin để dành ở các bài viết sau.</p>
+<h1 id="svms-là-gì-">SVMs là gì ?</h1>
+<p>Support vector machines (SVMs) là một thuật toán học máy được sử dụng rộng rãi và thường được dùng chính trong các bài toán regression và classification.</p>
+<p>Trong đó, khi SVM áp dụng cho bài toán regression được gọi là SVR (support vector regression) và là SVC (support vector classification) khi sử dụng cho bài toán classification.</p>
+<p>Trong phạm vi bài viết này, ta sẽ tập trung đi nhiều hơn vào SVC (loại bài toán mà mình cảm thấy là dùng SVM nhiều hơn cả).</p>
+<h1 id="ý-tưởng-chính-của-svm">Ý tưởng chính của SVM</h1>
+<img src="http://localhost:1313/coffee/img/Svm/1.png" class="singleImg">
+<p class="textSingleImg">Hình 1: Các điểm dữ liệu của bài toán<p>
+<p>Về cơ bản trong một không gian N chiều chứa các điẻm dữ liệu (Hình 1) mục tiêu của SVM sẽ tìm 1 siêu phẳng (hyper plane) để có thể phân tách dữ liệu thành 2 phần tốt nhất có thể tương ứng với dữ liệu đó.</p>
+<p>Nhắc lại một chút, thì trong 1 không gian N chiều, 1 siêu phẳng là 1 không gian con có kích thước N-1 chiều.</p>
+<p>Do vậy để dễ hình dung thì trong không gian 2 chiều siêu phẳng sẽ là 1 đường thẳng, trong không gian 3 chiều thì siêu phẳng sẽ là 1 mặt phẳng.</p>
+<p>Có thể thấy nếu ta coi hình trên là một không gian 2 chiều thì để phân tách được dữ liệu thành 2 phần có rất nhiều đường thẳng có thể làm được điều đó như hình 2.</p>
+<p>Khi đó ta sẽ chọn đường thẳng nào, đường thẳng nào sẽ là tốt nhất để phân tách các điểm dữ liệu.</p>
+<img src="http://localhost:1313/coffee/img/Svm/2.png" class="singleImg">
+<p class="textSingleImg">Hình  2: Vô số siêu phẳng (trong trường hợp này là đường thẳng) có thể phân chia dữ liệu thành 2 phần<p>
+<p>Trong SVMs, một siêu phẳng (hyperplane) được coi là tốt khi có thể phân tách 2 miền của các điểm dữ liệu sao cho margin là lớn nhất.</p>
+<img src="http://localhost:1313/coffee/img/Svm/3.png" class="singleImg">
+<p class="textSingleImg">Hình  3: Siêu phẳng tốt nhất để phân tách dữ liệu<p>
+<p>Trong đó, margin là khoảng cách giữa siêu phẳng đến 2 điểm dữ liệu gần nhất tương ứng với các phân lớp sao cho khoảng cách từ mỗi điểm dữ liệu của các phân lớp đó tới siêu phẳng là bằng nhau.</p>
+<p>Điều đó nhằm đảm bảo tính công bằng trong việc phân lớp dữ liệu tránh việc hyperplane bị ở gần 1 trong 2 lớp.</p>
+<p>Khi đó phân lớp mà có hyperplane ở gần sẽ dễ bị phân loại sai khi có thêm dữ liệu vào. Việc tìm kiếm và tối ưu hyperplane để có được max margin sẽ tạo ra 1 hyperplane có lề công bằng cho 2 phân lớp dữ liệu.</p>
+<p>Do vậy, một cách trực quan ý tưởng của thuật toán SVMs là tìm một siêu phẳng(hyperplane) phân tách dữ liệu thành 2 phần tương ứng sao cho đạt được margin lớn nhất.</p>
+<h1 id="soft-margin">Soft margin</h1>
+<p>Như ở trên đã đề cập, ta đã đi qua ý tưởng chính của thuật toán SVMs, tuy nhiên trong một số trường hợp với ý tưởng như trên SVMs lại hoạt động không thực sự tốt và thậm chí không hoạt động được.</p>
+<p>Có thể thấy trường hợp mà chúng ta đã đi qua ở trên là dữ liệu có thể phân tách tuyến tính và điểm dữ liệu thuộc các lớp khác nhau nằm khá xa nhau.</p>
+<p>Vậy thì khi dữ liệu không thể phân tách tuyến tính hay có các điểm dữ liệu nhiễu nằm gần nhau như Hình 4 và Hình 5 thì sao ?</p>
+<img src="http://localhost:1313/coffee/img/Svm/5.png" class="singleImg">
+<p class="textSingleImg">Hình  4: Có các điểm dữ liệu nhiễu nằm gần class khác hơn bình thường<p>
+<img src="http://localhost:1313/coffee/img/Svm/9.png" class="singleImg">
+<p class="textSingleImg">Hình  5: Dữ liệu gần tuyến tính, có một số các điểm dữ liệu nhiễu nằm ở nhầm class<p>
+<p>Về cơ bản để có thể giải quyết được các bài toán trên, svm chấp nhận việc hy sinh một vài điểm dữ liệu để có thể tạo ra một hyperplane nơi có margin lớn hơn và tổng quát hơn.</p>
+<p>Và khi đó các đường nét đứt tạo thành margin cùng với hyperplane gọi là soft margin và trong phạm vi margin của mỗi class được gọi là vùng không an toàn của class đó.</p>
+<div class="twoImgBlock">
+    <img class="twoImg" src="http://localhost:1313/coffee/img/Svm/6.png" />
+    <img class="twoImg" src="http://localhost:1313/coffee/img/Svm/8.png" />
+</div>
+<!-- <div class="textTwoImg"> -->
+<!-- <p>Hình 6<p><p>Hình 7<p> -->
+<!-- </div> -->
+<p>Khi hy sinh một số điểm dữ liệu ta sẽ tạo được hyperplane và các soft margin tổng quát hơn (Hình 6 và Hình 7).</p>
+<p>Tuy nhiên để có thể tìm ra được đường hyperplane hợp lý thì việc hy sinh các điểm dữ liệu phải được kiểm soát, nếu không sẽ tạo ra 1 margin cực lớn bằng cách hy sinh hết các điểm dữ liệu.</p>
+<p>Khi đó, mục tiêu bài toàn sẽ là việc tối ưu tìm đường hyperplane (siêu phẳng) sao cho margin là lớn nhất mà số lượng điểm hy sinh là nhỏ nhất.<br/></p>
+<h1 id="kernel">Kernel</h1>
+<p>Nhìn lại các lý thuyết cũng như những vấn đề mà chúng ta đã đi qua ở trên, có thể thấy, dữ liệu là loại dữ liệu tuyến tính có thể được phân loại bằng 1 đường thẳng trong không gian 2 chiều hay 1 siêu phẳng trong không gian nhiều chiều hơn.</p>
+<p>Câu hỏi đặt ra là nếu dữ liệu không phân biệt tuyến tính thì SVMs có sử dụng được KHÔNG ?</p>
+<p><b>Câu trả lời là CÓ</b>. Thực thế là năm 1963 SVMs được giới thiệu bởi Vapnik và khi đó SVMs mặc định chỉ dùng cho việc phân loại tuyến tính, và tới 30 năm sau thì các công bố khác được đưa ra và có thể áp dụng SVMs cho dữ liệu không phân biệt tuyến tính. Có thể kể đến như là RBF (aka Radial Basic Function) hay Polynomial và một số các phương pháp khác.</p>
+<p>Các phương pháp trên được gọi là các kernel trong SVMs, về bản chất chúng là các hàm số biến đổi dữ liệu từ không gian ban đầu thành dữ liệu ở một không gian mới sao cho dữ liệu phi tuyến ở không gian cũ được chuyển thành dữ liệu tuyến tính hoặc gần như tuyến tính ở không gian mới.</p>
+<p>Ví dụ ở hình d bên dưới dữ liệu ở không gian 2 chiều đang là bộ dữ liệu phi tuyến. Nhưng khi chuyển chúng sang không gian 3 chiều với hàm \( \mathbf z=|x^2 + y^2| \) thì đã trở thành bộ dữ liệu có thể xem là tuyến tính và có thể phân loại bằng 1 siêu phẳng.</p>
+<br/>
+<br/>
+<img src="http://localhost:1313/coffee/img/Svm/10.png" class="twoImg">
+<img src="http://localhost:1313/coffee/img/Svm/11.png" class="twoImg">
+<!-- <p class="textSingleImg">Hình  8<p> -->
+<!-- <p class="textSingleImg">Hình  9<p> -->
+<br/>
+<img src="http://localhost:1313/coffee/img/Svm/12.png" class="singleImg">
+<p class="textSingleImg">Hình 10: Cách thức SVM xử lý khi dữ liệu không tuyến tính<p><br/>
+<h1 id="tài-liệu-tham-khảo">Tài Liệu Tham Khảo</h1>
+<p>[1] Chang and Lin, "LIBSVM: A Library for Support Vector Machines", 2001<br/></p>
+<p>[2] [series support vector machine - machinelearningcoban - Tiệp Vũ](https://machinelearningcoban.com/2017/04/09/smv/#-gioi-thieu)<br/></p>
+<p>[3] [sklearn.svm.SVC](scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html)<br/></p>
+svm.SVC](scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html)<br/></p>
+
+
+        
+          <div class="blog-tags">
+            
+              
+              <a href="http://localhost:1313/coffee/tags/svm/">SVM</a>&nbsp;
+            
+              
+              <a href="http://localhost:1313/coffee/tags/svms/">SVMs</a>&nbsp;
+            
+              
+              <a href="http://localhost:1313/coffee/tags/support-vector-machine/">support vector machine</a>&nbsp;
+            
+          </div>
+        
+
+        
+
+        
+          
+            
+          
+
+          
+                  <h4 class="see-also"></h4>
+                  <ul>
+                
+                
+                    <li><a href="http://localhost:1313/coffee/post/2023-06-04-svms-2/">SVMs Và Một Số Thứ Liên Quan</a></li>
+                
+              </ul>
+
+          
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="http://localhost:1313/coffee/post/2023-06-01-loss-function/" data-toggle="tooltip" data-placement="top" title="Loss, Cost and Objective Function">&larr; </a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="http://localhost:1313/coffee/post/2023-06-04-svms-2/" data-toggle="tooltip" data-placement="top" title="SVMs Và Một Số Thứ Liên Quan"> &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+      
+      
+      
+      
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      <footer>
+  <div class="container">
+    
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+          
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2023
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="http://localhost:1313/coffee/">Coffee</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.js" integrity="sha384-G0zcxDFp5LWZtDuRMnBkk3EphCK1lhEf4UEyEM693ka574TZGwo4IWwS6QLzM/2t" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha384-w5y/xIeYixWvfM+A1cEbmHPURnvyqmVg5eVENruEdDjcyRLUSNej7512JQGspFUr" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+<script src="http://localhost:1313/coffee/js/main.js"></script>
+<script src="http://localhost:1313/coffee/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="http://localhost:1313/coffee/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+
+    
+  </body>
+</html>
+

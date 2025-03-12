@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Active Learning on Coffee</title>
+    <link>http://localhost:1313/coffee/tags/active-learning/</link>
+    <description>Recent content in Active Learning on Coffee</description>
+    <generator>Hugo</generator>
+    <language>vi</language>
+    <lastBuildDate>Wed, 13 Sep 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/coffee/tags/active-learning/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Active Learning - Uncertainty-based Sampling</title>
+      <link>http://localhost:1313/coffee/post/2023-09-13-active-learning-uncertainty/</link>
+      <pubDate>Wed, 13 Sep 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/post/2023-09-13-active-learning-uncertainty/</guid>
+      <description>&lt;style&gt;&#xA;.textSingleImg {&#xA;  text-align: center;&#xA;}&#xA;.textTwoImg {&#xA;    display: flex;&#xA;    flex-direction: row;&#xA;    justify-content: space-around;&#xA;&#xA;}&#xA;.singleImg {&#xA;  display: block;&#xA;  margin-left: auto;&#xA;  margin-right: auto;&#xA;}&#xA;.twoImg {&#xA;    display: inline;&#xA;    width: 500px;&#xA;    height: 500px;&#xA;    margin-left: 30px;&#xA;}&#xA;&lt;/style&gt;&#xA;&lt;h1 id=&#34;giới-thiệu&#34;&gt;Giới Thiệu&lt;/h1&gt;&#xA;&lt;p&gt;Active learning, là một trong những cách “learn” trong “machine learning” =)).&lt;/p&gt;&#xA;&lt;p&gt;Thường được áp dụng cho các bài toán “supervised learning”, mà ở đó, ta gặp khó khăn với “nhãn (label)” của dữ liệu.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

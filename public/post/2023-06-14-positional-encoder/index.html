@@ -1,0 +1,592 @@
+
+
+<!DOCTYPE html>
+<html lang="vi" itemscope itemtype="http://schema.org/WebPage">
+  <head><script src="/coffee/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=coffee/livereload" data-no-instant defer></script>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+ 
+
+
+      <title>Positional Encoding - </title>
+
+  <meta name="description" content="
+Giới Thiệu
+Positional Encoding
+
+Tại Sao Cần Có Positional Encoding ?
+Khái niệm
+
+
+Cơ Chế Hoạt Động Của Positional Encoding
+Các Phương Pháp Khác
+
+Relative Positional Encoding
+
+Attention with Linear Bias (ALiBi)
+
+
+Rotary Positional Encoding (RoPE)
+
+
+Tài Liệu Tham Khảo
+
+
+Giới Thiệu
+Trong kiến trúc Transformer, trước khi Vector Embedding được đưa vào mô hình Encoder, nó được cộng thêm một vector khác để lưu trữ lại vị trí của các từ trong câu, cơ chế này gọi là Positional Encoding (PE)."><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Coffee",
+    
+    "url": "http:\/\/localhost:1313\/coffee\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "http:\/\/localhost:1313\/coffee\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "http:\/\/localhost:1313\/coffee\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "http:\/\/localhost:1313\/coffee\/post\/2023-06-14-positional-encoder\/",
+          "name": "Positional encoding"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : ""
+  },
+  "headline": "Positional Encoding",
+  "description" : " Giới Thiệu Positional Encoding Tại Sao Cần Có Positional Encoding ? Khái niệm Cơ Chế Hoạt Động Của Positional Encoding Các Phương Pháp Khác Relative Positional Encoding Attention with Linear Bias (ALiBi) Rotary Positional Encoding (RoPE) Tài Liệu Tham Khảo Giới Thiệu Trong kiến trúc Transformer, trước khi Vector Embedding được đưa vào mô hình Encoder, nó được cộng thêm một vector khác để lưu trữ lại vị trí của các từ trong câu, cơ chế này gọi là Positional Encoding (PE).\n",
+  "inLanguage" : "vi",
+  "wordCount":  2224 ,
+  "datePublished" : "2023-06-14T00:00:00\u002b00:00",
+  "dateModified" : "2023-06-14T00:00:00\u002b00:00",
+  "image" : "http:\/\/localhost:1313\/coffee\/img\/avatar-icon.png",
+  "keywords" : [ "Transformer, Positional Encoding, PE, RoPE, Rotary Positional Encoding, ALiBi, Attention with Linear Bias" ],
+  "mainEntityOfPage" : "http:\/\/localhost:1313\/coffee\/post\/2023-06-14-positional-encoder\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "http:\/\/localhost:1313\/coffee\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "http:\/\/localhost:1313\/coffee\/img\/avatar-icon.png",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+
+<meta property="og:title" content="Positional Encoding" />
+<meta property="og:description" content="
+Giới Thiệu
+Positional Encoding
+
+Tại Sao Cần Có Positional Encoding ?
+Khái niệm
+
+
+Cơ Chế Hoạt Động Của Positional Encoding
+Các Phương Pháp Khác
+
+Relative Positional Encoding
+
+Attention with Linear Bias (ALiBi)
+
+
+Rotary Positional Encoding (RoPE)
+
+
+Tài Liệu Tham Khảo
+
+
+Giới Thiệu
+Trong kiến trúc Transformer, trước khi Vector Embedding được đưa vào mô hình Encoder, nó được cộng thêm một vector khác để lưu trữ lại vị trí của các từ trong câu, cơ chế này gọi là Positional Encoding (PE).">
+<meta property="og:image" content="http://localhost:1313/coffee/img/avatar-icon.png" />
+<meta property="og:url" content="http://localhost:1313/coffee/post/2023-06-14-positional-encoder/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Coffee" />
+
+  <meta name="twitter:title" content="Positional Encoding" />
+  <meta name="twitter:description" content="
+Giới Thiệu
+Positional Encoding
+
+Tại Sao Cần Có Positional Encoding ?
+Khái niệm
+
+
+Cơ Chế Hoạt Động Của Positional Encoding
+Các Phương Pháp Khác
+
+Relative Positional Encoding
+
+Attention with Linear …">
+  <meta name="twitter:image" content="http://localhost:1313/coffee/img/avatar-icon.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link href='http://localhost:1313/coffee/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.145.0">
+  <link rel="alternate" href="http://localhost:1313/coffee/index.xml" type="application/rss+xml" title="Coffee"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css" integrity="sha384-3UiQGuEI4TTMaFmGIZumfRPtfKQ3trwQE2JgosJxCnGmQpL/lJdjpcHkaaFwHlcI" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.6.0/css/all.css" integrity="sha384-h/hnnw1Bi4nbpD6kE7nYfCXzovi622sY5WBxww8ARKwpdLj5kUWjRuyiXaD1U2JT" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"><link rel="stylesheet" href="http://localhost:1313/coffee/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="http://localhost:1313/coffee/css/highlight.min.css" /><link rel="stylesheet" href="http://localhost:1313/coffee/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://localhost:1313/coffee/">Coffee</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="http://localhost:1313/coffee/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="http://localhost:1313/coffee/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="http://localhost:1313/coffee/tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="Coffee" href="http://localhost:1313/coffee/">
+            <img class="avatar-img" src="http://localhost:1313/coffee/img/avatar-icon.png" alt="Coffee" />
+           
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              
+                <h1>Positional Encoding</h1>
+              
+              
+              
+              
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;11&nbsp;
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;2224&nbsp;
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;
+    
+  
+  
+</span>
+
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <ul>
+<li><a href="#gi%E1%BB%9Bi-thi%E1%BB%87u">Giới Thiệu</a></li>
+<li><a href="#positional-encoding">Positional Encoding</a>
+<ul>
+<li><a href="#t%E1%BA%A1i-sao-c%E1%BA%A7n-c%C3%B3-positional-encoding-">Tại Sao Cần Có Positional Encoding ?</a></li>
+<li><a href="#kh%C3%A1i-ni%E1%BB%87m">Khái niệm</a></li>
+</ul>
+</li>
+<li><a href="#c%C6%A1-ch%E1%BA%BF-ho%E1%BA%A1t-%C4%91%E1%BB%99ng-c%E1%BB%A7a-positional-encoding">Cơ Chế Hoạt Động Của Positional Encoding</a></li>
+<li><a href="#c%C3%A1c-ph%C6%B0%C6%A1ng-ph%C3%A1p-kh%C3%A1c">Các Phương Pháp Khác</a>
+<ul>
+<li><a href="#relative-positional-encoding">Relative Positional Encoding</a>
+<ul>
+<li><a href="#attention-with-linear-bias-alibi">Attention with Linear Bias (ALiBi)</a></li>
+</ul>
+</li>
+<li><a href="#rotary-positional-encoding-rope">Rotary Positional Encoding (RoPE)</a></li>
+</ul>
+</li>
+<li><a href="#t%C3%A0i-li%E1%BB%87u-tham-kh%E1%BA%A3o">Tài Liệu Tham Khảo</a></li>
+</ul>
+<style>
+  .img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .imgTitle {
+    text-align: center;
+  }
+</style>
+<h1 id="giới-thiệu">Giới Thiệu</h1>
+<p>Trong kiến trúc Transformer, trước khi Vector Embedding được đưa vào mô hình Encoder, nó được cộng thêm một vector khác để lưu trữ lại vị trí của các từ trong câu, cơ chế này gọi là Positional Encoding (PE).</p>
+<img class="img" src="http://localhost:1313/coffee/img/Transformer/PositionalEncoding/pe.jpg"/>
+<p>Để lưu trữ lại vị trí của các từ trong câu, thường có 2 hướng có thể tiếp cận là:</p>
+<ul>
+<li>Cho model học như học một vector embedding bình thường và lưu trữ các vị trí của các từ đó.</li>
+<li>Sử dụng một hàm số định nghĩa từ trước để lưu trữ và ánh xạ lại vị trí của các từ trong câu.</li>
+</ul>
+<p>Trong bài báo gốc về Transformer, cơ chế PE được nhóm tác giả sử dụng là sử dụng một hàm được định nghĩa từ trước để ánh xạ và lưu trữ vị trí của các từ trong câu.</p>
+<p>Và trong bài viết này chúng ta sẽ đi vào tìm hiểu cơ chế lưu trữ và cách thức hoạt động của hàm số đó trong kiến trúc Transformer.</p>
+<h1 id="positional-encoding">Positional Encoding</h1>
+<h2 id="tại-sao-cần-có-positional-encoding-">Tại Sao Cần Có Positional Encoding ?</h2>
+<p>Không giống như các mạng hồi quy như RNN, LSTM, GRU hay phép tích chập Convolution có đươc thông tin của các context xung quanh.</p>
+<p>Transformer chỉ sử dụng self-attention, do vậy nếu không có thông tin về vị trí thì output của kiến trúc transformer sẽ dễ bị đảo lộn vị trí giữa các token với nhau.</p>
+<h2 id="khái-niệm">Khái niệm</h2>
+<p>Positional Encoding là một cơ chế giúp mô hình có thể biết được ký tự, từ đang xét nằm ở vị trí nào trong câu.</p>
+<p>Hàm Sinusoid là hàm được nhóm tác giả trong paper gốc sử dụng để lưu trữ vị trí.</p>
+<p>Cụ thể tại mỗi ký tự hoặc từ sẽ được biểu diễn bởi 1 vector (position vector) với <strong>\(  d  \)</strong> chiều biểu diễn cho vị trí của ký tự, từ đó trong câu.</p>
+<p>Để tính được <strong>position vector</strong> nhóm tác giả đưa ra phương pháp tính theo dạng:</p>
+<p>\[ PE_{(pos, d_{j})} = \sin(\frac{pos}{n^{\frac{2i}{d}}}) ~~ , ~~ subject~to:~~ d_{j}<del>is</del>even ~~ \&amp; ~~ d_{j} = 2i \]</p>
+<p>\[~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~(1)\]</p>
+<p>\[ PE_{(pos, d_{j})} = \cos(\frac{pos}{n^{\frac{2i}{d}}}) ~~ , ~~ subject~to:~~ d_{j}<del>is</del>odd ~~ \&amp; ~~ d_{j} = 2i + 1 \]</p>
+<p>Tức, để tính được position vector với d chiều, ta thực hiện tính giá trị tại từng chiều \( d_{j} \). Trong đó, tại vị trí <strong>\( i \) chẵn</strong> ta sẽ dùng hàm <strong>sin</strong> và tại vị trí <strong>\( i \) lẻ</strong> ta sẽ dùng hàm <strong>cosin</strong> và <strong>n</strong> là hyper-param (trong bài báo gốc nhóm tác giả chọn n=10000).</p>
+<h1 id="cơ-chế-hoạt-động-của-positional-encoding">Cơ Chế Hoạt Động Của Positional Encoding</h1>
+<p>Giả sử, ta có câu đầu vào là <strong>&ldquo;tôi đi học&rdquo;</strong> và số chiều cho position vector là \( d = 15 \). Thì khi đó ứng với vị trí của từng token và từng chiều trong số 15 chiều của position vector</p>
+<p>Ta có:</p>
+<img class="img" src="http://localhost:1313/coffee/img/Transformer/PositionalEncoding/position_matrix.png"/>
+<p class="imgTitle" >Bảng 1: Giá trị của từng token trên từng chiều của position vector</p>
+<p>Thế thì, cái bảng ở trên có ý nghĩa gì, và nó liên quan gì tới việc lưu trữ thông tin vị trí trong câu.</p>
+<p>Để có cái nhìn tổng quát hơn, thì nếu ta coi vị trí trong câu (<strong>pos</strong>) là \( x~~(x \in [0, length\_sentence]) \), ta thực hiện vẽ các đồ thị hình <strong>sin</strong> và <strong>cos</strong> theo công thức (1) tương ứng với từng chiều trong position vector.</p>
+<p>Khi đó:</p>
+<img class="img" src="http://localhost:1313/coffee/img/Transformer/PositionalEncoding/visualize_detail/viewdetail_1.png"/>
+<img class="img" src="http://localhost:1313/coffee/img/Transformer/PositionalEncoding/visualize_detail/viewdetail_2.png"/>
+<p class="imgTitle">Hình 1: Tọa độ của các token trên đồ thị sinucoid theo các chiều trong position vector</p>
+<p>Từ công thức (1) cũng như Hình 1. Có thể thấy, trong một position vector \( d \) chiều, <strong>\( i \)</strong> sẽ tăng dần cho tới khi  \( d_{j} = d \) (tức  \( d_{j} \) là chiều cuối cùng của position vector như trong ví dụ trên thì  \( d_{j} = 15 \))</p>
+<p>Thì khi đó biểu thức  \( \frac{pos}{10000^{\frac{2i}{d}}} \) sẽ <strong>giảm dần</strong> mỗi khi <strong>i tăng</strong>, điều này cũng đồng nghĩa với việc chu kỳ lượng giác của mỗi đồ thị <strong>sin</strong> và <strong>cos</strong> tương ứng trong (1) sẽ ngày càng <strong>lớn hơn</strong>.</p>
+<p>Như Hình 1, \( d_{j} = 4,5 \) có chu kỳ lớn hơn  \( d_{j} = 2,3 \), và  \( d_{j} = 2,3 \) có chu kỳ lớn hơn  \( d_{j} = 0,1 \) &hellip;v.v. (Lưu ý:  \( d_{j} = 0,1 \) có chu kỳ bằng nhau vì đều có  \( i = 0 \) tương tự các cặp khác)</p>
+<p>Khi \( d_{j} = 12,13 \) đồ thị sẽ có dạng:</p>
+<img class="img" src="http://localhost:1313/coffee/img/Transformer/PositionalEncoding/visualize_detail/viewdetail_4.png">
+<p class="imgTitle">Hình 2: Tọa độ của các token trên đồ thị sinucoid ở các chiều gần cuối trong position vector</p>
+<p>Khi \( d_{j} \) càng tiệm cận d, thì chu kỳ lượng giác lớn tới mức dường như các token ở các vị trí nhỏ sẽ gần như có giá trị bằng 0 đối với hàm sin và bằng 1 đối với hàm cos.</p>
+<p>Một token phải ở vị trí đủ lớn (tức là một từ nằm ở vị trí nào đó cực xa trong 1 câu cực dài, tuy nhiên điều này cũng sẽ phụ thuộc phần lớn nữa là vào số chiều của position vector có lớn hay không (tức d có lớn hay không)).</p>
+<p>Những nhận định trên là những nhận định đóng góp cực kỳ quan trọng của việc biểu diễn vị trí của token trong câu thông qua hàm <strong>sinocoid</strong> này của nhóm tác giả.</p>
+<p>Từ những nhận định trên, ta có thể thấy, nếu 1 token càng ở <strong>gần đầu câu</strong> thì trong một position vector sẽ càng có <strong>ít</strong> sự biến thiên của dữ liệu, mà thay vào đó số lượng giá trị <strong>0 và 1</strong> sẽ <strong>lặp đi lặp lại nhiều</strong> lần.</p>
+<p>Còn token càng ở <strong>phần đuôi</strong> của câu, thì số lượng giá trị <strong>0 và 1</strong> sẽ <strong>ít hơn</strong> mà thay vào đó sẽ là các giá trị khác (Điều này dễ thấy vì token càng xa thì sẽ càng gần đỉnh của đồ thị hơn là so với token gần khi mà đồ thị có chu kỳ lượng giác lớn).</p>
+<p>Đây cũng là ý tưởng chính và cách thức lưu trữ vị trí của token trong câu của hàm sinocoid.</p>
+<p>Ví dụ, như Hình 3 bên dưới, có \( d = 15 \), thì tại  \( d_{j} = 12, 13 \), dường như các token nằm ở gần đầu câu như  \( t_{1},\ t_{4},\ t_{7} \) lúc này chỉ nhận được 0 và 1 và không nhận được giá trị nào khác nữa.</p>
+<p>Trong khi đó, các token ở xa hơn như  \( t_{18},\ t_{k} \) và xa nhất là  \( t_{n} \) các giá trị vẫn đang biến thiên thay vì nhận giá trị 0 và 1.</p>
+<img class="img" src="http://localhost:1313/coffee/img/Transformer/PositionalEncoding/visualize_detail/viewdetail_5.png"/>
+<p class="imgTitle">Hình 3: Visualize vị trí của các token trong một câu dài trên đồ thị sinucoid ở các chiều gần cuối</p>
+<p>Có một số cách visualize để có cái nhìn tổng quan về sự biến thiên giá trị trong position vector, để dễ hiểu hơn cách thức lưu trữ giá trị của hàm sinocoid, dưới đây là một ví dụ:</p>
+<img class="img" src="http://localhost:1313/coffee/img/Transformer/PositionalEncoding/overview_PE.png"/>
+<p class="imgTitle">Hình 4: <a  href="https://kazemnejad.com/blog/transformer_architecture_positional_encoding/">Visualize position encoding d=128 với max_length_sentence=50</a></p>
+<h1 id="các-phương-pháp-khác">Các Phương Pháp Khác</h1>
+<p>Ở trên là một trong những phương pháp encode position được biết đến rộng rãi. Vì là cách tiếp cận đi liên với kiến trúc gốc của Transformers. Và phương pháp trên thường được biết đến là thuộc nhóm cách tiếp cận <strong>Absolute Positional Encoding</strong></p>
+<p>Ngoài ra còn có các cách tiếp cận khác là <strong>Learnable Positional Encoding</strong> và <strong>Relative Positional Encoding</strong></p>
+<h2 id="relative-positional-encoding">Relative Positional Encoding</h2>
+<h3 id="attention-with-linear-bias-alibi">Attention with Linear Bias (ALiBi)</h3>
+<p>Năm 2022, các nhà nghiên cứu của Facebook kết hợp cùng trường đại học Washington và viện nghiên cứu Allen đã đề xuất một phương pháp <strong>positional encoding</strong> khác bằng việc thêm một hàm Bias (độ lệch, b(i, j)) khi thực hiện tính toán attention score. Tên gọi của phương pháp này là <strong>Attention with Linear Bias</strong> (ALiBi).</p>
+<p>Sau khi tích vô hướng của các ma trận query và key để có được điểm attention, một hàm Bias được thêm vào. Hàm Bias b(i, j) được thêm vào sẽ là các thuật toán khác nhau có thể là tuyến tính (thường được sử dụng) hoặc phi tuyến tùy thuộc vào mục đích khác nhau. Nhưng các hàm b(i, j) được thêm vào thường với mục đích để tăng cường sự chú ý của mô hình và cho phép mô hình tập trung hơn vào các vị trí cụ thể trong chuỗi.</p>
+<p>Ví dụ, nếu mục đích chỉ muốn có thêm thông tin của vị trí của các token trong câu mà việc token đứng đâu trong câu không quá quan trọng, thì b(i, j) có thể chỉ đơn giản là hàm tính khoảng cách <strong>Euclidean</strong>. Nếu như việc 2 token trong câu đứng gần nhau sẽ mang lại sự tác động khác với 2 token đứng xa nhau chẳng hạn thì hàm <strong>Log</strong> có thể sử dụng để tính khoảng cách giữa 2 token, ..v..v.</p>
+<h3 id="rotary-positional-encoding-rope">Rotary Positional Encoding (RoPE)</h3>
+<p>Theo đó vào năm 2023, các nhà nghiên cứu thuộc Zhuiyi Technology Co. LTD. Shenzhen đã đề xuất một phương pháp mã hóa vị trí tương đối khác dựa trên việc xoay embedding đầu vào nhằm giữ được tính toàn vẹn của vector embedding đầu vào đó mà vẫn có được thông tin vị trí &ldquo;<strong>tương đối</strong>&rdquo; của các token trong câu (mang lại độ hiệu quả và linh hoạt cao hơn các phương pháp tiếp cận trước đó) với tên gọi là <strong>Rotary Positional Encoding</strong> (RoPE).</p>
+<p>RoPE sẽ thực hiện xoay mà không cộng hay thêm biến số nào vào các vector query và key khi thực hiện tính attention score (khác với phương pháp trước đó  (đã được nêu ở trên) sử dụng hàm sinusoidal là positional encoding vector sẽ được cộng trực tiếp vào input embedding). Mỗi một token tương ứng với từng vị trí khác nhau trong câu sẽ có một góc xoay khác nhau và là duy nhất.</p>
+<p>Giả sử, ta có một câu với 3 token. Và 3 token đó tương ứng với 3 kim giây, phút, giờ trong đồng hồ. 3 kim này có tần số và tốc độ quay là khác nhau, khi quay ta có thể ước lượng được khoảng cách tương đối của chúng với nhau về việc kim nào gần kim nào hơn.</p>
+<p>Vậy giả sử, với nhiều token hơn, và mỗi token có tần số hay tốc độ nhanh hơn nhau 1 đơn vị. Ta sẽ có,</p>
+<img class="img" src="http://localhost:1313/coffee/img/Transformer/PositionalEncoding/rope.png"/> 
+<p>Khi nhìn ta cũng có thể hình dung được luôn vị trí tương đối của chúng đối với nhau, token nào gần hay xa token nào hơn.</p>
+<p>Ví dụ, cặp token 1-5 có <strong>góc lớn hơn</strong> cặp 1-3 =&gt; token 5 <strong>xa</strong> token 1 hơn token 3, nhưng cặp token 1-5 lại có <strong>góc nhỏ hơn</strong> cặp 1-6 =&gt; token 5 <strong>gần</strong> token 1 hơn token 6.</p>
+<h4 id="note">NOTE</h4>
+<ul>
+<li>
+<p>Đã có các nghiên cứu liên quan về việc mã hóa vị trí tuyệt đối như phương pháp sử dụng sinusoidal trước đó vẫn gặp phải một số hạn chế và hoạt động kém hiệu quả. Ví dụ, Nếu dữ liệu thực tế có độ dài khác biệt &ldquo;tương đổi or lớn&rdquo; đối với dữ liệu huấn luyện, thì mã hóa vị trí tuyệt đối sẽ trở nên kém hiệu quả.</p>
+</li>
+<li>
+<p>Trong khi đó RoPE với vieecj mã hóa vị trí tương đối xử dụng góc xoay, mang lại độ linh hoạt và hiệu quả cao hơn kể cả đối với sự khác biệt về độ dài của câu thực tế và dữ liệu huấn luyện.</p>
+</li>
+<li>
+<p>Sinusoidal encoding mất nhiều chi phí tính toán hơn khi phải tính thêm positional encoding vector và cộng vào input embedding.</p>
+</li>
+<li>
+<p>Trong khi, RoPE thực hiện tính toán theo từng cặp q, k vector trong lúc tính attention score. Thêm vào đó, việc không <strong>cộng</strong> thêm bất vector hay biến số nào cho input embedding, RoPE vẫn có được thông tin vị trí cho từng token trong câu mà vẫn đảm bảo được tính toàn vẹn của dữ liệu đầu vào (hay giá trị cho input embedding).</p>
+</li>
+<li>
+<p>RoPE sẽ thực hiện xoay theo từng cặp q, k vector khi tính attentio score. Về lý thuyết, việc thực hiện xoay toàn bộ vector q và k trước khi tính toán attention score là vẫn đúng, cả 2 đều giữ được tính đồng nhất về phép xoay và góc xoay đối với từng token trong câu. Tuy nhiên, việc thực hiện xoay cả vector q và k sẽ cần lưu trữ và xử lý ma trận xoay điều này sẽ phức tạp hơn khi triển khai và tốc đọ tính toán cũng lâu hơn thay vì thực hiện phép xoay khi tính attention score.</p>
+</li>
+</ul>
+<h1 id="tài-liệu-tham-khảo">Tài Liệu Tham Khảo</h1>
+<p>[1] <a href="https://erdem.pl/2021/05/understanding-positional-encoding-in-transformers">Understanding Positional Encoding in Transformers - Kemal Erdem<a/></p>
+<p>[2] <a href="https://arxiv.org/abs/1706.03762">Ashish Vaswani et al, “Attention Is All You Need”, NeurIPS 2017</a></p>
+<p>[3] <a href="https://arxiv.org/pdf/2108.12409">Ofir Press, Noah A. Smith1, Mike Lewis, “TRAIN SHORT, TEST LONG: ATTENTION WITH LINEAR BIASES ENABLES INPUT LENGTH EXTRAPOLATION”, 2022</a></p>
+<p>[4] <a href="https://arxiv.org/pdf/2104.09864">, “ROFORMER: ENHANCED TRANSFORMER WITH ROTARY POSITION EMBEDDING”, 2023</a></p>
+
+
+        
+          <div class="blog-tags">
+            
+              
+              <a href="http://localhost:1313/coffee/tags/transformer/">Transformer</a>&nbsp;
+            
+              
+              <a href="http://localhost:1313/coffee/tags/positional-encoding/">Positional Encoding</a>&nbsp;
+            
+              
+              <a href="http://localhost:1313/coffee/tags/pe/">PE</a>&nbsp;
+            
+              
+              <a href="http://localhost:1313/coffee/tags/rope/">RoPE</a>&nbsp;
+            
+              
+              <a href="http://localhost:1313/coffee/tags/rotary-positional-encoding/">Rotary Positional Encoding</a>&nbsp;
+            
+              
+              <a href="http://localhost:1313/coffee/tags/alibi/">ALiBi</a>&nbsp;
+            
+              
+              <a href="http://localhost:1313/coffee/tags/attention-with-linear-bias/">Attention with Linear Bias</a>&nbsp;
+            
+          </div>
+        
+
+        
+
+        
+          
+            
+          
+
+          
+                  <h4 class="see-also"></h4>
+                  <ul>
+                
+                
+                    <li><a href="http://localhost:1313/coffee/post/2023-06-20-bert/">BERT</a></li>
+                
+                    <li><a href="http://localhost:1313/coffee/post/2023-06-16-transformer-rest/">The Rest of Transformer</a></li>
+                
+                    <li><a href="http://localhost:1313/coffee/post/2023-06-15-self-attention/">Self-Attention</a></li>
+                
+              </ul>
+
+          
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="http://localhost:1313/coffee/post/2023-06-10-linear-regression-1/" data-toggle="tooltip" data-placement="top" title="Linear, Ridge and Lasso Regression">&larr; </a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="http://localhost:1313/coffee/post/2023-06-15-self-attention/" data-toggle="tooltip" data-placement="top" title="Self-Attention"> &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+      
+      
+      
+      
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      <footer>
+  <div class="container">
+    
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+          
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2023
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="http://localhost:1313/coffee/">Coffee</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.js" integrity="sha384-G0zcxDFp5LWZtDuRMnBkk3EphCK1lhEf4UEyEM693ka574TZGwo4IWwS6QLzM/2t" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha384-w5y/xIeYixWvfM+A1cEbmHPURnvyqmVg5eVENruEdDjcyRLUSNej7512JQGspFUr" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+<script src="http://localhost:1313/coffee/js/main.js"></script>
+<script src="http://localhost:1313/coffee/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="http://localhost:1313/coffee/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+
+    
+  </body>
+</html>
+

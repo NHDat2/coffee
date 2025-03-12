@@ -1,0 +1,612 @@
+
+
+<!DOCTYPE html>
+<html lang="vi" itemscope itemtype="http://schema.org/WebPage">
+  <head><script src="/coffee/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=coffee/livereload" data-no-instant defer></script>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+ 
+
+
+      <title>Tokenizers - </title>
+
+  <meta name="description" content="
+
+Introduction
+Token, Tokenizer ??
+Tokenization
+
+Word Tokenization
+Character Tokenization
+SubWord tokenization
+
+Byte Pair Encoding (BPE)
+WordPiece tokenization
+
+
+
+
+
+Introduction
+Có khá là nhiều bài viết nghiên cứu sâu về việc cách thức “máy móc” đọc văn bản kiểu gì ?
+Những bài viết nghiên cứu về ngôn ngữ và chuyên sâu về học thuật hơn khá nhiều, mình nghĩ nếu có thể thì các bạn có thể tìm đọc thêm."><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Coffee",
+    
+    "url": "http:\/\/localhost:1313\/coffee\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "http:\/\/localhost:1313\/coffee\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "http:\/\/localhost:1313\/coffee\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "http:\/\/localhost:1313\/coffee\/post\/2023-06-09-tokenizers\/",
+          "name": "Tokenizers"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : ""
+  },
+  "headline": "Tokenizers",
+  "description" : " Introduction Token, Tokenizer ?? Tokenization Word Tokenization Character Tokenization SubWord tokenization Byte Pair Encoding (BPE) WordPiece tokenization Introduction Có khá là nhiều bài viết nghiên cứu sâu về việc cách thức “máy móc” đọc văn bản kiểu gì ?\nNhững bài viết nghiên cứu về ngôn ngữ và chuyên sâu về học thuật hơn khá nhiều, mình nghĩ nếu có thể thì các bạn có thể tìm đọc thêm.\n",
+  "inLanguage" : "vi",
+  "wordCount":  3354 ,
+  "datePublished" : "2023-06-09T00:00:00\u002b00:00",
+  "dateModified" : "2023-06-09T00:00:00\u002b00:00",
+  "image" : "http:\/\/localhost:1313\/coffee\/img\/avatar-icon.png",
+  "keywords" : [ "tokenizer, word tokenization, character tokenization, subword tokenization, BPE, Byte Pair Encoding" ],
+  "mainEntityOfPage" : "http:\/\/localhost:1313\/coffee\/post\/2023-06-09-tokenizers\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "http:\/\/localhost:1313\/coffee\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "http:\/\/localhost:1313\/coffee\/img\/avatar-icon.png",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+
+<meta property="og:title" content="Tokenizers" />
+<meta property="og:description" content="
+
+Introduction
+Token, Tokenizer ??
+Tokenization
+
+Word Tokenization
+Character Tokenization
+SubWord tokenization
+
+Byte Pair Encoding (BPE)
+WordPiece tokenization
+
+
+
+
+
+Introduction
+Có khá là nhiều bài viết nghiên cứu sâu về việc cách thức “máy móc” đọc văn bản kiểu gì ?
+Những bài viết nghiên cứu về ngôn ngữ và chuyên sâu về học thuật hơn khá nhiều, mình nghĩ nếu có thể thì các bạn có thể tìm đọc thêm.">
+<meta property="og:image" content="http://localhost:1313/coffee/img/avatar-icon.png" />
+<meta property="og:url" content="http://localhost:1313/coffee/post/2023-06-09-tokenizers/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Coffee" />
+
+  <meta name="twitter:title" content="Tokenizers" />
+  <meta name="twitter:description" content="">
+  <meta name="twitter:image" content="http://localhost:1313/coffee/img/avatar-icon.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link href='http://localhost:1313/coffee/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.145.0">
+  <link rel="alternate" href="http://localhost:1313/coffee/index.xml" type="application/rss+xml" title="Coffee"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css" integrity="sha384-3UiQGuEI4TTMaFmGIZumfRPtfKQ3trwQE2JgosJxCnGmQpL/lJdjpcHkaaFwHlcI" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.6.0/css/all.css" integrity="sha384-h/hnnw1Bi4nbpD6kE7nYfCXzovi622sY5WBxww8ARKwpdLj5kUWjRuyiXaD1U2JT" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"><link rel="stylesheet" href="http://localhost:1313/coffee/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="http://localhost:1313/coffee/css/highlight.min.css" /><link rel="stylesheet" href="http://localhost:1313/coffee/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://localhost:1313/coffee/">Coffee</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="http://localhost:1313/coffee/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="http://localhost:1313/coffee/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="http://localhost:1313/coffee/tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="Coffee" href="http://localhost:1313/coffee/">
+            <img class="avatar-img" src="http://localhost:1313/coffee/img/avatar-icon.png" alt="Coffee" />
+           
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              
+                <h1>Tokenizers</h1>
+              
+              
+              
+              
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;16&nbsp;
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;3354&nbsp;
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;
+    
+  
+  
+</span>
+
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <style>
+    .singleImg {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .textSingleImg {
+        text-align: center;
+    }
+    .twoImgBlock {
+        display: flex;
+        just-content: center;
+    }
+    .twoImg {
+        width: 400px;
+        height: 400px;
+    }
+</style>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#token-tokenizer-">Token, Tokenizer ??</a></li>
+<li><a href="#tokenization">Tokenization</a>
+<ul>
+<li><a href="#word-tokenization">Word Tokenization</a></li>
+<li><a href="#character-tokenization">Character Tokenization</a></li>
+<li><a href="#subword-tokenization">SubWord tokenization</a>
+<ul>
+<li><a href="#byte-pair-encoding-bpe">Byte Pair Encoding (BPE)</a></li>
+<li><a href="#wordpiece-tokenization">WordPiece tokenization</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="introduction">Introduction</h1>
+<p>Có khá là nhiều bài viết nghiên cứu sâu về việc cách thức “máy móc” đọc văn bản kiểu gì ?</p>
+<p>Những bài viết nghiên cứu về ngôn ngữ và chuyên sâu về học thuật hơn khá nhiều, mình nghĩ nếu có thể thì các bạn có thể tìm đọc thêm.</p>
+<p>Trong bài viết này, mình sẽ chỉ nói theo một cách, gọi là theo ý hiểu của mình, và mình nghĩ nó ở tầng trên của phần kiến thức nhiều hơn. Nào ta bắt đầu nha.</p>
+<img src="http://localhost:1313/coffee/img/tokenization/0.jpg" class="singleImg">
+<p class="textSingleImg">Hình 0<p>
+<h1 id="token-tokenizer-">Token, Tokenizer ??</h1>
+<p>Nếu cho một câu ví dụ như  “Who are you ?”, với chúng ta khi nhìn vào, ở một khía cạnh tiếp cận một cách cơ bản thì, chúng ta sẽ phân tích câu, để xem đây là một câu “trần thuật, hỏi đáp, ..v.v” hay là gì, rồi là phân tích thành phần câu như kiểu “đây là câu hỏi nơi trốn hay hỏi cái gì, là câu phủ định hay khẳng định, chủ ngữ đâu, vị ngữ đâu …v.v. Kiểu kiểu vậy”.</p>
+<p>Yuppp, đương nhiên để có thể phân tích cũng như phân tích một cách chính xác thì chúng ta cần phải học mới biết. Tuy nhiên, một điều cơ bản nhất trước khi phân tích được câu đó, là việc ta cần phải tách được câu thành các thành phần nhỏ hơn.</p>
+<p>Như kiểu, à cái “Who” này nè nó được gọi là 1 từ, cái “are” và “you” cũng vậy và 3 từ đó ghép lại thành câu ban đầu đấy. Hay “w”, ”h”, ”o”, ”a”, ”r”, ”e”, ”y”, “o”, ”u” là đống chữ cái mà ghép chúng lại với nhau cũng tạo thành câu ban đầu đấy ….v.v. Or các kiểu tách thành phần khác nhau dạng vậy.</p>
+<p>Thì đối với máy móc, ta định nghĩa các thành phần như vậy để cấu thành lên 1 câu là “token”, “token” có thể đại diện cho “chữ cái (char)”, “từ (word)”, “từ con (subword)” …v.v..</p>
+<p>Tokenizer, sẽ là các công cụ, phương pháp để giúp tách một câu thành các thành phần nhỏ hơn theo một hình thức đơn vị nào đó.</p>
+<h1 id="tokenization">Tokenization</h1>
+<p>Trong phần này mình sẽ điểm qua một số phương pháp để phân tích và tách câu mà mình có biết, tìm hiểu và đọc được.</p>
+<p>Bao gồm: Word, Character, Subword, WordPiece, SentencePiece tokenization.</p>
+<p>Về việc thực hiện tokenize, có rất nhiều các thức để có thể tiếp cận:</p>
+<ul>
+<li>Tokenize bằng từng chữ cái, coi mỗi chữ cái là 1 token</li>
+<li>Tokenize theo “dấu khoảng trắng” và coi mỗi token cách nhau bởi một “khoảng trắng”</li>
+<li>Tokenize theo các dấu câu</li>
+<li>Tokenize theo các Rules để đưa ra các token phù hợp</li>
+<li>Tokenize bằng model, ta có thể xây dựng một số model chuyên biệt dành riêng cho việc tokenize để tối ưu và phù hợp cho bài toán hoặc ngôn ngữ nào đó</li>
+<li>…v.v.</li>
+</ul>
+<img src="http://localhost:1313/coffee/img/tokenization/1.jpg" class="singleImg">
+<p class="textSingleImg">Hình 1<p>
+<p>Mỗi một cách thực hiện tokenize sẽ đem lại ưu nhược điểm cũng như sự phù hợp cho từng loại bài toán, hay ngôn ngữ khác nhau.</p>
+<p>Ví dụ, nếu ta xét ngôn ngữ là Tiếng Anh, thì ta có thể thấy việc tokenize bằng dấu “khoảng trắng” thôi cũng mang lại hiệu quả khá cao và phù hợp.</p>
+<p>Tuy nhiên, cùng cách tiếp cận đó mà sử dụng cho các ngôn ngữ như Tiếng Trung, Tiếng Nhật hay thậm trí là Tiếng Việt mình thì độ hiệu quả đã giảm đi rất nhiều rồi.</p>
+<p>Như tiếng Việt chúng ta, từ “chúng ta” có thể được ghép bằng 2 từ đơn “chúng” và “ta” và cách nhau bởi dấu khoảng trắng, nhưng thực tế trong hầu hết các ngữ cảnh ta mong muốn đấy là 1 từ “chúng_ta” hơn là 2 từ đơn “chúng”, “ta”.</p>
+<h2 id="word-tokenization">Word Tokenization</h2>
+<p>Work tokenization, tách từ, là một dạng tách câu thành từng token, với mỗi token là 1 từ được định nghĩa theo ngôn ngữ đó.</p>
+<img src="http://localhost:1313/coffee/img/tokenization/2.jpg" class="singleImg">
+<p class="textSingleImg">Hình 2<p>
+<p>Ở trên là một số ví dụ mà ta có thể tiếp cận để thực hiện tách từ, có thể là theo khoảng trắng, dấu câu, hay bất cứ cách tiếp cận nào làm cho các câu được tách thành các từ.</p>
+<p>Tuy nhiên, cho dù cách nào đi nữa thì việc tiếp cận thực hiện “tách từ” sẽ luôn tồn đọng một số vấn đề cốt lõi:</p>
+<ol>
+<li>
+<p>Cần bộ từ điển lớn: Khi làm việc với cách tiếp cận “tách từ” thì, cta chỉ học được những từ có trong bộ từ điển khi thực hiện huấn luyện mà thôi.</p>
+<p>Tất cả, các từ khác không có trong dữ liệu huấn luyện sẽ không thể biết và học được, thường chúng sẽ được đánh dấu bằng 1 token nào đó (ví dụ “UNK”) để nhận biết rằng đấy là 1 từ lạ.</p>
+<p>Khi đó, nếu bộ dữ liệu của cta không đủ lớn để phủ hết toàn bộ từ vựng (thực ra rất khó để phủ hết) thì sẽ luôn tồn tại các từ  “UNK”.</p>
+<p>Ví dụ, trong dữ liệu huấn luyện ta học được từ “không”, tuy nhiên, thực tế ta lại gặp từ “khôngggggg” thì khi đó từ “khôngggggg” này đã là một “UNK”, do vậy, mà sẽ gần như là không thể nào có thể phủ hết được toàn bộ các từ.</p>
+</li>
+<li>
+<p>Các từ viết tắt: đối với work token, thì từ viết tắt cũng là một trở ngại lớn, khi mà không chỉ các từ viết tắt thông dụng mà sau đó là hàng tấn từ teencode được sinh ra hằng ngày mà không bao giờ có giới hạn. Thì word token cũng k thể sử lý được</p>
+</li>
+</ol>
+<h2 id="character-tokenization">Character Tokenization</h2>
+<p>Nhìn nhận thấy một số nhược điểm lớn như vậy, thì một cách tiếp cận khác cũng được hướng tới là việc tiếp cận theo “ký tự”.</p>
+<p>Vì lượng ký tự như các dấu câu, chữ cái, các ký tự đặc biệt dùng thường xuyên, hay thậm trí cả không được dùng thường xuyên thì số lượng các ký tự đó cũng không đến mức quá lớn.</p>
+<p>Và chỉ cần từng ấy ký tự có thể cấu thành lên toàn bộ từ vựng, câu văn, đoạn văn, văn bản bất kỳ. Điều đó làm cho nhược điểm về “số lượng từ vựng”, “các từ viết tắt” của cách tiếp cận word token không còn nữa.</p>
+<p>Tuy nhiên, nó cũng tồn tại một số nhược điểm có thể kể đến:</p>
+<img src="http://localhost:1313/coffee/img/tokenization/3.jpg" class="singleImg">
+<p class="textSingleImg">Hình 3<p>
+<ol>
+<li>
+<p>Thiếu ngữ nghĩa: không giống như các “từ”, mỗi từ vốn đều có nghĩa riêng của nó, trong khi đó, mỗi ký tự hầu hết không mang ý nghĩa nào cả. Do vậy, quá trình học biểu diễn, không có gì đảm bảo rằng các ký tự sẽ mang bất kỳ ý nghĩa nào. Trong khi đó, với mỗi “từ” trong từng ngữ cảnh khác nhau có thể mang ý nghĩa khác nhau.</p>
+</li>
+<li>
+<p>Tăng chi phí tính toán: Đương nhiên rồi, thay vì mỗi token là 1 từ, thì giờ đây 1 từ sẽ gồm nhiều token ký tự, do vậy, 1 câu được biểu diễn theo character sẽ gồm nhiều token hơn so với biểu diễn theo word. Dẫn đến, vector biểu diễn lớn =&gt; tính toán sẽ tốn chi phí hơn.</p>
+</li>
+</ol>
+<h2 id="subword-tokenization">Subword Tokenization</h2>
+<p>Sau khi kinh qua các vấn đề của các cách tiếp cận trên. Lại mong muốn rằng, có thể tiếp cận việc phân tách thành phần câu sao cho không bị mất từ, hay nói một cách khác là không muốn thấy các “UNK” token trong khi không muốn phải xây dựng một từ điển khổng lồ hay vô hạn các token.</p>
+<p>Đồng thời cũng không muốn tiếp cận theo dạng từng ký tự như “character token” để tránh bị mất (intent meaning) ngữ nghĩa vốn có của cấp độ từ.</p>
+<p>Khi đó Subword tokenization được sinh ra, với ý tưởng chính là việc “ta có thể xây dựng các token mới bằng những token đã biết”.</p>
+<p>Ví dụ, từ “chúng ta” có thể được ghép từ 2 từ đơn “chúng” và “ta” vậy là với 2 từ ta vẫn có thể biểu diễn cho 3 từ là “chúng” “ta” và “chúng ta” hay tiếng anh như “unfortunately” sẽ được ghép bởi các token “un” + “for” + “tun” + “ate” + “ly”.</p>
+<p>Do vậy, Subword tokenization, sẽ thực hiện việc xây dựng bộ từ điển gồm các “subword”. Điều này làm cho cách tiếp cận này, không phải tốn nhiều bộ nhớ như cách tiếp cận “word tokenization” mà vẫn cho phép chúng ta có thể cover được hết toàn bộ “word”.</p>
+<p>Nếu lượng vocab của bạn nhỏ thì có thể bạn sẽ cần nhiều token để biểu diễn 1 “UNK Word”, còn nếu lượng vocab lớn thì có thể sẽ cần ít token hơn.</p>
+<p>Ví dụ, như BERT, với cách tiếp cận theo 1 biến thể theo dạng “Subword” thì vocab_size ~ 30k token để có thể cho BERT cover hết các từ và có một biểu diễn hợp lý.</p>
+<p>Subword tokenization là một cách tiếp cận phân tách câu với việc xây dựng bộ từ điển với các subword và sẽ biểu diễn các “unk work” bằng các subword đó.</p>
+<p>Thế vào ví dụ thực tế đi:</p>
+<p>Ta có đoạn văn <strong>“Miền Bắc Việt Nam có bốn mùa là mùa Xuân mùa Hạ mùa Thu và mùa Đông còn miền nam thì không”</strong>. Để cho dễ nhìn ta sẽ coi dấu “_” là dấu “ “.</p>
+<p>Khi đó ta có:</p>
+<img src="http://localhost:1313/coffee/img/tokenization/4.jpg" class="singleImg">
+<p class="textSingleImg">Hình 4<p>
+<p>ta có bảng chứa các từ như trên. Khi đó, sẽ có hàng tá cách để có thể phân tách 1 từ thành các “subword”</p>
+<p>Ví dụ như từ: “Miền” có thể thành “Mi” + “ền”, “M” + “iền”, “Miề” + “n” …v.v.. Do vậy, ta sẽ chọn các “subword” như thế nào.</p>
+<p>Khi đó, có các cách tiếp cận, phương pháp khác nhau để tính toán và lựa chọn ra các “subword” phù hợp.</p>
+<p>Sau đây, chúng ta sẽ đi qua 1 số loại trong số các phương pháp tiếp cận là Byte pair encoding, probabilistic subword tokenization, unigram subword tokenization, wordPiece và cuối cùng là sentencePiece.</p>
+<h3 id="byte-pair-encoding-bpe">Byte Pair Encoding (BPE)</h3>
+<p>BPE ban đầu được sử dụng trong việc nén dữ liệu “data compression” bằng việc tìm các cặp byte chung của dữ liệu.</p>
+<p>Tuy nhiên, phương pháp tiếp cận này cũng đã được sử dụng rất phổ biến trong NLP đóng vai trò giúp chúng ta có thể thực hiện tokenize một cách hiệu quả.</p>
+<p>Mục tiêu chính của BPE, là việc làm sao để có thể biểu diễn được toàn bộ dữ liệu với số lượng token trong vocab ít nhất có thể.</p>
+<p>BPE sẽ thực hiện tách toàn bộ câu thành các ký tự đơn lẻ (Như m.n đã biết thì nếu biểu diễn ở dạng token là “char” thì đã hoàn toàn có thể biểu diễn được tất cả các từ với 1 lượng vocab nhỏ, tuy nhiên khi biểu diễn sẽ làm cho câu được biểu diễn “dài hơn” là so với cách biểu diễn dạng “word token”).</p>
+<p>Sau đó, BPE thực hiện ghép 2 token gần nhau có tần suất xuất hiện cùng nhau cao nhất lại với nhau, và thêm vào trong từ điển (điều này sẽ làm tăng kích thước của từ điển lên, nhưng đổi lại số lượng token khi biểu diễn 1 câu sẽ giảm đi, vì 2 char liền nhau xuất hiện nhiều nhất đã được gộp lại thành 1 thay vì 2 như trước).</p>
+<p>Lặp lại cho đến khi đạt được giới hạn số lượng token hoặc lặp qua 1 số lượng lần nhất định nào đó mà bạn cảm thấy OK.</p>
+<p>Vì dựa vào cặp token xuất hiện nhiều nhất ở mỗi bước lặp để quyết định ghép đôi token, nên có thể nói việc ghép đôi của BPE như đang sử dụng thuật toán “Tham lam” (Greedy Algorithm) để quyết định ghép đôi vậy.</p>
+<p>Việc này sẽ trade-off giữa kích thước của vocab và độ dài của câu khi biểu diễn sang dạng token.</p>
+<p>Tuy nhiên, không phải 1 câu được biểu diễn càng ngắn càng tốt, vì nếu lượng dữ liệu mà lớn thì mà một câu dài ngoằng chỉ cần biểu diễn bằng 3-4 token chẳng hạn thì khi đó vocab_size đang cực lớn</p>
+<p>=&gt; hiệu suất của model sẽ giảm khi model phải học quá nhiều token khác nhau, chưa kể tới việc khi biểu diễn 1 câu dài chỉ bằng 3-4 token tức 1 token có thể là gộp của rất nhiều word khác nhau</p>
+<p>=&gt; điều này cũng dẫn tới việc mất đi khá nhiều ngữ nghĩa nội tại mà mỗi từ đã có sẵn.</p>
+<p>Ngược lại, nếu vocab quá nhỏ thì sẽ bị rơi vào trường hợp giống cách tiếp cận “char token”</p>
+<p>Quay trở lại ví dụ ban đầu, khi đó BPE sẽ thực hiện như thế nào, vẫn là câu trên ta thực hiện đếm số lượng các từ.</p>
+<img src="http://localhost:1313/coffee/img/tokenization/4.jpg" class="singleImg">
+<p class="textSingleImg">Hình 5<p>
+<img src="http://localhost:1313/coffee/img/tokenization/5.jpg" class="singleImg">
+<p class="textSingleImg">Hình 6<p>
+<p>Ở đây thực chất bảng “Word” ở trên cũng không thực sự cần thiết, mình thêm vào để tiện cho việc đếm tần suất thôi.</p>
+<p>Phân tách theo dạng char token thì ta có:</p>
+<p><strong>vocab = ( _ , m , n , a , ù , h , i , t , c , ề , u , ô , g , b , v , à , ó , ố , l , ệ , x , â , ạ , đ , ì , k , ắ , ò )</strong></p>
+<p>Ta nhận thấy 2 token “m” và “ù” liền nhau và cùng xuất hiện với nhau 5 lần, ta thực hiện ghép đôi lại với nhau, khi đó ta thêm token mới là “mù” vào trong vocab</p>
+<p>=&gt; <strong>vocab = ( _ , m , n , a , ù , h , i , t , c , ề , u , ô , g , b , v , à , ó , ố , l , ệ , x , â , ạ , đ , ì , k , ắ , ò )</strong></p>
+<p>Sau đó, lặp lại việc thực hiện đếm và ghép đôi token, sau khoảng 14 lần ta sẽ có thêm 1 danh sách các token mới ngoại trừ danh sách char token ban đầu như sau:</p>
+<img src="http://localhost:1313/coffee/img/tokenization/6.jpg" class="singleImg">
+<p class="textSingleImg">Hình 7<p>
+<p>=&gt; khi đó <strong>Vocab = ( _ , m , n , a , ù , h , i , t , c , ề , u , ô , g , b , v , à , ó , ố , l , ệ , x , â , ạ , đ , ì , k , ắ , ò, mù , mùa , mùa_ , n_ , mi , miề , miền , miền_ , na , nam , nam_ , à_ , th , ôn , ông )</strong></p>
+<p>mình có thể tiến hành lặp tiếp và làm mới vocab tuy nhiên, đây chỉ là ví dụ về cách thức hoạt động của BPE thôi</p>
+<p>trong thực thế copus sẽ lớn hơn nhiều chứ không phải chỉ 1 câu như này và số lần lặp để ghép đôi cũng sẽ do từng bài toán hoặc các rule mà người dùng đặt ra có thể sẽ khác nhau sao cho có 1 vocab phù hợp.</p>
+<p>Lúc này, ví dụ như từ “mùa_” mình chỉ cần dùng 1 token để biểu diễn thay vì 4, hay từ “và_” mình chỉ cần 2 token thay vì 3.</p>
+<p>Hoặc khi chẳng may gặp 1 từ mới như từ “thông” thì mình vẫn có thể biểu diễn được bằng 2 token “th” và “ông” or từ “mùng” có thể biểu diễn bằng 3 token là “mù”, “n” và “g”…v.v.</p>
+<p>Ta có thể thấy, trong quá trình thực hiện tokenize, BPE áp dụng rule để merge các cặp token lại với nhau để tạo ra token mới và cứ lần lượt như vậy.</p>
+<p>=&gt; Do đó, sau khi train xong BPE, để thực hiện tách từ cho 1 câu. BPE sẽ thực hiện tách toàn bộ thành các ký tự riêng lẻ, sau đó thực hiện merge theo thứ tự đã thêm vào vocab trong quá trình học ở trên.</p>
+<h3 id="wordpiece-tokenization">WordPiece Tokenization</h3>
+<p>WordPiece được giới thiệu trong bài báo về BERT của google năm 2018.</p>
+<p>Giống với BPE:</p>
+<pre><code>* WordPiece cũng xây dựng bộ từ điển bắt đầu từ nhỏ -&gt; lớn.
+* WordPiece cũng thực hiện merge token giống BPE
+</code></pre>
+<p>Khác với BPE:</p>
+<pre><code>* WordPiece thực hiện chọn các cặp token để merge bằng cách tính “điểm” cho các cặp token thay vì tính “tần suất xuất hiện” như BPE
+</code></pre>
+<p>“điểm” cho từng cặp token được tính bằng công thức:</p>
+<img src="http://localhost:1313/coffee/img/tokenization/7.jpg" class="singleImg">
+<p class="textSingleImg">Hình 8<p>
+<ul>
+    <li>WordPiece xác định các subwords bằng cách thêm tiền tố “##” ở đầu các subwords.</li>
+        <p>Ví dụ: từ “Mùa” được tách thành “M, ##ù, ##a”</p>
+    <li>WordPiece cũng chỉ cần lưu lại vocab cuối cùng mà không cần phải nhớ “merge rules” giống như BPE.</li>
+</ul>
+<p>Bằng việc tính score như trên, thì sẽ làm cho thuật toán khi thực hiện merge các cặp token sẽ ưu tiên các cặp có “tần suất xuất hiện cùng nhau” cao nhưng “tần suất xuất hiện đơn lẻ” lại thấp.</p>
+<img src="http://localhost:1313/coffee/img/tokenization/5.jpg" class="singleImg">
+<p class="textSingleImg">Hình 9<p>
+<p>Phân tách thành dạng character ta có:</p>
+<p><strong>vocab = ( _ , m , ##ù ,  ##a , ##i , ##ề , ##n , n , ##m , ##b , ##ắ , ##c , v , ##ệ , ##t , c , ##ó , ##ố , l , ##à , c , ##u , ##â , h , ##ạ , t , ##h , đ , ##ô , ##g , ##ì , k , ##ò )</strong></p>
+<p>Note: như đã đề cập ban đầu, wordPiece sử dụng prefix “##” để thể hiện rằng đấy là 1 thành phần của 1 từ (mà không phải thành phần bắt đầu của từ).</p>
+<ul>
+<li>khi thực hiện merge token, ta thực hiện lược bỏ prefix “##” ở giữa 2 token khi merge đi</li>
+</ul>
+<p>Tiếp theo, thực hiện tính SCORE để quyết định merge token, ta thấy có 3 cặp token có điểm bằng nhau và bằng 1.0 là “##ắ##c , ##ệ##t , h##ạ”. Chọn cái nào cũng được, giả sử chọn ghép cặp token “##ắ” và “##c” ta có “##ắc”.</p>
+<p>=&gt; <strong>vocab = ( _ , m , ##ù ,  ##a , ##i , ##ề , ##n , n , ##m , ##b , ##ắ , ##c , v , ##ệ , ##t , c , ##ó , ##ố , l , ##à , c , ##u , ##â , h , ##ạ , t , ##h , đ , ##ô , ##g , ##ì , k , ##ò , ##ắc )</strong></p>
+<p>Cứ tiếp tục lặp lại, các cặp token lần lượt được ghép thêm là “##ệt”, “hạ”, “bắc”, “bố”, “có”, “cò”, “là”, “xu”, “xuâ”, “và”, “đô”, “##iề”, “vi”, “việt”.</p>
+<p>Ở đây mình dừng ở lần lặp thứ 15 để làm demo, còn trong thực tế thì ta còn có thể lặp được hơn nhiều nữa đến khi nào đạt được Vocab_size mong muốn thì thôi.</p>
+<p><strong>=&gt; vocab = ( _ , m , ##ù ,  ##a , ##i , ##ề , ##n , n , ##m , ##b , ##ắ , ##c , v , ##ệ , ##t , c , ##ó , ##ố , l , ##à , c , ##u , ##â , h , ##ạ , t , ##h , đ , ##ô , ##g , ##ì , k , ##ò , ##ệt, hạ, bắc, bố, có, cò, là, xu, xuâ, và, đô, ##iề, vi, việt )</strong></p>
+<p>Khi đó, câu ban đầu:</p>
+<p><strong>“miền bắc việt nam có bốn mùa là mùa Xuân mùa hạ mùa thu và mùa đông còn miền nam thì không”</strong></p>
+<p>sẽ được tách thành</p>
+<p><strong>“m##iề##n bắc việt n##a##m có bố##n m##ù##a là m##ù##a xuâ##n m##ù##a hạ m##ù##a t##h##u và m##ù##a đô##n##g cò##n m##iề##n n##a##m t##h##ì k##h##ô##n##g”</strong></p>
+
+
+        
+          <div class="blog-tags">
+            
+              
+              <a href="http://localhost:1313/coffee/tags/tokenizer/">tokenizer</a>&nbsp;
+            
+              
+              <a href="http://localhost:1313/coffee/tags/word-tokenization/">word tokenization</a>&nbsp;
+            
+              
+              <a href="http://localhost:1313/coffee/tags/character-tokenization/">character tokenization</a>&nbsp;
+            
+              
+              <a href="http://localhost:1313/coffee/tags/subword-tokenization/">subword tokenization</a>&nbsp;
+            
+              
+              <a href="http://localhost:1313/coffee/tags/bpe/">BPE</a>&nbsp;
+            
+              
+              <a href="http://localhost:1313/coffee/tags/byte-pair-encoding/">Byte Pair Encoding</a>&nbsp;
+            
+          </div>
+        
+
+        
+
+        
+          
+
+          
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="http://localhost:1313/coffee/post/2023-06-05-entropy_2/" data-toggle="tooltip" data-placement="top" title="Dive To Entropy">&larr; </a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="http://localhost:1313/coffee/post/2023-06-10-linear-regression-1/" data-toggle="tooltip" data-placement="top" title="Linear, Ridge and Lasso Regression"> &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+      
+      
+      
+      
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      <footer>
+  <div class="container">
+    
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+          
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2023
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="http://localhost:1313/coffee/">Coffee</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.js" integrity="sha384-G0zcxDFp5LWZtDuRMnBkk3EphCK1lhEf4UEyEM693ka574TZGwo4IWwS6QLzM/2t" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha384-w5y/xIeYixWvfM+A1cEbmHPURnvyqmVg5eVENruEdDjcyRLUSNej7512JQGspFUr" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+<script src="http://localhost:1313/coffee/js/main.js"></script>
+<script src="http://localhost:1313/coffee/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="http://localhost:1313/coffee/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+
+    
+  </body>
+</html>
+

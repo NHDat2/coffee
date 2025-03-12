@@ -1,0 +1,491 @@
+
+
+<!DOCTYPE html>
+<html lang="vi" itemscope itemtype="http://schema.org/WebPage">
+  <head><script src="/coffee/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=coffee/livereload" data-no-instant defer></script>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+ 
+
+
+      <title>Dealing With Imbalanced Datasets - </title>
+
+  <meta name="description" content="
+Giới Thiệu
+Imbalanced Datasets là vấn đề mà ta thường gặp phải khi giải quyết các bài toán với dữ liệu thực tế. Và nó luôn là một trong những vấn đề khó nhằn khi giải quyết các bài toán machine learning."><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Coffee",
+    
+    "url": "http:\/\/localhost:1313\/coffee\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "http:\/\/localhost:1313\/coffee\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "http:\/\/localhost:1313\/coffee\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "http:\/\/localhost:1313\/coffee\/post\/2023-09-15-deal-imbalanced-data\/",
+          "name": "Dealing with imbalanced datasets"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : ""
+  },
+  "headline": "Dealing With Imbalanced Datasets",
+  "description" : " Giới Thiệu Imbalanced Datasets là vấn đề mà ta thường gặp phải khi giải quyết các bài toán với dữ liệu thực tế. Và nó luôn là một trong những vấn đề khó nhằn khi giải quyết các bài toán machine learning.\n",
+  "inLanguage" : "vi",
+  "wordCount":  1912 ,
+  "datePublished" : "2023-09-15T00:00:00\u002b00:00",
+  "dateModified" : "2023-09-15T00:00:00\u002b00:00",
+  "image" : "http:\/\/localhost:1313\/coffee\/img\/avatar-icon.png",
+  "keywords" : [ "imbalanced data, imbalance dataset, data imbalance" ],
+  "mainEntityOfPage" : "http:\/\/localhost:1313\/coffee\/post\/2023-09-15-deal-imbalanced-data\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "http:\/\/localhost:1313\/coffee\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "http:\/\/localhost:1313\/coffee\/img\/avatar-icon.png",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+
+<meta property="og:title" content="Dealing With Imbalanced Datasets" />
+<meta property="og:description" content="
+Giới Thiệu
+Imbalanced Datasets là vấn đề mà ta thường gặp phải khi giải quyết các bài toán với dữ liệu thực tế. Và nó luôn là một trong những vấn đề khó nhằn khi giải quyết các bài toán machine learning.">
+<meta property="og:image" content="http://localhost:1313/coffee/img/avatar-icon.png" />
+<meta property="og:url" content="http://localhost:1313/coffee/post/2023-09-15-deal-imbalanced-data/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Coffee" />
+
+  <meta name="twitter:title" content="Dealing With Imbalanced Datasets" />
+  <meta name="twitter:description" content="">
+  <meta name="twitter:image" content="http://localhost:1313/coffee/img/avatar-icon.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link href='http://localhost:1313/coffee/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.145.0">
+  <link rel="alternate" href="http://localhost:1313/coffee/index.xml" type="application/rss+xml" title="Coffee"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css" integrity="sha384-3UiQGuEI4TTMaFmGIZumfRPtfKQ3trwQE2JgosJxCnGmQpL/lJdjpcHkaaFwHlcI" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.6.0/css/all.css" integrity="sha384-h/hnnw1Bi4nbpD6kE7nYfCXzovi622sY5WBxww8ARKwpdLj5kUWjRuyiXaD1U2JT" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"><link rel="stylesheet" href="http://localhost:1313/coffee/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="http://localhost:1313/coffee/css/highlight.min.css" /><link rel="stylesheet" href="http://localhost:1313/coffee/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://localhost:1313/coffee/">Coffee</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="http://localhost:1313/coffee/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="http://localhost:1313/coffee/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="http://localhost:1313/coffee/tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="Coffee" href="http://localhost:1313/coffee/">
+            <img class="avatar-img" src="http://localhost:1313/coffee/img/avatar-icon.png" alt="Coffee" />
+           
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              
+                <h1>Dealing With Imbalanced Datasets</h1>
+              
+              
+              
+              
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;9&nbsp;
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;1912&nbsp;
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;
+    
+  
+  
+</span>
+
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <style>
+.textSingleImg {
+  text-align: center;
+}
+.textTwoImg {
+    display: flex;
+    margin-left: 10px;
+    flex-direction: row;
+    justify-content: space-around;
+
+}
+.singleImg {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.twoImg {
+    display: inline;
+    width: 300px;
+    height: 300px;
+    margin-left: 30px;
+}
+</style>
+<h1 id="giới-thiệu">Giới Thiệu</h1>
+<p>Imbalanced Datasets là vấn đề mà ta thường gặp phải khi giải quyết các bài toán với dữ liệu thực tế. Và nó luôn là một trong những vấn đề khó nhằn khi giải quyết các bài toán machine learning.</p>
+<p>Nếu lượng chênh lệch dữ liệu giữa các lớp không lớn, thì các mô hình học máy vẫn có thể xử lý và cho ra được các kết quả khả quan với hiệu suất tốt.</p>
+<p>Nhưng cũng có một phần các bài toán mà lượng dữ liệu chênh lệch nhau lớn dẫn tới mô hình học máy xây dựng không còn hoạt động tốt dẫn tới sự ngộ nhận chất lượng mô hình và thường rất tệ trong việc dự đoán các lớp thiểu số.</p>
+<p>Trong bài viết này chúng ta sẽ kinh qua một số phương pháp cũng như hướng giải quyết khi gặp các bài toán có độ chênh lệch dữ liệu giữa các nhãn cao (Imbalanced dataset) mà mình biết và cùng nhau bổ sung, thảo luận về chúng.</p>
+<h1 id="imbalanced-dataset">Imbalanced Dataset</h1>
+<p>Có thể hiểu Imbalanced Dataset (hay mất cân bằng dữ liệu) là sự mất cân bằng dữ liệu, khi mà có một hoặc nhiều nhãn trong bộ dữ liệu có lượng dữ liệu lớn hoặc nhỏ hơn nhiều so với số còn lại.</p>
+<p><img class="singleImg" src="http://localhost:1313/coffee/img/Imbalanced_dataset/1.jpg"><br></p>
+<p>Thì khi Imbalanced Dataset xảy ra thì có một số các ảnh hưởng tiêu tực tới việc xây dựng mô hình học máy. Khi mất cân bằng dữ liệu, sẽ có những nhãn (label) mà mô hình được nhìn thấy nhiều điểm dữ liệu mẫu hơn và có những nhãn được nhìn thấy ít điểm dữ liệu mẫu hơn.</p>
+<p>Khi đó, mô hình sẽ thiên về việc học tính năng cho các nhãn có nhiều dữ liệu hơn, nếu không dùng các phương pháp đánh giá mô hình phù hợp thì sẽ dẫn tới việc ngộ nhận chất lượng mô hình. Vì chỉ cần mô hình dự đoán tất cả đều là lớp có nhiều điểm dữ liệu thì độ chính xác mô hình (accuracy metric) đã ở mức cực kỳ cao rồi.</p>
+<p>Ví dụ trong phân loại 2 lớp có tỉ lệ dữ liệu cho (chó và mèo) là (9:1) thì chỉ cần đoán tất cả là chó thì cũng đã có được 90% độ chính xác rồi.</p>
+<p>Các bài toán bị mất cân bằng dữ liệu luôn là những bài toán khó nhằn theo mình thấy là vậy, dưới đây chúng ta sẽ đi qua một số các hướng tiếp cận khác nhau mà mình biết cho bài toán Imbalanced Dataset.</p>
+<h1 id="hướng-tiếp-cận">Hướng Tiếp Cận</h1>
+<p>Duới đây mình sẽ trình bày một số hướng tiếp cận cho bài toán “mất cân bằng dữ liệu” mà mình biết, mọi người có thể cho thêm đánh giá cũng như các cách tiếp cận khác để mọi người cùng thảo luận nhé ạ.</p>
+<p>Có một số cách tiếp cận đối với bài toán imblanced dataset có thể kể đến như:</p>
+<ol>
+<li>Làm cân bằng lại dữ liệu</li>
+<li>Thay đổi phương pháp đánh giá mô hình</li>
+<li>Phạt mô hình khi học</li>
+<li>Chia nhỏ bài toán</li>
+<li>Ensemble learning</li>
+</ol>
+<h2 id="1-làm-cân-bằng-lại-dữ-liệu">1. Làm cân bằng lại dữ liệu</h2>
+<p>Theo đúng nghĩa đen, thì ta sẽ làm cân bằng lại “lượng” dữ liệu để cho dữ liệu sẽ cân bằng nhau hơn. Các phương thức để có thể chuyển từ một phấn phối dữ liệu cho các nhãn mất cân bằng về phân phối cân bằng hơn.</p>
+<p><img class="singleImg" src="http://localhost:1313/coffee/img/Imbalanced_dataset/2.jpg"><br></p>
+<h3 id="11-thu-thập-thêm-dữ-liệu">1.1 Thu thập thêm dữ liệu</h3>
+<p>Điều này đôi khi trong thực tế có hơi vô nghĩa vì khó để có thể thu thập thêm các mẫu dữ liệu cho các lớp thiểu số, vì nếu có thể thì đã không xảy ra việc Imbalanced Dataset =)).</p>
+<p>Tuy nhiên, trong trường hợp nếu có thể thì cũng nên xem xét kỹ lại xem có khả năng nào cho việc thu thập thêm các mẫu dự liệu hay không và cân nhắc việc đó, nếu được thì đây cũng là một cách tốt để làm cân bằng dữ liệu cực tốt mà =)).</p>
+<h3 id="12-resampling-techniques">1.2 Resampling Techniques</h3>
+<p>Resampling là một trong những phương pháp được dùng rộng rãi khi làm việc với imbalanced datasets. Thực hiện việc:
+•	<strong>Oversampling</strong>: Lặp lại hoặc tạo ra thêm dữ liệu mới từ “dữ liệu của các lớp nhãn có lượng dữ liệu nhỏ (lớp thiểu số)”
+•	<strong>Undersampling</strong>: Hay loại bỏ một lượng dữ liệu nhất định từ “dữ liệu của các lớp nhãn có lượng dữ liệu lớn (lớp đa số)”
+•	<strong>Combined Resampling</strong>: Hoặc vừa loại bỏ dữ liệu ở lớp đa số và cũng tạo ra thêm dữ liệu ở lớp thiểu số</p>
+<p>Để nhằm mục đích giúp dữ liệu có thể giảm bớt sự mất cân bằng giữa các lớp nhãn.</p>
+<h4 id="121-oversampling">1.2.1 Oversampling</h4>
+<p>Over sampling là cách gọi chung của các phương pháp giúp tăng kích thước của các mẫu dữ liệu thiểu số lên để cân bằng lại so với các lớp dữ liệu có kích thước lớn hơn. Trong các phương pháp đó có thể kể đến 2 phương pháp chính:</p>
+<p>•	Giả sử một cách ngây thơ là các dữ liệu mới (nếu có) nó sẽ giống với các dữ liệu đã sẵn có. Từ đó ta sẽ thực hiện random sample các dữ liệu ở các lớp thiểu số và đắp ngược vào để có thể tăng kích thước lớp dữ liệu và cân bằng với các lớp đa số còn lại.</p>
+<p>•	Ta sẽ làm tăng kích thước dữ liệu ở các lớp thiểu số bằng cách sử dụng một số các thuật toán, phương pháp augument data để tạo ra các điểm dữ liệu giả lập và làm cân bằng dữ liệu hơn so với các lớp dữ liệu đa số còn lại, các điểm dữ liệu mới được tạo ra có thể là các điểm ngoại biên, liền kề, hàng xóm của các điểm dữ liệu trước đó.</p>
+<p><img class="singleImg" src="http://localhost:1313/coffee/img/Imbalanced_dataset/3.jpg"><br></p>
+<p>Các kỹ thuật phổ biến trong phương pháp này có thể kể đến là:</p>
+<p>•	Random Oversampling
+•	ADASYN (Adaptive Synthetic Sampling)
+•	SMOTE (Synthetic Minority Oversampling Technique)</p>
+<h4 id="122-undersampling">1.2.2 Undersampling</h4>
+<p>Under sampling, ngược lại với phương pháp “Oversampling” ở trên là phương pháp cắt giảm lượng dữ liệu ở các lớp dữ liệu đa số để cân bằng dữ liệu so với các lớp dữ liệu thiểu số.</p>
+<p>•	Ta cũng có thể 1 cách ngây thơ và đơn giản là random để cắt giảm bớt lượng dữ liệu ở các lớp dữ liệu đa số</p>
+<p>•	Hoặc ta có thể áp dụng các phương pháp như KNN để quyết định xem các điểm dữ liệu nào sẽ được cắt giảm. (ý tưởng kiểu như các điểm dữ liệu cùng thuộc 1 lớp thì sẽ ở gần nhau, còn nếu điểm nào xa mà KNN phân loại sai thì ta sẽ coi đó là điểm nhiễu và cắt giảm các điểm đó đi)</p>
+<p><img class="singleImg" src="http://localhost:1313/coffee/img/Imbalanced_dataset/4.jpg"><br></p>
+<p>Các kỹ thuật phổ biến trong phương pháp này có thể kể đến là:</p>
+<p>•	Random Undersampling
+•	Tomek Links
+•	ALLKNN ( All K-Nearest-Neighbors)
+•	ENN (Edited Nearest Neighbors)</p>
+<h4 id="123-combined-resampling">1.2.3 Combined Resampling</h4>
+<p>Combined Resampling là một phương pháp kết hợp cả 2 loại trên. Thực hiện “Oversampling” đối với dữ liệu thiểu số, và “Undersampling” đối với dữ liệu đa số.</p>
+<p><img class="singleImg" src="http://localhost:1313/coffee/img/Imbalanced_dataset/5.jpg"><br></p>
+<p>Các kỹ thuật phổ biến trong phương pháp này có thể kể đến là:</p>
+<p>•	SMOTETomek (SMOTE &amp; Tomek)
+•	SMOTEENN (SMOTE &amp; ENN)</p>
+<h2 id="2-thay-đổi-phương-pháp-đánh-giá-mô-hình">2. Thay đổi phương pháp đánh giá mô hình</h2>
+<p>Imbalanced Dataset sẽ làm cho một số cách thức đánh giá mô hình của chúng ta không còn đúng nữa.</p>
+<p>Ví dụ nếu chúng ta sử dụng accuracy metric để đánh giá cho mô hình phân loại, thì khi đó như đã đề cập từ trước nếu tỉ lệ dữ liệu là 9:1 thì chỉ cần model dự đoán tất cả thuộc lớp có mẫu dữ liệu đa số thì đã có được độ chính xác lên tới 90% rồi, kể cả model dự đoán sai hoàn toàn ở lớp có mẫu dữ liệu là thiểu số.</p>
+<p>Do vậy phương pháp đanh giá đã không còn hợp lý nữa.</p>
+<p>Thay vào đó, ta cần đánh giá độ chính xác trên từng class riêng biệt hay đưa ra confussion matrix để có cái nhìn tổng quan hơn về chất lượng của model.</p>
+<h2 id="3-phạt-mô-hình-khi-học">3. Phạt mô hình khi học</h2>
+<p>Ngoài các phương pháp liên quan tới việc scale lại dữ liệu, thì phạt model trong khi training cũng là một phương pháp hiệu quả.</p>
+<p>Ý tưởng chính là việc khi training ta có thể gắn thêm một bộ trọng số để phạt đối với các lớp dữ liệu đa số để sao cho cùng với một lần cập nhật trọng số thì giá trị khi cập nhật lớp dữ liệu đa số sẽ không mang lại nhiều giá trị bằng lớp dữ liệu thiểu số.</p>
+<p>Ví dụ, để dễ hiểu, nếu như ta có bài toán phân loại 2 lớp chó và mèo tỉ lệ dữ liệu (8:2), ta có bộ trọng số phạt khi cập nhật là class_weight = (0.1, 1). Tức là, với mỗi lần cập nhật thì phải cập nhật 10 lần lớp dữ liệu “chó” mới có thể bằng 1 lần cập nhật đối với lớp dữ liệu “mèo”. Điều này giúp cho model học một cách công bằng hơn đối với các lớp dữ liệu.</p>
+<h2 id="4-chia-nhỏ-bài-toán">4. Chia nhỏ bài toán</h2>
+<p>Trong thực tế, bài toán Imbalanced Dataset ta có thể gặp ở cả các bài toán phân loại 2 lớp lẫn phân loại nhiều lớp.</p>
+<p>Trong đó, sẽ có những bài toán phân loại nhiều lớp mà ở đó đột nhiên có một số lớp có lượng dữ liệu trội lên hẳn so với các lớp dữ liệu còn lại.</p>
+<p>Khi đó, có một cách tiếp cận hiệu quả mà ta có thể xem xét là việc chia nhỏ bài toán ra thành các bài toán con.</p>
+<p><img class="singleImg" src="http://localhost:1313/coffee/img/Imbalanced_dataset/6.jpg"><br></p>
+<p>Như hình trên, ta có thể chia thành 2 stage:</p>
+<p>•	Stage 1: Phân loại 2 lớp “là chó” và “không phải là chó” (tức phân loại lớp chó và lớp không phải chó sẽ rơi vào các lớp còn lại).</p>
+<p>•	Stage 2: Sau đó, từ các “lớp dữ liệu không phải chó”. Nơi mà dữ liệu không còn bị Imbalanced nữa, ta sẽ thực hiện phân loại nhiều lớp ở đây như bình thường.</p>
+<p>Việc chia nhỏ bài toán tới mức nào sẽ phụ thuộc vào việc dữ liệu bị Imbalanced đến đâu, mà ta có thể lặp đi lặp lại.</p>
+<h2 id="5-ensemble-learning">5. Ensemble Learning</h2>
+<p>Ensemble Learning là một phương pháp kết hợp nhiều thuật toán, mô hình khác nhau để đạt được thuật toán, mô hình cuối cùng có hiệu suất tốt hơn mức cho thể đạt được khi chỉ có một thuật toán hoặc một mô hình.</p>
+<p>Đã có nhiều nghiên cứu chỉ ra rằng ensemble learning là một phương pháp rất tốt để deal with imbalanced dataset problem.</p>
+<p>Ý tưởng đằng sau khi áp dụng ensemble vào bài toán imbalanced là khi sử dụng ensemble learning, ta sẽ kết hợp nhiều model lại với nhau, và expect các model nhỏ trong đó sẽ handle được một phần của các nhãn riêng biệt, từ đó mỗi model nhỏ làm tốt nhiệm vụ handle một phần các nhãn riêng biệt của mình và rồi kết hợp lại với nhau để đưa ra model có thể handle tốt việc bị imbalanced data.</p>
+
+
+        
+          <div class="blog-tags">
+            
+              
+              <a href="http://localhost:1313/coffee/tags/imbalanced-data/">imbalanced data</a>&nbsp;
+            
+              
+              <a href="http://localhost:1313/coffee/tags/imbalance-dataset/">imbalance dataset</a>&nbsp;
+            
+              
+              <a href="http://localhost:1313/coffee/tags/data-imbalance/">data imbalance</a>&nbsp;
+            
+          </div>
+        
+
+        
+
+        
+          
+
+          
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="http://localhost:1313/coffee/post/2023-09-13-active-learning-uncertainty/" data-toggle="tooltip" data-placement="top" title="Active Learning - Uncertainty-based Sampling">&larr; </a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="http://localhost:1313/coffee/post/2023-09-16-gbm-idea/" data-toggle="tooltip" data-placement="top" title="Ensemble Theory - Gradient Boosting (Idea)"> &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+      
+      
+      
+      
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      <footer>
+  <div class="container">
+    
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+          
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2023
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="http://localhost:1313/coffee/">Coffee</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.js" integrity="sha384-G0zcxDFp5LWZtDuRMnBkk3EphCK1lhEf4UEyEM693ka574TZGwo4IWwS6QLzM/2t" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha384-w5y/xIeYixWvfM+A1cEbmHPURnvyqmVg5eVENruEdDjcyRLUSNej7512JQGspFUr" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+<script src="http://localhost:1313/coffee/js/main.js"></script>
+<script src="http://localhost:1313/coffee/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="http://localhost:1313/coffee/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+
+    
+  </body>
+</html>
+

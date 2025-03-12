@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VAE on Coffee</title>
+    <link>http://localhost:1313/coffee/tags/vae/</link>
+    <description>Recent content in VAE on Coffee</description>
+    <generator>Hugo</generator>
+    <language>vi</language>
+    <lastBuildDate>Thu, 24 Aug 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/coffee/tags/vae/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Variational AutoEncoder (VAE)</title>
+      <link>http://localhost:1313/coffee/post/2023-08-24-vae/</link>
+      <pubDate>Thu, 24 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/post/2023-08-24-vae/</guid>
+      <description>&lt;style&gt;&#xA;.textSingleImg {&#xA;  text-align: center;&#xA;}&#xA;.textTwoImg {&#xA;    display: flex;&#xA;    flex-direction: row;&#xA;    justify-content: space-around;&#xA;&#xA;}&#xA;.singleImg {&#xA;  display: block;&#xA;  margin-left: auto;&#xA;  margin-right: auto;&#xA;}&#xA;.twoImg {&#xA;    display: inline;&#xA;    width: 300px;&#xA;    height: 300px;&#xA;    margin-left: 30px;&#xA;}&#xA;&lt;/style&gt;&#xA;&lt;h1 id=&#34;giới-thiệu&#34;&gt;Giới Thiệu&lt;/h1&gt;&#xA;&lt;p&gt;Variational AutoEncoder (VAE) là một biến thể của AutoEncoder models.&lt;/p&gt;&#xA;&lt;p&gt;VAE là một loại “Generative Models” thuộc nhánh “Explicit Density Generative Models”.&lt;/p&gt;&#xA;&lt;p&gt;Trong bài viết này, ta sẽ cùng đi tìm hiểu xem VAE hoạt động như nào nhé.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SVC Sklearn on Coffee</title>
+    <link>http://localhost:1313/coffee/tags/svc-sklearn/</link>
+    <description>Recent content in SVC Sklearn on Coffee</description>
+    <generator>Hugo</generator>
+    <language>vi</language>
+    <lastBuildDate>Sun, 04 Jun 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/coffee/tags/svc-sklearn/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SVMs Và Một Số Thứ Liên Quan</title>
+      <link>http://localhost:1313/coffee/post/2023-06-04-svms-2/</link>
+      <pubDate>Sun, 04 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/post/2023-06-04-svms-2/</guid>
+      <description>&lt;style&gt;&#xA;.singleImg {&#xA;    display: block;&#xA;    margin-left: auto;&#xA;    margin-right: auto;&#xA;}&#xA;.textSingleImg {&#xA;    text-align: center;&#xA;}&#xA;&lt;/style&gt;&#xA;&lt;!-- @import &#34;[TOC]&#34; {cmd=&#34;toc&#34; depthFrom=1 depthTo=6 orderedList=false} --&gt;&#xA;&lt;!-- code_chunk_output --&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#gi%E1%BB%9Bi-thi%E1%BB%87u&#34;&gt;Giới Thiệu&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#b%C3%A0i-to%C3%A1n-t%E1%BB%91i-%C6%B0u-cho-svm&#34;&gt;Bài Toán Tối Ưu Cho SVM&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#tham-s%E1%BB%91-tr%E1%BA%A3-v%E1%BB%81-t%E1%BB%AB-svc-trong-th%C6%B0-vi%E1%BB%87n-sklearn&#34;&gt;Tham số trả về từ SVC trong thư viện sklearn&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#t%C3%A0i-li%E1%BB%87u-tham-kh%E1%BA%A3o&#34;&gt;Tài Liệu Tham Khảo&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;!-- /code_chunk_output --&gt;&#xA;&lt;h1 id=&#34;giới-thiệu&#34;&gt;Giới Thiệu&lt;/h1&gt;&#xA;&lt;p&gt;Đã bao giờ bạn chạy một thuật toán hay một thư viện nào đó và kết quả trả về là một đống thứ mà bạn không hiểu nó là gì chưa, hay khi tìm hiểu thuật toán có những thứ nhỏ trong thuật toán mà ta vô tình bỏ qua dẫn tới không hiểu các thứ đằng sau nó vận hành?&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

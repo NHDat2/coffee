@@ -1,0 +1,467 @@
+
+
+<!DOCTYPE html>
+<html lang="vi" itemscope itemtype="http://schema.org/WebPage">
+  <head><script src="/coffee/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=coffee/livereload" data-no-instant defer></script>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+ 
+
+
+      <title>Ensemble Theory - Gradient Boosting (Idea) - </title>
+
+  <meta name="description" content="
+Introduction
+Boosting là một loại kỹ thuật học máy, trong khuân khổ “Ensemble Learning” cùng với các kỹ thuật khác như “Bagging”, “Stacking”, ..v.v
+Ta có thể thấy, việc build ra các model với độ chính xác cao cho các bài toán là cả một vấn đề, nhưng ngược trở lại, để có được các model đơn giản với độ chính xác ở mức trung bình thì lại không phải điều gì khó khăn."><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Coffee",
+    
+    "url": "http:\/\/localhost:1313\/coffee\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "http:\/\/localhost:1313\/coffee\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "http:\/\/localhost:1313\/coffee\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "http:\/\/localhost:1313\/coffee\/post\/2023-09-16-gbm-idea\/",
+          "name": "Ensemble theory gradient boosting ( idea)"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : ""
+  },
+  "headline": "Ensemble Theory - Gradient Boosting (Idea)",
+  "description" : " Introduction Boosting là một loại kỹ thuật học máy, trong khuân khổ “Ensemble Learning” cùng với các kỹ thuật khác như “Bagging”, “Stacking”, ..v.v\nTa có thể thấy, việc build ra các model với độ chính xác cao cho các bài toán là cả một vấn đề, nhưng ngược trở lại, để có được các model đơn giản với độ chính xác ở mức trung bình thì lại không phải điều gì khó khăn.\n",
+  "inLanguage" : "vi",
+  "wordCount":  1751 ,
+  "datePublished" : "2023-09-16T00:00:00\u002b00:00",
+  "dateModified" : "2023-09-16T00:00:00\u002b00:00",
+  "image" : "http:\/\/localhost:1313\/coffee\/img\/avatar-icon.png",
+  "keywords" : [ "ensemble learning, ensemble theory, gradient boosting, gradient boosting model" ],
+  "mainEntityOfPage" : "http:\/\/localhost:1313\/coffee\/post\/2023-09-16-gbm-idea\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "http:\/\/localhost:1313\/coffee\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "http:\/\/localhost:1313\/coffee\/img\/avatar-icon.png",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+
+<meta property="og:title" content="Ensemble Theory - Gradient Boosting (Idea)" />
+<meta property="og:description" content="
+Introduction
+Boosting là một loại kỹ thuật học máy, trong khuân khổ “Ensemble Learning” cùng với các kỹ thuật khác như “Bagging”, “Stacking”, ..v.v
+Ta có thể thấy, việc build ra các model với độ chính xác cao cho các bài toán là cả một vấn đề, nhưng ngược trở lại, để có được các model đơn giản với độ chính xác ở mức trung bình thì lại không phải điều gì khó khăn.">
+<meta property="og:image" content="http://localhost:1313/coffee/img/avatar-icon.png" />
+<meta property="og:url" content="http://localhost:1313/coffee/post/2023-09-16-gbm-idea/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Coffee" />
+
+  <meta name="twitter:title" content="Ensemble Theory - Gradient Boosting (Idea)" />
+  <meta name="twitter:description" content="">
+  <meta name="twitter:image" content="http://localhost:1313/coffee/img/avatar-icon.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link href='http://localhost:1313/coffee/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.145.0">
+  <link rel="alternate" href="http://localhost:1313/coffee/index.xml" type="application/rss+xml" title="Coffee"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css" integrity="sha384-3UiQGuEI4TTMaFmGIZumfRPtfKQ3trwQE2JgosJxCnGmQpL/lJdjpcHkaaFwHlcI" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.6.0/css/all.css" integrity="sha384-h/hnnw1Bi4nbpD6kE7nYfCXzovi622sY5WBxww8ARKwpdLj5kUWjRuyiXaD1U2JT" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"><link rel="stylesheet" href="http://localhost:1313/coffee/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="http://localhost:1313/coffee/css/highlight.min.css" /><link rel="stylesheet" href="http://localhost:1313/coffee/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://localhost:1313/coffee/">Coffee</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="http://localhost:1313/coffee/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="http://localhost:1313/coffee/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="http://localhost:1313/coffee/tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="Coffee" href="http://localhost:1313/coffee/">
+            <img class="avatar-img" src="http://localhost:1313/coffee/img/avatar-icon.png" alt="Coffee" />
+           
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              
+                <h1>Ensemble Theory - Gradient Boosting (Idea)</h1>
+              
+              
+              
+              
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;9&nbsp;
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;1751&nbsp;
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;
+    
+  
+  
+</span>
+
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <style>
+.textSingleImg {
+  text-align: center;
+}
+.textTwoImg {
+    display: flex;
+    margin-left: 10px;
+    flex-direction: row;
+    justify-content: space-around;
+
+}
+.singleImg {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.twoImg {
+    display: inline;
+    width: 300px;
+    height: 300px;
+    margin-left: 30px;
+}
+</style>
+<h1 id="introduction">Introduction</h1>
+<p>Boosting là một loại kỹ thuật học máy, trong khuân khổ “Ensemble Learning” cùng với các kỹ thuật khác như “Bagging”, “Stacking”, ..v.v</p>
+<p>Ta có thể thấy, việc build ra các model với độ chính xác cao cho các bài toán là cả một vấn đề, nhưng ngược trở lại, để có được các model đơn giản với độ chính xác ở mức trung bình thì lại không phải điều gì khó khăn.</p>
+<p>Với câu hỏi “việc build các models loại đơn giản, dễ hơn các models phức tạp, thì không biết liệu có cách nào để từ mấy cái model đơn giản với độ chính xác ở mức trung bình đó để làm gì ra được 1 model với độ chính xác cao hơn không nhỉ ?”, thì Boosting đã ra đời.</p>
+<p>Note: model đơn giản với độ chính xác mức trung bình ở đây, ta sẽ hiểu với nhau là các model đơn giản với độ chính xác lớn hơn việc “random” mặc dù hơn ít cũng được (tất nhiên rồi nếu model mà còn yếu hơn cả random thì chọn bố random cho rồi :v)</p>
+<p>Trong bài viết này, ta sẽ đi tìm hiểu cụ thể về “Gradient Boosting Machine (GBM)” nhé.</p>
+<p><img class="singleImg" src="http://localhost:1313/coffee/img/gbm/1.jpg"><br></p>
+<h1 id="gradient-boosting">Gradient Boosting</h1>
+<p>Như đã đề cập trước đó, Gradient Boosting sẽ biến “một loạt các weak learning models, hay weak learners” thành “strong learning model”.</p>
+<p>Trong phần này, ta sẽ nhắc lại 1 chút về cách tiếp cận bài toán “Machine Learning” mà chúng ta thường làm và mối liên hệ với Gradient Boosting.</p>
+<h2 id="machine-learning-problem-statement">Machine Learning Problem Statement</h2>
+<p>Như trong bài toán, Supervised Learning, ta có tập dữ liệu đã được gán nhãn<br>
+\( D = \{x_i, y_i\} \), có mối quan hệ giữa dữ liệu x và nhãn y là \( y = f(x) \). Thì ta thường cố gắng tái tạo lại mối quan hệ trên bằng hàm xấp xỉ của nó là \( \hat{f}(x) \approx f(x) \) dựa vào việc tối ưu hàm loss \( \mathcal{L}(y, \hat{f}(x)) \).</p>
+<p>Nhưng việc đi tìm hàm số \( \hat{f}(x) \) để \( \hat{f}(x) \approx f(x) \) (tức \( \mathcal{L}(y, \hat{f}(x)) \approx 0) \) là rất khó, vì có cả ti tỉ hàm số trên đời.</p>
+<p>Do vậy, thay vì đi tìm hàm \( \hat{f}(x) \) trong không gian hàm số rất lớn thì ta sẽ <strong>thu hẹp phạm vi tìm kiếm</strong> lại, ta thường dựa vào việc EDA dữ liệu để đưa ra kiến trúc của hàm (hay model) đó trước sao cho phù hợp với bài toán và sẽ tìm hệ số \( \theta \) cho hàm đó với không gian nhỏ hơn nhiều. Tức ta sẽ đi tìm \( \hat{f}(x, \theta) \approx f(x) \).</p>
+<p>Do vậy, ta thường tìm hàm xấp xỉ \( \hat{f}(x, \theta) \approx f(x) ,~ \forall \theta \in R \) là trọng số của model sao cho:</p>
+<p>\[ \theta^* = argmin \mathcal{L}(y, \hat{f}(x, \theta)) \]</p>
+<p>Trong machine learning, thì để giải quyết (1) ta thường dùng thuật toán “gradient” để tìm cực tiểu của (1) và tìm ra \(\theta\).</p>
+<p>Khi mà, ở đó, ta sẽ xuất phát từ một điểm mà chúng ta coi là gần với nghiệm của bài toán và sẽ đi dần tới điểm cần tìm nơi đạo hàm gần với 0.</p>
+<p>Như vậy, về bản chất, kiến trúc của hàm số \( \hat{f}(x, \theta) \) sẽ không đổi và thứ thay đổi là bộ hệ số, trọng số \( \theta \) để giúp \( \hat{f}(x, \theta) \approx f(x) \)</p>
+<p><strong>Ví dụ</strong>, trong bài toán linear, nếu đã phân tích và nhận định là bài toán linear, thì ta sẽ dựng model dưới dạng:</p>
+<p>\( \hat{f}(x, \theta) = \theta_0 x + \theta_1 = \begin{bmatrix} \theta_0 &amp; \theta_1 \end{bmatrix} \) * \( \begin{bmatrix} x \\ 1 \end{bmatrix} ~~ \forall\ \theta_0,\ \theta_1 \in R\)</p>
+<p>Tức là kiến trúc model sẽ không đổi và ta sẽ đi tìm các hệ số của hàm.</p>
+<p><img class="singleImg" src="http://localhost:1313/coffee/img/gbm/2.jpg"><br></p>
+<p>Hay ví dụ, mối quan hệ là hàm bậc 2</p>
+<p>\( \hat{f}(x, \theta) = \theta_0 x^2 + \theta_1 x + \theta_2 = \begin{bmatrix} \theta_0 &amp; \theta_1 &amp; \theta_2 \end{bmatrix} \) * \( \begin{bmatrix}\ x^2 \\ x \\ 1 \end{bmatrix} ~~ \forall\ \theta_0,\ \theta_1,\ \theta_2 \in R\)</p>
+<p><img class="singleImg" src="http://localhost:1313/coffee/img/gbm/3.jpg"><br></p>
+<p>Khi đó, nếu ta xây dựng model với kiến trúc Linear cho dữ liệu phi tuyến thì model có học cỡ nào cũng sẽ không thể tạo ra được hàm \( \hat{f}(x, \theta) \) để tái tạo lại sao cho \( \hat{f}(x, \theta) \approx f(x) \), vì bản chất kiến trúc hàm \( \hat{f}(x, \theta) \) vẫn là hàm tuyến tính.</p>
+<p>Hay hàm số với kiến trúc bậc 2 thì sẽ không thể fit với dữ liệu bậc 3 or gì đó phức tạp hơn được chẳng hạn, kiểu vậy.</p>
+<p>Hay sâu hơn là các neural network, ta cũng phải đưa ra kiến trúc của mạng trước, và model sẽ học để tìm các hệ số, trọng số của model để tối ưu sao cho \( \hat{f}(x, \theta) \approx f(x) \).</p>
+<p>Thông thường, Khi EDA dữ liệu nếu dễ dàng ta có thể đưa ra được kiến trúc phù hợp từ mối quan hệ của dữ liệu. Tuy nhiên, thực tế dữ liệu thường rất phức tạp, mà ta khó có thể mường tượng chính xác được mối quan hệ của chúng sẽ là theo dạng nào để quyết định kiến trúc.</p>
+<p>Mà ta thường chỉ nắm được 1 phần mối quan hệ đó và thử nghiệm các model khác nhau để tìm được model mong muốn. Do vậy, việc tìm hàm \( \hat{f}(x) \approx f(x) \) là rất khó.</p>
+<h2 id="transfer-to-gbm">Transfer To GBM</h2>
+<p>Thay vì đi tìm hàm \( \hat{f}(x) \approx f(x) \) rất khó tìm trong một không gian hàm số rất lớn (không gian hàm số: toàn bộ hàm có thể có trên đời).</p>
+<p>Thì GBM thu hẹp không gian tìm kiếm lại và tìm tổ hợp các hàm nhỏ \( \sum_i \hat{f_i}(x) \), đơn giản với mục đích mỗi hàm nhỏ \( \hat{f_i}(x) \) đó sẽ xử lý một phần nhỏ nào đó của dữ liệu, và tổ hợp của các hàm nhỏ có thể phục hồi lại được chức năng tương đương với hàm \( \hat{f}(x) \approx f(x) \).</p>
+<p>cong thuc</p>
+<p>Ta cần đi tìm hàm số \( \hat{f}(x) \) sao cho \( \hat{f}(x) \approx f(x) \), hay \( \hat{f}(x) = argmin(L(f(x), \hat{f}(x)) \) (<em>). Thay vì tìm trong không gian hàm số lớn như vậy, GBM đưa ra tổ hợp các hàm nhỏ, đơn giản hơn được gọi là “weak learner”, sau đó GBM thực hiện “gradient descent” giải quyết bài toán tối ưu (</em>) để từng bước đi dần tới điểm cần tìm, nơi có đạo hàm gần 0.</p>
+<p><img class="singleImg" src="http://localhost:1313/coffee/img/gbm/4.jpg"><br></p>
+<p>Khi đó, ta sẽ bắt đầu tại điểm \(P_0\), và các hàm con \(\hat{f_i}(x)\) sẽ là các bước đi, để từng bước đi tới điểm tối ưu cần tìm. Và tổ hợp các hàm con tại, tức là việc ta đi nhiều bước nhỏ để tiến tới điểm tối ưu \(\sum_i \hat{f_i}(x) = \hat{f}(x)\) khôi phục lại được chức năng \(\hat{f}(x) \approx f(x)\).</p>
+<p>Ta có thể thấy, ở phần trước về “ML Problem Statement” ta có thể thấy:</p>
+<p>cong thuc</p>
+<p>Tức \(\theta_i\) được cập nhật dựa vào nó của thời điểm \(i-1\) và đi 1 bước nhỏ là “\(\alpha\)(learning rate) * đạo hàm của hàm loss giữa model khi có \( \theta_{i-1} \) và nhãn đúng của dữ liệu”. Tức mỗi \(\theta_i\) ta sẽ tính được hàm loss \( \mathcal{L}(\hat{f_i}(\theta_i, y)\) tương ứng, và từ hàm loss đó ta sẽ tính và cập nhật cho \(\theta_{i+1}\) ở bước tiếp theo và cứ thế cho tới khi \(\mathcal{L} \approx 0\)</p>
+<p>Với Gradient Boosting cũng tương tự vậy, khi “1 bước nhỏ” chính là hàm \(\hat{f_i}(x)\). Tức, mỗi một hàm \(\hat{f_i}(x)\) được tính toán dựa trên hàm loss \(\mathcal{L}(\hat{f}_{i-1}(x), y)\) trước đó (hay nó còn thường được gọi là “học từ lỗi của các hàm trước đó”).</p>
+<p>cong thuc</p>
+<p>“Weak Learner” hay “Weak learning model” ở đây một cách tổng quát nó ám chỉ các model con được dùng để kết hợp với nhau và tạo thành model với độ chính xác cao hơn là “Strong model”. Tuy nhiên, vì GBM muốn thu nhỏ không gian tìm kiếm để thay vì tìm \( \hat{f}(x) \) thì sẽ tìm các model con \( \hat{f_i}(x) \). Do vậy, các Weak Leaner thường là các model nhỏ, đơn giản, dễ hiệu chỉnh để giúp cho effort bỏ ra nhỏ hơn nhưng vẫn có hiệu suất và hiệu quả tốt.</p>
+<p>Ví dụ, khi nhắc tới Gradient Boost Model, XgBoost model, ..v.v, ta thường thấy các “weak leaner” là các “decision tree” vì độ hiệu quả, và dễ hiệu chỉnh với độ sâu của cây chẳng hạn, ..v.v.</p>
+<h2 id="discussion">Discussion</h2>
+<p>GBM có sau adaboost, nhưng có thể nói adaboost là 1 case đặc biệt trong GBM và GBM mang tính tổng quát hoá hơn.</p>
+<p>Mình thường thấy khi nhắc đến GBM là m.n sẽ thường ngầm định sẽ chọn và sử dụng các “weak learner” là các “decision tree”. Mình chưa rõ chính xác là vì lý do nào lại vậy, nhưng theo mình có một số lý do như sau:</p>
+<ul>
+<li>Do Decision Tree có thể dễ dàng tuning với độ sâu của cây để đưa ra các weak leaner phù hợp có thể thoả mãn về hiệu suất và hiệu quả của mô hình</li>
+<li>Decision Tree là dạng cây, rẽ nhánh nên có thể xử lý được mọi mối quan hệ của dữ liệu cho dù là “tuyến tính” hay “phi tuyến” phù hợp để giải quyết mọi loại dữ liệu</li>
+<li>Decision Tree cũng có thể xử lý được các loại dữ liệu phức tạp khác nhau mà có thể chứa nhiều loại biến khác nhau với mức độ scale khác nhau. Ví dụ như dữ liệu dạng bảng có thể vừa chứa các cột với giá trị 0-1 nhưng cũng vừa có thể chứa các cột với giá trị thuộc số tự nhiên và không có giới hạn&hellip;v.v</li>
+<li>Do tiếp bước từ adaboost, model sử dụng “weak leaner” là các “decision tree” 1 tầng được gọi là “stump”, và việc dùng decision tree vẫn đạt được hiệu quả nên m.n không thay đổi</li>
+</ul>
+<p>Tuy nhiên, đừng hiểu nhầm ý mình, thường sẽ ngầm định &ldquo;weak learner&rdquo; là các &ldquo;decision tree&rdquo;. Nhưng thực tế, việc sử dụng các &ldquo;learner&rdquo; là các &ldquo;regression model&rdquo; hay &ldquo;svm&rdquo; về mặt kỹ thuật là đều có thể nhé, chỉ là nó không phải good choice thui &lt;3.</p>
+
+
+        
+          <div class="blog-tags">
+            
+              
+              <a href="http://localhost:1313/coffee/tags/ensemble-learning/">ensemble learning</a>&nbsp;
+            
+              
+              <a href="http://localhost:1313/coffee/tags/ensemble-theory/">ensemble theory</a>&nbsp;
+            
+              
+              <a href="http://localhost:1313/coffee/tags/gradient-boosting/">gradient boosting</a>&nbsp;
+            
+              
+              <a href="http://localhost:1313/coffee/tags/gradient-boosting-model/">gradient boosting model</a>&nbsp;
+            
+          </div>
+        
+
+        
+
+        
+          
+
+          
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="http://localhost:1313/coffee/post/2023-09-15-deal-imbalanced-data/" data-toggle="tooltip" data-placement="top" title="Dealing With Imbalanced Datasets">&larr; </a>
+            </li>
+          
+          
+        </ul>
+      
+
+
+      
+      
+      
+      
+      
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      <footer>
+  <div class="container">
+    
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+          
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2023
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="http://localhost:1313/coffee/">Coffee</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.js" integrity="sha384-G0zcxDFp5LWZtDuRMnBkk3EphCK1lhEf4UEyEM693ka574TZGwo4IWwS6QLzM/2t" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha384-w5y/xIeYixWvfM+A1cEbmHPURnvyqmVg5eVENruEdDjcyRLUSNej7512JQGspFUr" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+<script src="http://localhost:1313/coffee/js/main.js"></script>
+<script src="http://localhost:1313/coffee/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="http://localhost:1313/coffee/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+
+    
+  </body>
+</html>
+

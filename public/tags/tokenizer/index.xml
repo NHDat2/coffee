@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tokenizer on Coffee</title>
+    <link>http://localhost:1313/coffee/tags/tokenizer/</link>
+    <description>Recent content in Tokenizer on Coffee</description>
+    <generator>Hugo</generator>
+    <language>vi</language>
+    <lastBuildDate>Fri, 09 Jun 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/coffee/tags/tokenizer/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tokenizers</title>
+      <link>http://localhost:1313/coffee/post/2023-06-09-tokenizers/</link>
+      <pubDate>Fri, 09 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/post/2023-06-09-tokenizers/</guid>
+      <description>&lt;style&gt;&#xA;    .singleImg {&#xA;        display: block;&#xA;        margin-left: auto;&#xA;        margin-right: auto;&#xA;    }&#xA;    .textSingleImg {&#xA;        text-align: center;&#xA;    }&#xA;    .twoImgBlock {&#xA;        display: flex;&#xA;        just-content: center;&#xA;    }&#xA;    .twoImg {&#xA;        width: 400px;&#xA;        height: 400px;&#xA;    }&#xA;&lt;/style&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#introduction&#34;&gt;Introduction&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#token-tokenizer-&#34;&gt;Token, Tokenizer ??&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#tokenization&#34;&gt;Tokenization&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#word-tokenization&#34;&gt;Word Tokenization&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#character-tokenization&#34;&gt;Character Tokenization&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#subword-tokenization&#34;&gt;SubWord tokenization&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#byte-pair-encoding-bpe&#34;&gt;Byte Pair Encoding (BPE)&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#wordpiece-tokenization&#34;&gt;WordPiece tokenization&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;&#xA;&lt;p&gt;Có khá là nhiều bài viết nghiên cứu sâu về việc cách thức “máy móc” đọc văn bản kiểu gì ?&lt;/p&gt;&#xA;&lt;p&gt;Những bài viết nghiên cứu về ngôn ngữ và chuyên sâu về học thuật hơn khá nhiều, mình nghĩ nếu có thể thì các bạn có thể tìm đọc thêm.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Transformer on Coffee</title>
+    <link>http://localhost:1313/coffee/tags/transformer/</link>
+    <description>Recent content in Transformer on Coffee</description>
+    <generator>Hugo</generator>
+    <language>vi</language>
+    <lastBuildDate>Tue, 20 Jun 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/coffee/tags/transformer/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>BERT</title>
+      <link>http://localhost:1313/coffee/post/2023-06-20-bert/</link>
+      <pubDate>Tue, 20 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/post/2023-06-20-bert/</guid>
+      <description>&lt;style&gt;&#xA;.textSingleImg {&#xA;  text-align: center;&#xA;}&#xA;.textTwoImg {&#xA;    display: flex;&#xA;    flex-direction: row;&#xA;    justify-content: space-around;&#xA;&#xA;}&#xA;.singleImg {&#xA;  display: block;&#xA;  margin-left: auto;&#xA;  margin-right: auto;&#xA;}&#xA;.twoImg {&#xA;    display: inline;&#xA;    width: 300px;&#xA;    height: 300px;&#xA;    margin-left: 30px;&#xA;}&#xA;&lt;/style&gt;&#xA;&lt;h1 id=&#34;mối-liên-hệ-của-bert-với-transformer&#34;&gt;Mối liên hệ của Bert với Transformer&lt;/h1&gt;&#xA;&lt;p&gt;BERT, cũng là một trong số các pre-trained models dựa vào kiến trúc Transformer&lt;/p&gt;&#xA;&lt;p&gt;Tuy nhiên, chỉ là kế thừa và dựa trên kiến trúc Transformer nên BERT cũng có những điểm khác biệt có thể kể đến như sau:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Tản Mạn Pre-Trained Models</title>
+      <link>http://localhost:1313/coffee/post/2023-06-17-pretrain/</link>
+      <pubDate>Sat, 17 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/post/2023-06-17-pretrain/</guid>
+      <description>&lt;style&gt;&#xA;.textSingleImg {&#xA;  text-align: center;&#xA;}&#xA;.textTwoImg {&#xA;    display: flex;&#xA;    flex-direction: row;&#xA;    justify-content: space-around;&#xA;&#xA;}&#xA;.singleImg {&#xA;  display: block;&#xA;  margin-left: auto;&#xA;  margin-right: auto;&#xA;}&#xA;.twoImg {&#xA;    display: inline;&#xA;    width: 300px;&#xA;    height: 300px;&#xA;    margin-left: 30px;&#xA;}&#xA;&lt;/style&gt;&#xA;&lt;h1 id=&#34;transformer-based-pre-trained-models-là-gì-&#34;&gt;Transformer-based Pre-trained Models là gì ?&lt;/h1&gt;&#xA;&lt;p&gt;T-PTMs là các model lấy kiến trúc Transformer đình đám được công bố vào năm 2018 làm nền tảng phát triển với các biến thể khác nhau cùng với lượng cực lớn dữ liệu để giúp model có thể nắm bắt được 1 khối kiến thức đồ sộ.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>The Rest of Transformer</title>
+      <link>http://localhost:1313/coffee/post/2023-06-16-transformer-rest/</link>
+      <pubDate>Fri, 16 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/post/2023-06-16-transformer-rest/</guid>
+      <description>&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#gi%E1%BB%9Bi-thi%E1%BB%87u&#34;&gt;Giới Thiệu&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#residual-connections-and-feed-forward-layer&#34;&gt;Residual Connections And Feed Forward Layer&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#m%E1%BB%99t-s%E1%BB%91-nh%E1%BA%ADn-%C4%91%E1%BB%8Bnh-v%C3%A0-c%C3%A1c-nghi%C3%AAn-c%E1%BB%A9u-li%C3%AAn-quan&#34;&gt;Một Số Nhận Định Và Các Nghiên Cứu Liên Quan&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#c%E1%BA%AFt-t%E1%BB%89a-multi-head-attention-v%E1%BB%9Bi-encoder-attention&#34;&gt;Cắt Tỉa Multi-Head Attention Với Encoder Attention&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#multi-head-c%E1%BB%B1c-k%E1%BB%B3-quan-trong-%C4%91%E1%BB%91i-v%E1%BB%9Bi-cross-attention-encoder-decoder-attention&#34;&gt;Multi-Head Cực Kỳ Quan Trong Đối Với Cross Attention (Encoder-Decoder Attention)&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#t%C3%A0i-li%E1%BB%87u-tham-kh%E1%BA%A3o&#34;&gt;Tài Liệu Tham Khảo&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;style&gt;&#xA;  #imgResidual {&#xA;    width: 700px;&#xA;    height: 300px;&#xA;    display: block;&#xA;    margin-left: auto;&#xA;    margin-right: auto;&#xA;  }&#xA;  #imgFFW {&#xA;    width: 300px;&#xA;    height: 500px;&#xA;    display: block;&#xA;    margin-left: auto;&#xA;    margin-right: auto;&#xA;  }&#xA;  .imgTitle {&#xA;    text-align: center;&#xA;  }&#xA;&lt;/style&gt;&#xA;&lt;h1 id=&#34;giới-thiệu&#34;&gt;Giới Thiệu&lt;/h1&gt;&#xA;&lt;p&gt;Ở các phần trước đó ta đã đi qua các phần kiến thức trọng yếu trong kiến trúc Transformer.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Self-Attention</title>
+      <link>http://localhost:1313/coffee/post/2023-06-15-self-attention/</link>
+      <pubDate>Thu, 15 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/post/2023-06-15-self-attention/</guid>
+      <description>&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#gi%E1%BB%9Bi-thi%E1%BB%87u&#34;&gt;Giới Thiệu&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#self-attention&#34;&gt;Self-Attention&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#%C3%BD-t%C6%B0%E1%BB%9Fng&#34;&gt;Ý Tưởng&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#c%C6%A1-ch%E1%BA%BF-ho%E1%BA%A1t-%C4%91%E1%BB%99ng&#34;&gt;Cơ Chế Hoạt Động&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#self-attention-1&#34;&gt;Self-Attention&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#ma-tr%E1%BA%ADn-query-key-value-q-k-v-matrix&#34;&gt;Ma Trận Query, Key, Value (Q, K, V Matrix)&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#t%C3%AAn-g%E1%BB%8Di-c%E1%BB%A7a-c%C3%A1c-attention-khi-%C4%91%C6%B0%E1%BB%A3c-%C3%A1p-d%E1%BB%A5ng-t%E1%BA%A1i-c%C3%A1c-v%E1%BB%8B-tr%C3%AD-kh%C3%A1u-trong-transformer&#34;&gt;Tên Gọi Của Các Attention Khi Được Áp Dụng Tại Các Vị Trí Kháu Trong Transformer&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#multi-head-attention&#34;&gt;Multi-Head Attention&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#attention-v%C3%A0-self-attention&#34;&gt;Attention Và Self-Attention&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#t%C3%A0i-li%E1%BB%87u-tham-kh%E1%BA%A3o&#34;&gt;Tài Liệu Tham Khảo&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;style&gt;&#xA;  .img {&#xA;    width: 500px;&#xA;    height: 500px;&#xA;    display: block;&#xA;    margin-left: auto;&#xA;    margin-right: auto;&#xA;&#xA;  }&#xA;  .scaleImg {&#xA;    width: 700px;&#xA;    height: 500px;&#xA;    display: block;&#xA;    margin-left: auto;&#xA;    margin-right: auto;&#xA;  }&#xA;  .imgTitle {&#xA;    text-align: center;&#xA;  }&#xA;&lt;/style&gt;&#xA;&lt;h1 id=&#34;giới-thiệu&#34;&gt;Giới Thiệu&lt;/h1&gt;&#xA;&lt;p&gt;Ta đã đi qua tổng quan về ý tưởng của transformer, ta cũng đã bắt đầu đi sâu vào trong kiến trúc để hiểu cơ chế hoạt động với việc tìm hiểu Positional Encoding.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Positional Encoding</title>
+      <link>http://localhost:1313/coffee/post/2023-06-14-positional-encoder/</link>
+      <pubDate>Wed, 14 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/post/2023-06-14-positional-encoder/</guid>
+      <description>&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#gi%E1%BB%9Bi-thi%E1%BB%87u&#34;&gt;Giới Thiệu&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#positional-encoding&#34;&gt;Positional Encoding&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#t%E1%BA%A1i-sao-c%E1%BA%A7n-c%C3%B3-positional-encoding-&#34;&gt;Tại Sao Cần Có Positional Encoding ?&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#kh%C3%A1i-ni%E1%BB%87m&#34;&gt;Khái niệm&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#c%C6%A1-ch%E1%BA%BF-ho%E1%BA%A1t-%C4%91%E1%BB%99ng-c%E1%BB%A7a-positional-encoding&#34;&gt;Cơ Chế Hoạt Động Của Positional Encoding&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#c%C3%A1c-ph%C6%B0%C6%A1ng-ph%C3%A1p-kh%C3%A1c&#34;&gt;Các Phương Pháp Khác&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#relative-positional-encoding&#34;&gt;Relative Positional Encoding&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#attention-with-linear-bias-alibi&#34;&gt;Attention with Linear Bias (ALiBi)&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#rotary-positional-encoding-rope&#34;&gt;Rotary Positional Encoding (RoPE)&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#t%C3%A0i-li%E1%BB%87u-tham-kh%E1%BA%A3o&#34;&gt;Tài Liệu Tham Khảo&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;style&gt;&#xA;  .img {&#xA;    display: block;&#xA;    margin-left: auto;&#xA;    margin-right: auto;&#xA;  }&#xA;  .imgTitle {&#xA;    text-align: center;&#xA;  }&#xA;&lt;/style&gt;&#xA;&lt;h1 id=&#34;giới-thiệu&#34;&gt;Giới Thiệu&lt;/h1&gt;&#xA;&lt;p&gt;Trong kiến trúc Transformer, trước khi Vector Embedding được đưa vào mô hình Encoder, nó được cộng thêm một vector khác để lưu trữ lại vị trí của các từ trong câu, cơ chế này gọi là Positional Encoding (PE).&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

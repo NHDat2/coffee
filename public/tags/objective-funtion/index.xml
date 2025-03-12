@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Objective Funtion on Coffee</title>
+    <link>http://localhost:1313/coffee/tags/objective-funtion/</link>
+    <description>Recent content in Objective Funtion on Coffee</description>
+    <generator>Hugo</generator>
+    <language>vi</language>
+    <lastBuildDate>Thu, 01 Jun 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/coffee/tags/objective-funtion/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Loss, Cost and Objective Function</title>
+      <link>http://localhost:1313/coffee/post/2023-06-01-loss-function/</link>
+      <pubDate>Thu, 01 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/post/2023-06-01-loss-function/</guid>
+      <description>&lt;style&gt;&#xA;.textSingleImg {&#xA;    text-align: center;&#xA;}&#xA;&lt;/style&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#introduction&#34;&gt;Introduction&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#the-different-between-loss-cost-and-objective-function&#34;&gt;The different between loss, cost and objective function&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#some-note&#34;&gt;Some Note&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;&#xA;&lt;p&gt;Các khái niệm xoay quanh loss, cost và object function là những thứ, mình tin chắc là bạn nên biết khi tìm hiểu về các kiến thức liên quan tới “machine learning”&lt;/p&gt;&#xA;&lt;p&gt;Cơ bản thì, loss function là 1 hàm số cho phép bạn đo lường sự sai khác giữa kết quả mà model dự đoán ra với kết quả thực. Với mong muốn thiết kế các model sao cho sự sai khác này là nhỏ nhất có thể (tức kết quả được dự đoán ra từ model giống với kết quả thực nhất có thể). Vậy, nếu sự sai khác này là lớn, hay kết quả được đoán ra từ model sai so với kết quả thực. Thì giá trị của loss function sẽ lớn (càng sai nhiều càng lớn) và ngược lại.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

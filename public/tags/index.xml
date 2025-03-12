@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Coffee</title>
+    <link>http://localhost:1313/coffee/tags/</link>
+    <description>Recent content in Tags on Coffee</description>
+    <generator>Hugo</generator>
+    <language>vi</language>
+    <lastBuildDate>Sat, 16 Sep 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/coffee/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ensemble Learning</title>
+      <link>http://localhost:1313/coffee/tags/ensemble-learning/</link>
+      <pubDate>Sat, 16 Sep 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/ensemble-learning/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ensemble Theory</title>
+      <link>http://localhost:1313/coffee/tags/ensemble-theory/</link>
+      <pubDate>Sat, 16 Sep 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/ensemble-theory/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Gradient Boosting</title>
+      <link>http://localhost:1313/coffee/tags/gradient-boosting/</link>
+      <pubDate>Sat, 16 Sep 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/gradient-boosting/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Gradient Boosting Model</title>
+      <link>http://localhost:1313/coffee/tags/gradient-boosting-model/</link>
+      <pubDate>Sat, 16 Sep 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/gradient-boosting-model/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Data Imbalance</title>
+      <link>http://localhost:1313/coffee/tags/data-imbalance/</link>
+      <pubDate>Fri, 15 Sep 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/data-imbalance/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Imbalance Dataset</title>
+      <link>http://localhost:1313/coffee/tags/imbalance-dataset/</link>
+      <pubDate>Fri, 15 Sep 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/imbalance-dataset/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Imbalanced Data</title>
+      <link>http://localhost:1313/coffee/tags/imbalanced-data/</link>
+      <pubDate>Fri, 15 Sep 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/imbalanced-data/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Active Learning</title>
+      <link>http://localhost:1313/coffee/tags/active-learning/</link>
+      <pubDate>Wed, 13 Sep 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/active-learning/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Uncertainty Sampleing</title>
+      <link>http://localhost:1313/coffee/tags/uncertainty-sampleing/</link>
+      <pubDate>Wed, 13 Sep 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/uncertainty-sampleing/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Uncertainty-Based Sampling</title>
+      <link>http://localhost:1313/coffee/tags/uncertainty-based-sampling/</link>
+      <pubDate>Wed, 13 Sep 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/uncertainty-based-sampling/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Activation Function</title>
+      <link>http://localhost:1313/coffee/tags/activation-function/</link>
+      <pubDate>Sun, 10 Sep 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/activation-function/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hàm Kích Hoạt</title>
+      <link>http://localhost:1313/coffee/tags/h%C3%A0m-k%C3%ADch-ho%E1%BA%A1t/</link>
+      <pubDate>Sun, 10 Sep 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/h%C3%A0m-k%C3%ADch-ho%E1%BA%A1t/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Self-Supervised</title>
+      <link>http://localhost:1313/coffee/tags/self-supervised/</link>
+      <pubDate>Tue, 29 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/self-supervised/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Self-Supervised Learning</title>
+      <link>http://localhost:1313/coffee/tags/self-supervised-learning/</link>
+      <pubDate>Tue, 29 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/self-supervised-learning/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>SSL</title>
+      <link>http://localhost:1313/coffee/tags/ssl/</link>
+      <pubDate>Tue, 29 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/ssl/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>VAE</title>
+      <link>http://localhost:1313/coffee/tags/vae/</link>
+      <pubDate>Thu, 24 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/vae/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Variational AutoEncoder</title>
+      <link>http://localhost:1313/coffee/tags/variational-autoencoder/</link>
+      <pubDate>Thu, 24 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/variational-autoencoder/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Feed Forward</title>
+      <link>http://localhost:1313/coffee/tags/feed-forward/</link>
+      <pubDate>Tue, 20 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/feed-forward/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Residual</title>
+      <link>http://localhost:1313/coffee/tags/residual/</link>
+      <pubDate>Tue, 20 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/residual/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Transformer</title>
+      <link>http://localhost:1313/coffee/tags/transformer/</link>
+      <pubDate>Tue, 20 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/transformer/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>AR</title>
+      <link>http://localhost:1313/coffee/tags/ar/</link>
+      <pubDate>Mon, 19 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/ar/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>AR Model</title>
+      <link>http://localhost:1313/coffee/tags/ar-model/</link>
+      <pubDate>Mon, 19 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/ar-model/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Autoregressive</title>
+      <link>http://localhost:1313/coffee/tags/autoregressive/</link>
+      <pubDate>Mon, 19 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/autoregressive/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>AE</title>
+      <link>http://localhost:1313/coffee/tags/ae/</link>
+      <pubDate>Sun, 18 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/ae/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>AE Model</title>
+      <link>http://localhost:1313/coffee/tags/ae-model/</link>
+      <pubDate>Sun, 18 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/ae-model/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Autoencoder</title>
+      <link>http://localhost:1313/coffee/tags/autoencoder/</link>
+      <pubDate>Sun, 18 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/autoencoder/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Pre-Trained Model</title>
+      <link>http://localhost:1313/coffee/tags/pre-trained-model/</link>
+      <pubDate>Sat, 17 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/pre-trained-model/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Attention</title>
+      <link>http://localhost:1313/coffee/tags/attention/</link>
+      <pubDate>Thu, 15 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/attention/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Self-Attention</title>
+      <link>http://localhost:1313/coffee/tags/self-attention/</link>
+      <pubDate>Thu, 15 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/self-attention/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>ALiBi</title>
+      <link>http://localhost:1313/coffee/tags/alibi/</link>
+      <pubDate>Wed, 14 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/alibi/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Attention With Linear Bias</title>
+      <link>http://localhost:1313/coffee/tags/attention-with-linear-bias/</link>
+      <pubDate>Wed, 14 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/attention-with-linear-bias/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>PE</title>
+      <link>http://localhost:1313/coffee/tags/pe/</link>
+      <pubDate>Wed, 14 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/pe/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Positional Encoding</title>
+      <link>http://localhost:1313/coffee/tags/positional-encoding/</link>
+      <pubDate>Wed, 14 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/positional-encoding/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>RoPE</title>
+      <link>http://localhost:1313/coffee/tags/rope/</link>
+      <pubDate>Wed, 14 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/rope/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Rotary Positional Encoding</title>
+      <link>http://localhost:1313/coffee/tags/rotary-positional-encoding/</link>
+      <pubDate>Wed, 14 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/rotary-positional-encoding/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>L1 Normalization</title>
+      <link>http://localhost:1313/coffee/tags/l1-normalization/</link>
+      <pubDate>Sat, 10 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/l1-normalization/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>L2 Normalization</title>
+      <link>http://localhost:1313/coffee/tags/l2-normalization/</link>
+      <pubDate>Sat, 10 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/l2-normalization/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Lasso Regression</title>
+      <link>http://localhost:1313/coffee/tags/lasso-regression/</link>
+      <pubDate>Sat, 10 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/lasso-regression/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Linear Regression</title>
+      <link>http://localhost:1313/coffee/tags/linear-regression/</link>
+      <pubDate>Sat, 10 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/linear-regression/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ridge Regression</title>
+      <link>http://localhost:1313/coffee/tags/ridge-regression/</link>
+      <pubDate>Sat, 10 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/ridge-regression/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>BPE</title>
+      <link>http://localhost:1313/coffee/tags/bpe/</link>
+      <pubDate>Fri, 09 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/bpe/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Byte Pair Encoding</title>
+      <link>http://localhost:1313/coffee/tags/byte-pair-encoding/</link>
+      <pubDate>Fri, 09 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/byte-pair-encoding/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Character Tokenization</title>
+      <link>http://localhost:1313/coffee/tags/character-tokenization/</link>
+      <pubDate>Fri, 09 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/character-tokenization/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Subword Tokenization</title>
+      <link>http://localhost:1313/coffee/tags/subword-tokenization/</link>
+      <pubDate>Fri, 09 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/subword-tokenization/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tokenizer</title>
+      <link>http://localhost:1313/coffee/tags/tokenizer/</link>
+      <pubDate>Fri, 09 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/tokenizer/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Word Tokenization</title>
+      <link>http://localhost:1313/coffee/tags/word-tokenization/</link>
+      <pubDate>Fri, 09 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/word-tokenization/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Entropy</title>
+      <link>http://localhost:1313/coffee/tags/entropy/</link>
+      <pubDate>Mon, 05 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/entropy/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Entropy Formula</title>
+      <link>http://localhost:1313/coffee/tags/entropy-formula/</link>
+      <pubDate>Mon, 05 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/entropy-formula/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Scikit-Learn</title>
+      <link>http://localhost:1313/coffee/tags/scikit-learn/</link>
+      <pubDate>Sun, 04 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/scikit-learn/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Support Vector Machines</title>
+      <link>http://localhost:1313/coffee/tags/support-vector-machines/</link>
+      <pubDate>Sun, 04 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/support-vector-machines/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>SVC</title>
+      <link>http://localhost:1313/coffee/tags/svc/</link>
+      <pubDate>Sun, 04 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/svc/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>SVC Sklearn</title>
+      <link>http://localhost:1313/coffee/tags/svc-sklearn/</link>
+      <pubDate>Sun, 04 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/svc-sklearn/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>SVM</title>
+      <link>http://localhost:1313/coffee/tags/svm/</link>
+      <pubDate>Sun, 04 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/svm/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>SVMs</title>
+      <link>http://localhost:1313/coffee/tags/svms/</link>
+      <pubDate>Sun, 04 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/svms/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Support Vector Machine</title>
+      <link>http://localhost:1313/coffee/tags/support-vector-machine/</link>
+      <pubDate>Sat, 03 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/support-vector-machine/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cost Function</title>
+      <link>http://localhost:1313/coffee/tags/cost-function/</link>
+      <pubDate>Thu, 01 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/cost-function/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Loss Function</title>
+      <link>http://localhost:1313/coffee/tags/loss-function/</link>
+      <pubDate>Thu, 01 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/loss-function/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Objective Funtion</title>
+      <link>http://localhost:1313/coffee/tags/objective-funtion/</link>
+      <pubDate>Thu, 01 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/tags/objective-funtion/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pages on Coffee</title>
+    <link>http://localhost:1313/coffee/page/</link>
+    <description>Recent content in Pages on Coffee</description>
+    <generator>Hugo</generator>
+    <language>vi</language>
+    <atom:link href="http://localhost:1313/coffee/page/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About me</title>
+      <link>http://localhost:1313/coffee/page/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/page/about/</guid>
+      <description>&lt;p&gt;Mình là Đạt. Biệt danh của mình là Unique, nhưng mọi người thường gọi mình là &amp;ldquo;que&amp;rdquo; :v&lt;/p&gt;&#xA;&lt;p&gt;Mình cũng chả thích dài dòng lắm. Đây là nơi mình lưu lại những kiến thức của mình cũng như những thứ mà mình thấy thú vị xoay quanh công việc của mình.&lt;/p&gt;&#xA;&lt;p&gt;Mặc dù chủ yếu chỉ là nơi lưu lại những kiến thức của mình. Nhưng nếu nó có thể một phần nào đó giúp được các bạn thì mình rất vui.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

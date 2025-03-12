@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pre-Trained Model on Coffee</title>
+    <link>http://localhost:1313/coffee/tags/pre-trained-model/</link>
+    <description>Recent content in Pre-Trained Model on Coffee</description>
+    <generator>Hugo</generator>
+    <language>vi</language>
+    <lastBuildDate>Sat, 17 Jun 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/coffee/tags/pre-trained-model/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tản Mạn Pre-Trained Models</title>
+      <link>http://localhost:1313/coffee/post/2023-06-17-pretrain/</link>
+      <pubDate>Sat, 17 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/post/2023-06-17-pretrain/</guid>
+      <description>&lt;style&gt;&#xA;.textSingleImg {&#xA;  text-align: center;&#xA;}&#xA;.textTwoImg {&#xA;    display: flex;&#xA;    flex-direction: row;&#xA;    justify-content: space-around;&#xA;&#xA;}&#xA;.singleImg {&#xA;  display: block;&#xA;  margin-left: auto;&#xA;  margin-right: auto;&#xA;}&#xA;.twoImg {&#xA;    display: inline;&#xA;    width: 300px;&#xA;    height: 300px;&#xA;    margin-left: 30px;&#xA;}&#xA;&lt;/style&gt;&#xA;&lt;h1 id=&#34;transformer-based-pre-trained-models-là-gì-&#34;&gt;Transformer-based Pre-trained Models là gì ?&lt;/h1&gt;&#xA;&lt;p&gt;T-PTMs là các model lấy kiến trúc Transformer đình đám được công bố vào năm 2018 làm nền tảng phát triển với các biến thể khác nhau cùng với lượng cực lớn dữ liệu để giúp model có thể nắm bắt được 1 khối kiến thức đồ sộ.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

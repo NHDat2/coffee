@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Imbalanced Data on Coffee</title>
+    <link>http://localhost:1313/coffee/tags/imbalanced-data/</link>
+    <description>Recent content in Imbalanced Data on Coffee</description>
+    <generator>Hugo</generator>
+    <language>vi</language>
+    <lastBuildDate>Fri, 15 Sep 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/coffee/tags/imbalanced-data/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dealing With Imbalanced Datasets</title>
+      <link>http://localhost:1313/coffee/post/2023-09-15-deal-imbalanced-data/</link>
+      <pubDate>Fri, 15 Sep 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/post/2023-09-15-deal-imbalanced-data/</guid>
+      <description>&lt;style&gt;&#xA;.textSingleImg {&#xA;  text-align: center;&#xA;}&#xA;.textTwoImg {&#xA;    display: flex;&#xA;    margin-left: 10px;&#xA;    flex-direction: row;&#xA;    justify-content: space-around;&#xA;&#xA;}&#xA;.singleImg {&#xA;  display: block;&#xA;  margin-left: auto;&#xA;  margin-right: auto;&#xA;}&#xA;.twoImg {&#xA;    display: inline;&#xA;    width: 300px;&#xA;    height: 300px;&#xA;    margin-left: 30px;&#xA;}&#xA;&lt;/style&gt;&#xA;&lt;h1 id=&#34;giới-thiệu&#34;&gt;Giới Thiệu&lt;/h1&gt;&#xA;&lt;p&gt;Imbalanced Datasets là vấn đề mà ta thường gặp phải khi giải quyết các bài toán với dữ liệu thực tế. Và nó luôn là một trong những vấn đề khó nhằn khi giải quyết các bài toán machine learning.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

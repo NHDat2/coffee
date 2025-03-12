@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Attention With Linear Bias on Coffee</title>
+    <link>http://localhost:1313/coffee/tags/attention-with-linear-bias/</link>
+    <description>Recent content in Attention With Linear Bias on Coffee</description>
+    <generator>Hugo</generator>
+    <language>vi</language>
+    <lastBuildDate>Wed, 14 Jun 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/coffee/tags/attention-with-linear-bias/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Positional Encoding</title>
+      <link>http://localhost:1313/coffee/post/2023-06-14-positional-encoder/</link>
+      <pubDate>Wed, 14 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/post/2023-06-14-positional-encoder/</guid>
+      <description>&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#gi%E1%BB%9Bi-thi%E1%BB%87u&#34;&gt;Giới Thiệu&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#positional-encoding&#34;&gt;Positional Encoding&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#t%E1%BA%A1i-sao-c%E1%BA%A7n-c%C3%B3-positional-encoding-&#34;&gt;Tại Sao Cần Có Positional Encoding ?&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#kh%C3%A1i-ni%E1%BB%87m&#34;&gt;Khái niệm&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#c%C6%A1-ch%E1%BA%BF-ho%E1%BA%A1t-%C4%91%E1%BB%99ng-c%E1%BB%A7a-positional-encoding&#34;&gt;Cơ Chế Hoạt Động Của Positional Encoding&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#c%C3%A1c-ph%C6%B0%C6%A1ng-ph%C3%A1p-kh%C3%A1c&#34;&gt;Các Phương Pháp Khác&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#relative-positional-encoding&#34;&gt;Relative Positional Encoding&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#attention-with-linear-bias-alibi&#34;&gt;Attention with Linear Bias (ALiBi)&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#rotary-positional-encoding-rope&#34;&gt;Rotary Positional Encoding (RoPE)&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#t%C3%A0i-li%E1%BB%87u-tham-kh%E1%BA%A3o&#34;&gt;Tài Liệu Tham Khảo&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;style&gt;&#xA;  .img {&#xA;    display: block;&#xA;    margin-left: auto;&#xA;    margin-right: auto;&#xA;  }&#xA;  .imgTitle {&#xA;    text-align: center;&#xA;  }&#xA;&lt;/style&gt;&#xA;&lt;h1 id=&#34;giới-thiệu&#34;&gt;Giới Thiệu&lt;/h1&gt;&#xA;&lt;p&gt;Trong kiến trúc Transformer, trước khi Vector Embedding được đưa vào mô hình Encoder, nó được cộng thêm một vector khác để lưu trữ lại vị trí của các từ trong câu, cơ chế này gọi là Positional Encoding (PE).&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

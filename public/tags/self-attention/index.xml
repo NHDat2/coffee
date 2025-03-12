@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Self-Attention on Coffee</title>
+    <link>http://localhost:1313/coffee/tags/self-attention/</link>
+    <description>Recent content in Self-Attention on Coffee</description>
+    <generator>Hugo</generator>
+    <language>vi</language>
+    <lastBuildDate>Thu, 15 Jun 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/coffee/tags/self-attention/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Self-Attention</title>
+      <link>http://localhost:1313/coffee/post/2023-06-15-self-attention/</link>
+      <pubDate>Thu, 15 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/coffee/post/2023-06-15-self-attention/</guid>
+      <description>&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#gi%E1%BB%9Bi-thi%E1%BB%87u&#34;&gt;Giới Thiệu&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#self-attention&#34;&gt;Self-Attention&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#%C3%BD-t%C6%B0%E1%BB%9Fng&#34;&gt;Ý Tưởng&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#c%C6%A1-ch%E1%BA%BF-ho%E1%BA%A1t-%C4%91%E1%BB%99ng&#34;&gt;Cơ Chế Hoạt Động&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#self-attention-1&#34;&gt;Self-Attention&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#ma-tr%E1%BA%ADn-query-key-value-q-k-v-matrix&#34;&gt;Ma Trận Query, Key, Value (Q, K, V Matrix)&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#t%C3%AAn-g%E1%BB%8Di-c%E1%BB%A7a-c%C3%A1c-attention-khi-%C4%91%C6%B0%E1%BB%A3c-%C3%A1p-d%E1%BB%A5ng-t%E1%BA%A1i-c%C3%A1c-v%E1%BB%8B-tr%C3%AD-kh%C3%A1u-trong-transformer&#34;&gt;Tên Gọi Của Các Attention Khi Được Áp Dụng Tại Các Vị Trí Kháu Trong Transformer&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#multi-head-attention&#34;&gt;Multi-Head Attention&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#attention-v%C3%A0-self-attention&#34;&gt;Attention Và Self-Attention&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#t%C3%A0i-li%E1%BB%87u-tham-kh%E1%BA%A3o&#34;&gt;Tài Liệu Tham Khảo&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;style&gt;&#xA;  .img {&#xA;    width: 500px;&#xA;    height: 500px;&#xA;    display: block;&#xA;    margin-left: auto;&#xA;    margin-right: auto;&#xA;&#xA;  }&#xA;  .scaleImg {&#xA;    width: 700px;&#xA;    height: 500px;&#xA;    display: block;&#xA;    margin-left: auto;&#xA;    margin-right: auto;&#xA;  }&#xA;  .imgTitle {&#xA;    text-align: center;&#xA;  }&#xA;&lt;/style&gt;&#xA;&lt;h1 id=&#34;giới-thiệu&#34;&gt;Giới Thiệu&lt;/h1&gt;&#xA;&lt;p&gt;Ta đã đi qua tổng quan về ý tưởng của transformer, ta cũng đã bắt đầu đi sâu vào trong kiến trúc để hiểu cơ chế hoạt động với việc tìm hiểu Positional Encoding.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

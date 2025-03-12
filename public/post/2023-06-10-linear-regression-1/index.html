@@ -1,0 +1,505 @@
+
+
+<!DOCTYPE html>
+<html lang="vi" itemscope itemtype="http://schema.org/WebPage">
+  <head><script src="/coffee/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=coffee/livereload" data-no-instant defer></script>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+ 
+
+
+      <title>Linear, Ridge and Lasso Regression - </title>
+
+  <meta name="description" content="
+Như đã biết thì “học máy” (machine learning) là việc kết hợp các giả thuyết về dữ liệu và công cụ toán học để đưa ra thông tin, quy luật của dữ liệu."><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Coffee",
+    
+    "url": "http:\/\/localhost:1313\/coffee\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "http:\/\/localhost:1313\/coffee\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "http:\/\/localhost:1313\/coffee\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "http:\/\/localhost:1313\/coffee\/post\/2023-06-10-linear-regression-1\/",
+          "name": "Linear, ridge and lasso regression"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : ""
+  },
+  "headline": "Linear, Ridge and Lasso Regression",
+  "description" : " Như đã biết thì “học máy” (machine learning) là việc kết hợp các giả thuyết về dữ liệu và công cụ toán học để đưa ra thông tin, quy luật của dữ liệu.\n",
+  "inLanguage" : "vi",
+  "wordCount":  1235 ,
+  "datePublished" : "2023-06-10T00:00:00\u002b00:00",
+  "dateModified" : "2023-06-10T00:00:00\u002b00:00",
+  "image" : "http:\/\/localhost:1313\/coffee\/img\/avatar-icon.png",
+  "keywords" : [ "linear regression, ridge regression, lasso regression, l1 normalization, l2 normalization" ],
+  "mainEntityOfPage" : "http:\/\/localhost:1313\/coffee\/post\/2023-06-10-linear-regression-1\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "http:\/\/localhost:1313\/coffee\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "http:\/\/localhost:1313\/coffee\/img\/avatar-icon.png",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+
+<meta property="og:title" content="Linear, Ridge and Lasso Regression" />
+<meta property="og:description" content="
+Như đã biết thì “học máy” (machine learning) là việc kết hợp các giả thuyết về dữ liệu và công cụ toán học để đưa ra thông tin, quy luật của dữ liệu.">
+<meta property="og:image" content="http://localhost:1313/coffee/img/avatar-icon.png" />
+<meta property="og:url" content="http://localhost:1313/coffee/post/2023-06-10-linear-regression-1/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Coffee" />
+
+  <meta name="twitter:title" content="Linear, Ridge and Lasso Regression" />
+  <meta name="twitter:description" content="">
+  <meta name="twitter:image" content="http://localhost:1313/coffee/img/avatar-icon.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link href='http://localhost:1313/coffee/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.145.0">
+  <link rel="alternate" href="http://localhost:1313/coffee/index.xml" type="application/rss+xml" title="Coffee"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css" integrity="sha384-3UiQGuEI4TTMaFmGIZumfRPtfKQ3trwQE2JgosJxCnGmQpL/lJdjpcHkaaFwHlcI" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.6.0/css/all.css" integrity="sha384-h/hnnw1Bi4nbpD6kE7nYfCXzovi622sY5WBxww8ARKwpdLj5kUWjRuyiXaD1U2JT" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"><link rel="stylesheet" href="http://localhost:1313/coffee/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="http://localhost:1313/coffee/css/highlight.min.css" /><link rel="stylesheet" href="http://localhost:1313/coffee/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://localhost:1313/coffee/">Coffee</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="http://localhost:1313/coffee/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="http://localhost:1313/coffee/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="http://localhost:1313/coffee/tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="Coffee" href="http://localhost:1313/coffee/">
+            <img class="avatar-img" src="http://localhost:1313/coffee/img/avatar-icon.png" alt="Coffee" />
+           
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              
+                <h1>Linear, Ridge and Lasso Regression</h1>
+              
+              
+              
+              
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;6&nbsp;
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;1235&nbsp;
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;
+    
+  
+  
+</span>
+
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <style>
+.textSingleImg {
+  text-align: center;
+}
+.textTwoImg {
+    display: flex;
+    margin-left: 10px;
+    flex-direction: row;
+    justify-content: space-around;
+
+}
+.singleImg {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+    height: 300px;
+}
+.twoImg {
+    display: inline;
+    width: 300px;
+    height: 300px;
+    margin-left: 30px;
+}
+</style>
+<p>Như đã biết thì “học máy” (machine learning) là việc kết hợp các giả thuyết về dữ liệu và công cụ toán học để đưa ra thông tin, quy luật của dữ liệu.</p>
+<p>Các giả thuyết đặt ra thông qua insight trong quá trình EDA (Exploratory Data Analysis) để phù hợp với bài toán.</p>
+<p>Trong bài viết này, ta sẽ tiếp cận “Linear Regression” và các “biến thể” với góc tiếp cận từ các giả thuyết.</p>
+<h1 id="linear-regression">Linear Regression</h1>
+<p>Thường khi nhắc đến Linear Regression, ta thường xét đến “simple linear regression” một loại “linear regression model” đơn giản nhất với chỉ 1 “biến độc lập (independent variable)” và 1 “biến phụ thuộc (dependent variable)”.</p>
+<p>Với giả thuyết đầu ra (dependent variable) phụ thuộc vào tổ hợp tuyến tính của các thuộc tính đầu vào.</p>
+<p>Ví dụ, trong mặt phẳng 2 chiều, 1 đường thưởng y = ax + b.</p>
+<ul>
+<li>x: biến độc lập</li>
+<li>y: biến phụ thuộc
+phụ thuộc vào tổ hợp tuyến tính của x (ax + b)</li>
+</ul>
+<img class="singleImg" src="http://localhost:1313/coffee/img/linear_regression/1.jpg">
+<p>Có một định lý, là “định lý giới hạn trung tâm” (central limit theorem), ở đây định lý nói rằng “phân phối xác suất của biến ngẫu nhiên giản lược sẽ hội tụ về một phân phối chuẩn”.</p>
+<p>Giả thuyết đưa ra là, đầu ra Y sẽ tuân theo phân phối chuẩn phụ thuộc vào tổ hợp tuyến tính của các thuộc tính đầu vào.</p>
+<p>Ta có:</p>
+<p>\[ y_n \sim \mathcal{N}(x_na, \sigma) \]</p>
+<img class="singleImg" src="http://localhost:1313/coffee/img/linear_regression/2.jpg">
+<p>Linear Regression giả định rằng phương sai sẽ là một hằng số và không đổi dữ liệu dạng này được gọi là “Homoskedastic data”.</p>
+<p>Tuy nhiên, Trong thực tế thì phương sai thường “không” phải là hằng số, nó thường biến thiên, và dạng dữ liệu này gọi là “Heteroskedastic data”, đôi khi có thể là một hàm của giá trị trung bình. Khi giá trị trung bình tăng =&gt; variance tăng theo.</p>
+<img class="twoImg" src="http://localhost:1313/coffee/img/linear_regression/3.jpg">
+<img class="twoImg" src="http://localhost:1313/coffee/img/linear_regression/4.jpg">
+<p>Ta có:</p>
+<ul>
+<li>\( \{x_n, y_n\}, 0 &lt; n &lt; N \) là các cặp điểm dữ liệu đã biết</li>
+<li>Giả thuyết \( y_n \sim \mathcal{N}(x_na, \sigma) \)</li>
+<li>Giả thuyết \( \sigma \) cố định.</li>
+</ul>
+<p>=&gt; Áp dụng MAP, ta cần tối đa khả năng xảy ra:</p>
+<p>\[ a_* = argmax \sum^n log P(y_n | x_n; a) \]
+\[ \ \ \ \ \ \ \ \ = argmax \sum^n log N(y_n; x_na, \sigma ) \]
+\[ \ \ \ \ \ \ \ \ = argmax \sum^n log([{1 \over \sigma \sqrt{2 \pi}}e^{-{1 \over 2}({y_n - x_na \over \sigma})^2}]) \]
+\[ \ \ \ \ \ \ \ \ = argmax \sum^n ([log{1 \over \sigma \sqrt{2 \pi}} - {{1 \over 2}({y_n - x_na \over \sigma})^2}]) \]</p>
+<p>Vì \( \sigma \) cố định, là hằng số</p>
+<p>\( \Rightarrow log{1 \over \sigma \sqrt{2 \pi}} \) là hằng số và \( {1 \over 2 \sigma} \) là hằng số</p>
+<p>\[ a_* = argmax - \sum^n (y_n - x_na)^2 \]
+\[ \Rightarrow a_* = argmin \sum^n (y_n - x_na)^2 \]</p>
+<p>Tức là, vì:</p>
+<ul>
+<li>Biến độc lập x, và biến phụ thuộc y, là ta đã đều biết vì chúng là training dataset.</li>
+<li>Trong khi đó, a là biến duy nhất ta chưa biết và cần tìm</li>
+<li>Mà giả thuyết đặt ra là y tuân theo phân phối chuẩn phụ thuộc vào tổ hợp tuyến tính của các feature đầu vào là (x, a)</li>
+</ul>
+<p>=&gt; ta cần tìm \( a_* \) để cùng với <strong>x</strong>, cho ra đầu ra <strong>y</strong> thuộc phân phối chuẩn, nhất có thể.</p>
+<h1 id="ridge-regression">Ridge Regression</h1>
+<p>Ridge Regression đưa thêm giả thuyết về vector a với việc, vector a cũng sẽ thuộc phân phối chuẩn với \( \mu = 0 \) và \( \sigma = \sqrt{1 \over \lambda} \)</p>
+<p>\[ a \sim \mathcal{N}(0; \sqrt{1 \over \lambda}) \]</p>
+<p>Khi đó, ta có thể biểu diễn như sau:</p>
+<img class="singleImg" src="http://localhost:1313/coffee/img/linear_regression/5.jpg">
+<p>\[ y_n \sim \mathcal{N}(x_na, \sigma) \]
+\[ a \sim \mathcal{N}(0, \sqrt{1 \over \lambda}) \]</p>
+<p>=&gt; Áp dụng MAP, ta cần tối đa hóa khả năng xảy ra:</p>
+<p>\[ a_* = argmax \sum^n log[P(a|x_n, y_n, \lambda)] \]
+\[ \ \ \ \ \ \ \ \ = argmax \sum^n [logP(y_n|x_n, a) + logP(a|\lambda)] \]
+\[ \ \ \ \ \ \ \ \ = argmax \sum^n [log \mathcal{N} (y_n; x_na, \sigma) + log \mathcal{N} (a; 0; \sqrt{1 \over \lambda})] \]
+\[ \ \ \ \ \ \ \ \ = argmax \sum^n [log([{1 \over \sigma \sqrt{2 \pi}}e^{-{1 \over 2}({y_n - x_na \over \sigma})^2}]) + log({1 \over \sqrt{2 \pi \over \lambda}}e^{-\lambda a^2 \over 2})] \]
+\[ \ \ \ \ \ \ \ \ = argmax \sum^n [[log{1 \over \sigma \sqrt{2 \pi}} - {1 \over 2 \sigma^2 (y_n - x_na)^2}] + (log \sqrt{\lambda \over 2 \pi} - {1 \over 2}\lambda a^2)] \]</p>
+<p>Vì giả thuyết đưa ra &ldquo;Variance&rdquo; là cố định:</p>
+<p>\[ \Rightarrow a_* = argmax \sum^n [- (y_n - x_na)^2 - \lambda a^2] \]
+\[ \ \ \ \ \ \ \ \ = argmax - \sum^n [(y_n - x_na)^2 + \lambda a^2] \]
+\[ \Rightarrow a_* = argmin [\sum^n (y_n - x_na)^2 + \lambda \sum^n a^2] \]</p>
+<p>Khi đó, Ridge Regression sẽ là “Linear Regression” cộng thêm 1 biểu thức đằng sau là \( \lambda a^2 \).</p>
+<p>Ta thấy, về cơ bản Ridge Regression là việc đưa ra thêm các giả thuyết có các biến đầu vào (cụ thể ở đây là đưa thêm giả thuyết cho <strong>a</strong>).</p>
+<p>Thay vì phải tìm <strong>a</strong> trên toàn bộ miền, thì Ridge Regression đưa ra thêm giả thuyết <strong>a</strong> sẽ thuộc phân phối chuẩn</p>
+<p>=&gt; điều này sẽ thu hẹp miền tìm kiếm của <strong>a</strong> từ rất lớn về thành theo phân phối chuẩn.</p>
+<p>Nếu \( \lambda \rightarrow 0 \):</p>
+<ul>
+<li>
+<p>Nếu nhìn vào công thức thì ta có thể thấy luôn, khi đó công thức sẽ giống với “Linear Regression” ở phần trước.</p>
+</li>
+<li>
+<p>Nếu xét về mặt lý thuyết hơn, thì như giả thuyết được đặt ra \( a \sim \mathcal{N}(0, \sqrt{1 \over \lambda}) \) thì khi \( \lambda \rightarrow 0 \) =&gt; variance \( \sigma \rightarrow \infty \).<br>
+Khi đó, khoảng giá trị mà <strong>a</strong> có thể nhận được trải rộng tới vô cực -&gt; miền tìm kiếm của <strong>a</strong> vẫn như cũ và không có thay đổi gì.</p>
+</li>
+</ul>
+<p>Nếu \( \lambda \rightarrow \infty \):</p>
+<ul>
+<li>variance \( \sigma \rightarrow 0 \). Khi đó, khoảng giá trị mà <strong>a</strong> có thể nhận được sẽ rất nhỏ =&gt; dẫn tới việc dễ bị underfitting.</li>
+</ul>
+<h1 id="lasso-regression">Lasso Regression</h1>
+<p>Giống với Ridge, nhưng thay vì đưa ra giả thuyết với \( a \sim \mathcal{N} \), thì Lasso đưa ra giả thuyết <strong>a</strong> tuân theo phân phối Laplance với \( \mu = 0 \) và \( b = {1 \over \lambda} \)</p>
+<p>\[ a \sim \mathcal{L}(0, {1 \over \lambda}) \]</p>
+<p>Với giả thuyết đưa ra từ ban đầu là &ldquo;Variance&rdquo; cố định. Biến đổi như Ridge Regression ở phần trước ta cần tối ưu khả năng:</p>
+<p>\[ a_* = argmin [\sum^n (y_n - x_na)^2 + \lambda \sum^n |a|] \]</p>
+<h1 id="thảo-luận">Thảo Luận</h1>
+<p>Học máy là việc kết hợp các giả thuyết phù hợp với bài toán và công cụ toán học để giải quyết.</p>
+<p>Linear Regression là việc đưa ra giả thuyết cho outcome và mối quan hệ của các biến.</p>
+<p>Ridge và Lasso Regression cũng là kết quả của việc đưa ra thêm giả thuyết cho các trọng số của Linear Regression.</p>
+<p>Nếu tiếp cận các bài toán theo dạng &ldquo;grapphical model&rdquo; sẽ giúp ta có nhiều góc nhìn để giải quyết bài toán hơn.</p>
+
+
+        
+          <div class="blog-tags">
+            
+              
+              <a href="http://localhost:1313/coffee/tags/linear-regression/">linear regression</a>&nbsp;
+            
+              
+              <a href="http://localhost:1313/coffee/tags/ridge-regression/">ridge regression</a>&nbsp;
+            
+              
+              <a href="http://localhost:1313/coffee/tags/lasso-regression/">lasso regression</a>&nbsp;
+            
+              
+              <a href="http://localhost:1313/coffee/tags/l1-normalization/">l1 normalization</a>&nbsp;
+            
+              
+              <a href="http://localhost:1313/coffee/tags/l2-normalization/">l2 normalization</a>&nbsp;
+            
+          </div>
+        
+
+        
+
+        
+          
+
+          
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="http://localhost:1313/coffee/post/2023-06-09-tokenizers/" data-toggle="tooltip" data-placement="top" title="Tokenizers">&larr; </a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="http://localhost:1313/coffee/post/2023-06-14-positional-encoder/" data-toggle="tooltip" data-placement="top" title="Positional Encoding"> &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+      
+      
+      
+      
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      <footer>
+  <div class="container">
+    
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+          
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2023
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="http://localhost:1313/coffee/">Coffee</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.js" integrity="sha384-G0zcxDFp5LWZtDuRMnBkk3EphCK1lhEf4UEyEM693ka574TZGwo4IWwS6QLzM/2t" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha384-w5y/xIeYixWvfM+A1cEbmHPURnvyqmVg5eVENruEdDjcyRLUSNej7512JQGspFUr" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+<script src="http://localhost:1313/coffee/js/main.js"></script>
+<script src="http://localhost:1313/coffee/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="http://localhost:1313/coffee/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+
+    
+  </body>
+</html>
+
